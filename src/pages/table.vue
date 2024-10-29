@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-md-12">
+  <v-container >
     <v-card rounded="lg" title="数据库表名">
       <template #append>
         <v-btn icon="mdi-filter" variant="text"></v-btn>

@@ -18,10 +18,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      class="ps-md-4"
-      color="surface-variant"
-    >
+    <v-app-bar class="ps-md-4" color="surface-variant">
       <template #prepend>
         <v-app-bar-nav-icon
           v-if="$vuetify.display.smAndDown"
@@ -57,16 +54,19 @@
 
         <v-dialog activator="parent" max-width="550">
           <v-card>
-            <v-text-field density="comfortable" hide-details label="Search for commands or content..." />
+            <v-text-field
+              density="comfortable"
+              hide-details
+              label="Search for commands or content..."
+            />
 
-            <v-list
-              class="px-2"
-              density="compact"
-              max-height="350"
-              nav
-              slim
-            >
-              <v-list-item link prepend-icon="mdi-creation" rounded title="Ask the AI">
+            <v-list class="px-2" density="compact" max-height="350" nav slim>
+              <v-list-item
+                link
+                prepend-icon="mdi-creation"
+                rounded
+                title="Ask the AI"
+              >
                 <template #prepend>
                   <v-icon class="me-n2" size="x-small" />
                 </template>
@@ -80,9 +80,7 @@
                     text="A"
                   />
 
-                  <span class="px-2 text-caption">
-                    then
-                  </span>
+                  <span class="px-2 text-caption"> then </span>
 
                   <v-avatar
                     class="text-caption border border-surface-variant"
@@ -151,9 +149,7 @@
                     text="C"
                   />
 
-                  <span class="px-2 text-caption">
-                    then
-                  </span>
+                  <span class="px-2 text-caption"> then </span>
 
                   <v-avatar
                     class="text-caption border border-surface-variant"
@@ -191,14 +187,19 @@
                 </template>
               </v-list-item>
 
-              <v-list-item link prepend-icon="mdi-arrow-right" rounded title="Manage account">
+              <v-list-item
+                link
+                prepend-icon="mdi-arrow-right"
+                rounded
+                title="Manage account"
+              >
                 <template #prepend>
                   <v-icon class="me-n2" size="x-small" />
                 </template>
               </v-list-item>
             </v-list>
 
-            <v-card-actions class="bg-surface-light">
+            <v-card-actions>
               <div class="ps-4 text-caption">
                 <v-kbd>Enter</v-kbd>
                 to select
@@ -226,13 +227,9 @@
           />
         </template>
 
-        <template v-if="$vuetify.display.mdAndUp" #title>
-          Yokaze
-        </template>
+        <template v-if="$vuetify.display.mdAndUp" #title> Yokaze </template>
 
-        <template v-else #title>
-          JL
-        </template>
+        <template v-else #title> JL </template>
 
         <template v-if="$vuetify.display.mdAndUp" #subtitle>
           Personal projects
@@ -257,14 +254,11 @@
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue'
+import { computed, ref } from "vue";
 
-  const drawer = ref(false)
+const drawer = ref(false);
 
-  const items = computed(() => {
-    return [
-      { title: 'Feedback' },
-      { title: 'Support' },
-    ]
-  })
+const items = computed(() => {
+  return [{ title: "Feedback" }, { title: "Support" }];
+});
 </script>

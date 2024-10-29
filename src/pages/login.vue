@@ -1,132 +1,141 @@
 <template>
-  <v-contain
-    class="bg-surface-light d-flex pa-ma-0 h-100"
-    :style="{ backgroundImage: `url(${randomBackgroundUrl})` }"
-  >
-    <!-- 提醒：后期加入v-col的话，组件默认12列-->
-    <v-row class="d-flex" align="center" justify="center">
-      <v-card
-        class="flex-1-1 pt-8 pb-6 px-6 mx-6 opacity-90"
-        max-width="400"
-        rounded="xl"
-      >
-        <div class="d-flex justify-center align-center mt-0 mb-6">
-          <v-img
-            class="mr-3"
-            inline
-            width="48"
-            rounded="circle"
-            draggable="false"
-            src="https://testingcf.jsdelivr.net/gh/4444TENSEI/CDN@master/img/icon/angeldog/angeldog.ico"
-          />
-          <p
-            class="font-weight-black"
-            style="
-              font-size: 3rem;
-              letter-spacing: 0.1em;
-              cursor: default;
-              line-height: 1;
-            "
-          >
-            KAZE
-          </p>
-        </div>
+  <v-container class="d-flex align-center justify-center pa-0">
+    <v-card
+      class="flex-d pt-8 pb-5 px-5 mx-6 opacity-100"
+      width="360"
+      max-width="400"
+      rounded="xl"
+    >
+      <div class="d-flex justify-center align-center mt-0 mb-6">
+        <v-img
+          class="mr-3"
+          inline
+          width="42"
+          rounded="circle"
+          draggable="false"
+          src="https://testingcf.jsdelivr.net/gh/4444TENSEI/CDN@master/img/icon/angeldog/angeldog.ico"
+        />
+        <p
+          class="font-weight-black cursor-default"
+          style="font-size: 2.4rem; letter-spacing: 0.1em; line-height: 1"
+        >
+          KAZE
+        </p>
+      </div>
 
-        <div>
-          <v-text-field
-            placeholder="手机号 / 邮箱"
-            prepend-inner-icon="mdi-account"
-            clearable
-            rounded="pill"
-            :hide-details="false"
-            variant="solo-filled"
-          >
-          </v-text-field>
+      <form @submit.prevent="handleSubmit(submit)">
 
-          <v-text-field
-            prepend-inner-icon="mdi-lock"
-            placeholder="密码"
-            clearable
-            rounded="pill"
-            :hide-details="false"
-            variant="solo-filled"
-            :type="visible ? 'text' : 'password'"
-            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-            @click:append-inner="visible = !visible"
-          >
-          </v-text-field>
-        </div>
+        <v-text-field
+          prepend-inner-icon="mdi-email"
+          label="邮箱账号"
+          clearable
+          required
+          rounded="lg"
+          variant="solo-filled"
+          v-model="email.value.value"
+          :error-messages="email.errorMessage.value"
+        ></v-text-field>
 
-        <div class="d-flex mb-4">
-          <v-checkbox-btn color="primary" label="记住我" />
-          <v-btn rounded="pill" size="large" text="找回" variant="flat" />
-          <v-btn rounded="pill" size="large" text="注册" variant="flat" />
-        </div>
-        <v-sheet>
+        <v-text-field
+          prepend-inner-icon="mdi-lock"
+          label="密码"
+          clearable
+          class="mt-1"
+          rounded="lg"
+          variant="solo-filled"
+          :type="visible ? 'text' : 'password'"
+          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+          @click:append-inner="visible = !visible"
+          v-model="password.value.value"
+          :counter="20"
+          :error-messages="password.errorMessage.value"
+        >
+        </v-text-field>
+      </form>
+
+      <div class="d-flex mb-1">
+        <v-checkbox-btn color="primary" label="记住我" />
+        <v-btn text="找回" rounded="pill" height="42" variant="flat" />
+        <v-btn
+          text="注册"
+          rounded="pill"
+          height="42"
+          to="/register"
+          variant="flat"
+        />
+      </div>
+
+      <v-row class="mb-3 d-flex" dense>
+        <v-col cols="3" md="3">
           <v-btn
-            block
-            class="text-h6 mb-6"
-            color="info"
+            class="text-h6"
             flat
             height="56"
-            rounded="pill"
+            rounded="lg"
+            text="清除"
+            variant="outlined"
+            @click="handleReset"
+        /></v-col>
+        <v-col cols="9" md="9">
+          <v-btn
             text="登录"
-            variant="elevated"
-          />
-        </v-sheet>
-
-        <v-divider class="mb-4">
-          <div class="text-no-wrap text-grey mb-4">其他方式</div>
-        </v-divider>
-
-        <div class="d-flex align-center justify-center ga-4">
-          <v-btn title="GitHub单点登录" icon="mdi-github" variant="tonal" />
-          <v-btn
-            title="心心"
-            color="error"
-            icon="mdi-cards-heart"
-            variant="tonal"
-          />
-          <v-btn
-            title="游客登录"
+            block
+            class="text-h6"
             color="info"
-            icon="mdi-lightning-bolt"
-            variant="tonal"
-          />
-        </div>
-      </v-card>
-    </v-row>
-  </v-contain>
+            height="56"
+            rounded="lg"
+            variant="elevated"
+            :loading="loading"
+            type="submit"
+        /></v-col>
+      </v-row>
+
+      <v-divider class="mb-3">
+        <div class="text-no-wrap text-grey mb-3">其他方式</div>
+      </v-divider>
+
+      <div class="d-flex align-center justify-center ga-2">
+        <v-btn title="GitHub单点登录" icon="mdi-github" variant="tonal" />
+        <v-btn
+          title="心心"
+          color="error"
+          icon="mdi-cards-heart"
+          variant="tonal"
+        />
+        <v-btn
+          title="游客登录"
+          color="info"
+          icon="mdi-lightning-bolt"
+          variant="tonal"
+        />
+      </div> </v-card
+  ></v-container>
 </template>
 
-<script setup lang="ts">
-import { useBackgroundStore } from "@/stores/backgroundStore";
 
-// 随机页面背景
-const backgroundStore = useBackgroundStore();
-const randomBackgroundUrl = computed(
-  () => backgroundStore.getCurrentBackgroundUrl
-);
+<script setup>
+// 输入框验证库
+import { useField, useForm } from "vee-validate";
+
+const { handleSubmit, handleReset } = useForm({
+  validationSchema: {
+    email(value) {
+      if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true;
+      return "请输入正确的邮箱";
+    },
+    password(value) {
+      if (value?.length >= 6) return true;
+      return "密码6-20个字符";
+    },
+  },
+});
+const email = useField("email");
+const password = useField("password");
+
+const submit = handleSubmit((values) => {
+  alert(JSON.stringify(values, null, 2));
+});
 
 // 密码显示隐藏
 const visible = shallowRef(false);
-
-onMounted(() => {
-  // 随机背景
-  if (!backgroundStore.getCurrentBackgroundUrl) {
-    backgroundStore.setRandomBackground();
-  }
-});
 </script>
-
-<style scoped>
-/* 背景图 */
-.bg-surface-light {
-  background-size: cover;
-  background-position: center;
-}
-
-input:-internal-autofill-selected {
-  background-color: rgb(0, 0, 0);
-}
-</style>

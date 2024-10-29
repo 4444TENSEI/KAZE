@@ -1,3 +1,9 @@
+/* 页面背景图 */
+main {
+  max-width: 100vw;
+  background-size: cover;
+  background-position: center;
+}
 
 /* 解决浏览器填充导致的输入框变色
 光标未聚焦时 */
@@ -8,6 +14,7 @@ input:-webkit-autofill {
 /* 悬停时 */
 input:-webkit-autofill:hover {
   box-shadow: 0 0 0px 1000px rgb(46, 62, 78) inset !important;
+  transition: box-shadow 0.2s ease-in-out;
 }
 /* 单击时 */
 input:-webkit-autofill:active {
