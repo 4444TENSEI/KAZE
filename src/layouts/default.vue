@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useBackgroundStore } from "@/stores/setting/backgroundStore";
-
-const backgroundStore = useBackgroundStore();
+// import { useBackgroundStore } from "@/stores/setting/backgroundStore";
+// const backgroundStore = useBackgroundStore();
 </script>
