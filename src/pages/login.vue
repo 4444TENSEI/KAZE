@@ -1,12 +1,13 @@
 <template>
+  <ThemeSwitch class="position-absolute top-0 right-0" />
   <v-container class="d-flex align-center justify-center pa-0">
     <v-card
-      class="flex-d pt-8 pb-5 px-5 mx-6 opacity-100"
-      width="360"
+      class="flex-d pt-8 pb-4 px-6 mx-6"
+      width="340"
       max-width="400"
       rounded="xl"
     >
-      <div class="d-flex justify-center align-center mt-0 mb-6">
+      <div class="d-flex justify-center align-center mb-6">
         <v-img
           class="mr-3"
           inline
@@ -24,37 +25,40 @@
       </div>
 
       <form @submit.prevent="handleSubmit(submit)">
-
         <v-text-field
           prepend-inner-icon="mdi-email"
-          label="邮箱账号"
-          clearable
+          class="mb-4"
+          rounded="pill"
+          variant="outlined"
+          hide-details="false"
+          autocomplete="email"
+          clearable=""
           required
-          rounded="lg"
-          variant="solo-filled"
+          :label="emailLabel"
           v-model="email.value.value"
-          :error-messages="email.errorMessage.value"
+          :color="email.errorMessage.value ? 'error' : 'info'"
         ></v-text-field>
-
         <v-text-field
           prepend-inner-icon="mdi-lock"
-          label="密码"
+          class="mb-2"
+          hide-details="false"
+          rounded="pill"
+          variant="outlined"
           clearable
-          class="mt-1"
-          rounded="lg"
-          variant="solo-filled"
-          :type="visible ? 'text' : 'password'"
-          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-          @click:append-inner="visible = !visible"
-          v-model="password.value.value"
+          autocomplete="current-password"
+          :type="pswVisible ? 'text' : 'password'"
+          :label="passwordLabel"
           :counter="20"
-          :error-messages="password.errorMessage.value"
+          :append-inner-icon="pswVisible ? 'mdi-eye-off' : 'mdi-eye'"
+          v-model="password.value.value"
+          :color="password.errorMessage.value ? 'error' : 'info'"
+          @click:append-inner="pswVisible = !pswVisible"
         >
         </v-text-field>
       </form>
 
-      <div class="d-flex mb-1">
-        <v-checkbox-btn color="primary" label="记住我" />
+      <div class="d-flex mb-2">
+        <v-checkbox-btn color="info" label="记住我" />
         <v-btn text="找回" rounded="pill" height="42" variant="flat" />
         <v-btn
           text="注册"
@@ -65,30 +69,26 @@
         />
       </div>
 
-      <v-row class="mb-3 d-flex" dense>
-        <v-col cols="3" md="3">
-          <v-btn
-            class="text-h6"
-            flat
-            height="56"
-            rounded="lg"
-            text="清除"
-            variant="outlined"
-            @click="handleReset"
-        /></v-col>
-        <v-col cols="9" md="9">
-          <v-btn
-            text="登录"
-            block
-            class="text-h6"
-            color="info"
-            height="56"
-            rounded="lg"
-            variant="elevated"
-            :loading="loading"
-            type="submit"
-        /></v-col>
-      </v-row>
+      <div class="mb-3 d-flex align-center">
+        <v-btn
+          icon="mdi-broom"
+          class="text-h6 mr-2"
+          size="56"
+          rounded="circle"
+          variant="outlined"
+          @click="handleReset"
+        />
+        <v-btn
+          text="登录"
+          class="text-h6 flex-1-0"
+          color="info"
+          height="56"
+          rounded="pill"
+          variant="elevated"
+          :loading="loading"
+          type="submit"
+        />
+      </div>
 
       <v-divider class="mb-3">
         <div class="text-no-wrap text-grey mb-3">其他方式</div>
@@ -108,34 +108,49 @@
           icon="mdi-lightning-bolt"
           variant="tonal"
         />
-      </div> </v-card
-  ></v-container>
+      </div>
+    </v-card>
+  </v-container>
 </template>
-
-
 <script setup>
 // 输入框验证库
 import { useField, useForm } from "vee-validate";
-
+import { computed, shallowRef } from "vue";
+// 登录输入框校验
 const { handleSubmit, handleReset } = useForm({
   validationSchema: {
     email(value) {
-      if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true;
-      return "请输入正确的邮箱";
+      if (!value) return true;
+      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value))
+        return true;
+      return "需要正确的邮箱格式";
     },
     password(value) {
-      if (value?.length >= 6) return true;
+      if (!value) return true;
+      if (value?.length >= 6 && value.length <= 20) return true;
       return "密码6-20个字符";
     },
   },
 });
+
 const email = useField("email");
 const password = useField("password");
 
+// 表单提交
 const submit = handleSubmit((values) => {
   alert(JSON.stringify(values, null, 2));
 });
-
-// 密码显示隐藏
-const visible = shallowRef(false);
+// 输入框显示隐藏小眼睛
+const pswVisible = shallowRef(false);
+// 将错误信息显示到label中
+const emailLabel = computed(() => {
+  return email.errorMessage.value && email.value.value
+    ? email.errorMessage.value
+    : "邮箱";
+});
+const passwordLabel = computed(() => {
+  return password.errorMessage.value && password.value.value
+    ? password.errorMessage.value
+    : "密码";
+});
 </script>

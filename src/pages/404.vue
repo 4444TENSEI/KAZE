@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBackgroundStore } from "@/stores/setting/randomBackgroundStore";
+import { useBackgroundStore } from "@/stores/setting/backgroundStore";
 // 返回上一个正常的页面
 const router = useRouter();
 const goBack = () => {
