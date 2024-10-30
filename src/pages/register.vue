@@ -1,17 +1,19 @@
 <template>
-  <v-container class="d-flex align-center justify-center pa-0">
+  <body class="d-flex justify-center align-center w-100 h-100 flex-d pa-0 ma-0">
+    <ThemeSwitch class="position-absolute" style="top: 2rem; right: 2rem" />
     <v-card
       class="flex-d pt-6 pb-6 px-6 mx-6"
-      width="340"
+      width="360"
       max-width="400"
       rounded="xl"
     >
-      <div class="d-flex align-center mt-0 mb-6">
+      <div class="d-flex align-center mt-3 mb-8">
         <v-btn
           icon="mdi-arrow-left-bold"
           to="login"
           size="56"
           color="info"
+          class="position-absolute"
           variant="tonal"
         />
         <p
@@ -21,7 +23,6 @@
           注册
         </p>
       </div>
-
       <form @submit.prevent="submit">
         <v-text-field
           prepend-inner-icon="mdi-cat"
@@ -36,7 +37,6 @@
           v-model="nickname.value.value"
           :color="nickname.errorMessage.value ? 'error' : 'info'"
         ></v-text-field>
-
         <v-text-field
           prepend-inner-icon="mdi-email"
           class="mb-4"
@@ -50,7 +50,6 @@
           v-model="email.value.value"
           :color="email.errorMessage.value ? 'error' : 'info'"
         ></v-text-field>
-
         <v-text-field
           prepend-inner-icon="mdi-lock"
           class="mb-4"
@@ -69,7 +68,6 @@
           :color="password.errorMessage.value ? 'error' : 'info'"
         >
         </v-text-field>
-
         <v-text-field
           prepend-inner-icon="mdi-shield-lock"
           class="mb-6"
@@ -89,11 +87,9 @@
         >
         </v-text-field>
       </form>
-
       <v-dialog v-model="captchaDialog">
         <Captcha />
       </v-dialog>
-
       <v-btn
         text="发送验证码"
         class="text-h6"
@@ -106,9 +102,8 @@
         :loading="loading"
         type="submit"
       /> </v-card
-  ></v-container>
+  ></body>
 </template>
-
 <script setup>
 import { useField, useForm } from "vee-validate";
 import { ref, computed } from "vue";
@@ -133,7 +128,6 @@ const { handleSubmit, handleReset } = useForm({
     },
   },
 });
-
 const nickname = useField("nickname");
 const email = useField("email");
 const password = useField("password");
@@ -154,7 +148,7 @@ const nicknameLabel = computed(() => {
 const emailLabel = computed(() => {
   return email.errorMessage.value && email.value.value
     ? email.errorMessage.value
-    : "邮箱账号";
+    : "邮箱";
 });
 const passwordLabel = computed(() => {
   return password.errorMessage.value && password.value.value
@@ -166,7 +160,6 @@ const password2Label = computed(() => {
     ? password2.errorMessage.value
     : "重复密码";
 });
-
 // 验证码弹窗
 const captchaDialog = ref(false);
 const submitForm = handleSubmit(async (values) => {

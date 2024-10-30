@@ -1,13 +1,8 @@
 <template>
-  <ThemeSwitch class="position-absolute top-0 right-0" />
-  <v-container class="d-flex align-center justify-center pa-0">
-    <v-card
-      class="flex-d pt-8 pb-4 px-6 mx-6"
-      width="340"
-      max-width="400"
-      rounded="xl"
-    >
-      <div class="d-flex justify-center align-center mb-6">
+  <body class="d-flex justify-center align-center w-100 h-100 flex-d pa-0 ma-0">
+    <ThemeSwitch class="position-absolute" style="top: 2rem; right: 2rem" />
+    <v-card class="pt-10 pb-4 px-6" width="360" max-width="400" rounded="xl">
+      <div class="d-flex justify-center align-center mb-8">
         <v-img
           class="mr-3"
           inline
@@ -23,7 +18,6 @@
           KAZE
         </p>
       </div>
-
       <form @submit.prevent="handleSubmit(submit)">
         <v-text-field
           prepend-inner-icon="mdi-email"
@@ -56,9 +50,8 @@
         >
         </v-text-field>
       </form>
-
       <div class="d-flex mb-2">
-        <v-checkbox-btn color="info" label="记住我" />
+        <v-checkbox-btn color="info" label="记住" />
         <v-btn text="找回" rounded="pill" height="42" variant="flat" />
         <v-btn
           text="注册"
@@ -68,12 +61,12 @@
           variant="flat"
         />
       </div>
-
       <div class="mb-3 d-flex align-center">
         <v-btn
           icon="mdi-broom"
           class="text-h6 mr-2"
           size="56"
+          border="md"
           rounded="circle"
           variant="outlined"
           @click="handleReset"
@@ -89,11 +82,9 @@
           type="submit"
         />
       </div>
-
-      <v-divider class="mb-3">
-        <div class="text-no-wrap text-grey mb-3">其他方式</div>
+      <v-divider class="mb-2">
+        <div class="text-no-wrap text-grey mb-2">其他方式</div>
       </v-divider>
-
       <div class="d-flex align-center justify-center ga-2">
         <v-btn title="GitHub单点登录" icon="mdi-github" variant="tonal" />
         <v-btn
@@ -110,7 +101,7 @@
         />
       </div>
     </v-card>
-  </v-container>
+  </body>
 </template>
 <script setup>
 // 输入框验证库
@@ -132,10 +123,8 @@ const { handleSubmit, handleReset } = useForm({
     },
   },
 });
-
 const email = useField("email");
 const password = useField("password");
-
 // 表单提交
 const submit = handleSubmit((values) => {
   alert(JSON.stringify(values, null, 2));

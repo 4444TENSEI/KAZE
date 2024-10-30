@@ -4,6 +4,7 @@ import { registerPlugins } from '@/plugins'
 import App from './App.vue'
 // 全局CSS
 import '@/assets/css/main.css'
+import '@/assets/css/kaze.css'
 // Composables
 import { createApp } from 'vue'
 // 多语言

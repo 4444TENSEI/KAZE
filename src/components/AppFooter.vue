@@ -9,7 +9,11 @@
       rel="noopener noreferrer"
       target="_blank"
     >
-      <v-icon :icon="item.icon" :size="item.icon === '$vuetify' ? 24 : 16" />
+      <v-icon
+        color="surface-variant"
+        :icon="item.icon"
+        :size="item.icon === '$vuetify' ? 24 : 16"
+      />
     </a>
 
     <div
@@ -51,4 +55,3 @@ const items = [
   },
 ];
 </script>
-

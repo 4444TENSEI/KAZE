@@ -1,0 +1,7 @@
+/* 在layouts/default.vue还有pages/404.vue中使用，页面背景图布满 */
+.kaze-bg {
+  background-image: url("https://testingcf.jsdelivr.net/gh/4444TENSEI/CDN@master/img/background/yoru/001.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
