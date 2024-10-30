@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="pa-0 ma-0 kaze-bg">
+    <v-main class="pa-0 ma-0 kaze-bg" max-height="100">
       <router-view />
     </v-main>
 

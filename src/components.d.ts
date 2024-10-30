@@ -7,13 +7,23 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppFooter: typeof import('./components/AppFooter.vue')['default']
+    AppFooter: typeof import('./components/common/AppFooter.vue')['default']
+    AppNav: typeof import('./components/common/AppNav.vue')['default']
+    AppNavDrawer: typeof import('./components/common/AppNavDrawer.vue')['default']
     Captcha: typeof import('./components/dialog/Captcha.vue')['default']
+    copy: typeof import('./components/common/NeiAppNav copy.vue')['default']
     DataTable: typeof import('./components/common/DataTable.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    NavBar: typeof import('./components/NavBar.vue')['default']
+    HomeNav: typeof import('./components/common/HomeNav.vue')['default']
+    HomeSearch: typeof import('./components/button/HomeSearch.vue')['default']
+    Nav: typeof import('./components/common/Nav.vue')['default']
+    NavBar: typeof import('./components/common/NavBar.vue')['default']
+    NavDrawer: typeof import('./components/common/NavDrawer.vue')['default']
+    NeiAppNav: typeof import('./components/common/NeiAppNav.vue')['default']
+    Profile: typeof import('./components/button/Profile.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ThemeSwitch: typeof import('./components/button/ThemeSwitch.vue')['default']
+    UserProfile: typeof import('./components/button/UserProfile.vue')['default']
   }
 }

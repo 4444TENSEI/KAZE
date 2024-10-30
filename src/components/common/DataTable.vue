@@ -31,6 +31,7 @@
       :headers="headers"
       :items="items"
       :search="search"
+ 
       hide-default-footer
       fixed-header
       show-select
@@ -106,8 +107,8 @@ const headers = [
   { title: "自动更新", key: "auto-renew" },
   { title: "文本内容", key: "vendor" },
   { title: "状态", key: "status" },
-  { title: "Rating", key: "rating" },
-  { title: "Actions", key: "actions" },
+  { title: "评分", key: "rating" },
+  { title: "操作", key: "actions" },
 ];
 const items = [
   {
