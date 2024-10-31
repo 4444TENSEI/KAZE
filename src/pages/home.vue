@@ -1,7 +1,14 @@
 <template>
-  <AppNavDrawer v-model="drawer" />AppNavDrawer
-  <AppNav :drawer="drawer" @update:drawer="drawer = $event" />
+  <Drawer v-model="drawerStore.isDrawerOpen" />
+  <Nav
+    :drawer="drawerStore.isDrawerOpen"
+    @update:drawer="drawerStore.toggleDrawer"
+  />
+  <DataTable />
 </template>
-<script setup>
-const drawer = ref(false);
+
+<script setup lang="ts">
+import { useDrawerStore } from "@/stores/components/DrawerStore";
+
+const drawerStore = useDrawerStore();
 </script>

@@ -21,7 +21,7 @@
       style="position: absolute; right: 16px"
     >
       &copy; {{ new Date().getFullYear() }}
-      <span class="d-none d-sm-inline-block">Yokaze</span>
+      <span class="d-none d-inline-block">Yokaze</span>
     </div>
   </v-footer>
 </template>

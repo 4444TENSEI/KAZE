@@ -1,0 +1,30 @@
+<template>
+  <v-card class="w-100 h-100 position-absolute" variant="falb">
+    <v-fab size="3.2rem" icon>
+      <v-icon size="2.4rem">mdi-plus</v-icon>
+      <v-speed-dial
+        v-model="fabOpen"
+        :content-class="[
+          'bg-grey-lighten-3',
+          'rounded-pill',
+          'elevation-2',
+          'pa-2',
+        ]"
+        activator="parent"
+        location="top center"
+      >
+        <v-btn key="1" color="success" icon="$success" />
+        <v-btn key="2" color="info" icon="$info" />
+        <v-btn key="3" color="warning" icon="$warning" />
+        <v-btn key="4" color="error" icon="$error" />
+      </v-speed-dial>
+    </v-fab>
+  </v-card>
+</template>
+
+<script setup>
+import { ref } from "vue";
+const fabOpen = ref(true);
+const drawer = ref(false);
+provide("drawer", drawer);
+</script>

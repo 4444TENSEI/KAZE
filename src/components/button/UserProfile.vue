@@ -8,8 +8,8 @@
 
     <v-menu activator="parent">
       <v-list density="compact" nav>
-        <v-list-item append-icon="mdi-cog-outline" link title="个人设置" />
-
+        <v-list-item append-icon="mdi-card-account-details" link title="个人" />
+        <v-list-item append-icon="mdi-cog-outline" link title="设置" />
         <v-list-item append-icon="mdi-logout" link title="退出" />
       </v-list>
     </v-menu>

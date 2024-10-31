@@ -1,23 +1,14 @@
 <template>
   <!-- <v-app-bar class="ps-md-4" color="surface-variant"> -->
-  <v-btn class="me-4" icon="mdi-magnify">
+  <v-btn icon="mdi-magnify" flat>
     <v-icon />
 
     <v-dialog activator="parent" max-width="550">
       <v-card>
-        <v-text-field
-          density="comfortable"
-          hide-details
-          label="Search for commands or content..."
-        />
+        <v-text-field density="comfortable" hide-details label="想找什么？" />
 
         <v-list class="px-2" density="compact" max-height="350" nav slim>
-          <v-list-item
-            link
-            prepend-icon="mdi-creation"
-            rounded
-            title="Ask the AI"
-          >
+          <v-list-item link prepend-icon="mdi-creation" rounded title="喵喵喵">
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
@@ -31,7 +22,7 @@
                 text="A"
               />
 
-              <span class="px-2 text-caption"> then </span>
+              <span class="px-2 text-caption"> + </span>
 
               <v-avatar
                 class="text-caption border border-surface-variant"
@@ -43,14 +34,14 @@
             </template>
           </v-list-item>
 
-          <v-list-subheader class="mt-2">Projects</v-list-subheader>
+          <v-list-subheader class="mt-2">常用</v-list-subheader>
 
           <v-list-item
             class="mb-1"
             link
             prepend-icon="mdi-plus"
             rounded
-            title="Create project"
+            title="创建工具"
           >
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
@@ -71,21 +62,21 @@
             link
             prepend-icon="mdi-arrow-right"
             rounded
-            title="Find projects"
+            title="查找工具"
           >
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
           </v-list-item>
 
-          <v-list-subheader class="mt-2">Organizations</v-list-subheader>
+          <v-list-subheader class="mt-2">群组</v-list-subheader>
 
           <v-list-item
             class="mb-1"
             link
             prepend-icon="mdi-arrow-right"
             rounded
-            title="Create new organization"
+            title="创建群组"
           >
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
@@ -117,33 +108,28 @@
             link
             prepend-icon="mdi-arrow-right"
             rounded
-            title="Find organizations"
+            title="搜索群组"
           >
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
           </v-list-item>
 
-          <v-list-subheader class="mt-2">Settings</v-list-subheader>
+          <v-list-subheader class="mt-2">项目设置</v-list-subheader>
 
           <v-list-item
             class="mb-1"
             link
             prepend-icon="mdi-arrow-right"
             rounded
-            title="Go to settings overview"
+            title="管理"
           >
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
           </v-list-item>
 
-          <v-list-item
-            link
-            prepend-icon="mdi-arrow-right"
-            rounded
-            title="Manage account"
-          >
+          <v-list-item link prepend-icon="mdi-arrow-right" rounded title="高级">
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
@@ -152,15 +138,15 @@
 
         <v-card-actions>
           <div class="ps-4 text-caption">
-            <v-kbd>Enter</v-kbd>
-            to select
+            <v-kbd>回车键</v-kbd>
+            选择
           </div>
 
           <v-spacer />
 
           <div class="pe-4 text-caption">
             <v-kbd>Esc</v-kbd>
-            to close
+            关闭
           </div>
         </v-card-actions>
       </v-card>

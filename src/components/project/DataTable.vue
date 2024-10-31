@@ -1,5 +1,5 @@
 <template>
-  <v-card rounded="lg" title="数据库表名" class="">
+  <v-card rounded="lg" title="数据表名" class="w-100 mt-15">
     <template #append>
       <v-btn icon="mdi-filter" variant="text"></v-btn>
       <v-btn icon="mdi-arrow-down-bold" variant="text"></v-btn>
@@ -20,7 +20,7 @@
       v-model="search"
       density="comfortable"
       hide-details
-      placeholder="Search"
+      placeholder="搜索"
       prepend-inner-icon="mdi-magnify"
       rounded
       variant="outlined"

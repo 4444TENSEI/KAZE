@@ -1,8 +1,42 @@
 <template>
-  <body class="d-flex justify-center align-center w-100 h-100 flex-d pa-0 ma-0">
-    <v-btn height="3rem" color="info" rounded="pill" to="/login">登录</v-btn>
-    <v-btn height="3rem" color="info" rounded="pill" to="/register">注册</v-btn>
-    <v-btn height="3rem" color="info" rounded="pill" to="/home">大厅</v-btn>
-    <v-btn height="3rem" color="info" rounded="pill" to="/405">错误捕捉</v-btn>
-  </body>
+  <div
+    class="d-flex flex-column justify-center align-center w-100 h-100 ma-0 pa-0"
+  >
+    <v-btn
+      to="/login"
+      height="3.6rem"
+      width="8rem"
+      color="info"
+      rounded="pill"
+      class="mb-2"
+      >登录</v-btn
+    >
+    <v-btn
+      to="/register"
+      height="3.8rem"
+      width="8rem"
+      color="info"
+      rounded="pill"
+      class="mb-2"
+      >注册</v-btn
+    >
+    <v-btn
+      to="/home"
+      height="3.8rem"
+      width="8rem"
+      color="info"
+      rounded="pill"
+      class="mb-2"
+      >首页</v-btn
+    >
+    <v-btn
+      to="/1d65as1"
+      height="3.8rem"
+      width="8rem"
+      color="info"
+      rounded="pill"
+      class="mb-2"
+      >404</v-btn
+    >
+  </div>
 </template>
