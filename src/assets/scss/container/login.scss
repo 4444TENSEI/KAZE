@@ -1,0 +1,21 @@
+// 登陆页卡片容器
+.card-login {
+    @extend .v-card;
+    width: 340px;
+    max-width: 94vw;
+}
+
+// 登陆页顶栏容器
+.nav-box-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100vw;
+    padding: 20px;
+    .v-btn {
+        margin-left: 10px;
+    }
+}

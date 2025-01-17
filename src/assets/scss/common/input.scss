@@ -1,0 +1,19 @@
+// TODO: 目前只替换了暗色模式，暂时不用，先放着，解决浏览器填充导致的输入框变色
+// 光标未聚焦时
+input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px rgb(37, 54, 71) inset !important;
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+}
+// 悬停时
+input:-webkit-autofill:hover {
+    box-shadow: 0 0 0px 1000px rgb(46, 62, 78) inset !important;
+    transition: box-shadow 0.2s ease-in-out;
+}
+// 单击时
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0px 1000px rgb(64, 80, 94) inset !important;
+}
+// 光标聚焦时
+input:-webkit-autofill:focus {
+    box-shadow: 0 0 0px 1000px rgb(64, 80, 94) inset !important;
+}
