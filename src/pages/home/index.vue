@@ -98,7 +98,7 @@
     </v-scroll>
   </body>
 </template>
-<script setup>
+<script lang="ts" setup>
   import { shallowRef } from 'vue'
   const statuses = ref({
     续期中: 'success',

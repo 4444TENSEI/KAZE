@@ -6,8 +6,7 @@
   />
 </template>
 
-<script setup>
-  import { useTheme } from 'vuetify'
+<script lang="ts" setup>
   const theme = useTheme()
   const nowTheme = ref(!theme.global.current.value.dark)
   function toggleTheme() {

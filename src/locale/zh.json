@@ -1,0 +1,57 @@
+{
+  "action": {
+    "login": "登录",
+    "register": "注册",
+    "logout": "退出",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "back": "返回",
+    "submit": "提交",
+    "remember": "记住",
+    "forget": "忘记",
+    "sendCode": "发送验证码"
+  },
+  "placeholder": {
+    "name": "请输入用户名",
+    "bio": "请输入简介",
+    "email": "请输入邮箱",
+    "password": "请输入密码",
+    "passwordConfirm": "请再次输入密码",
+    "avatarUrl": "请输入头像链接",
+    "backgroundUrl": "请输入背景图片链接",
+    "otherWays": "其他方式"
+  },
+  "user": {
+    "name": "用户名",
+    "bio": "简介",
+    "email": "邮箱",
+    "password": "密码",
+    "passwordConfirm": "重复密码",
+    "avatarUrl": "头像链接",
+    "backgroundUrl": "背景图片链接"
+  },
+  "form": {
+    "required": "必填项",
+    "format": "格式错误",
+    "passwordMismatch": "密码不一致",
+    "emailInvalid": "邮箱格式错误",
+    "emailCodeInvalid": "邮箱验证码错误",
+    "emailCodeExpired": "邮箱验证码已过期",
+    "emailCodeSendFail": "邮箱验证码发送失败",
+    "emailCodeSend": "邮箱验证码发送成功"
+  },
+  "message": {
+    "login": "登录成功",
+    "register": "注册成功",
+    "logout": "退出成功",
+    "update": "更新成功",
+    "delete": "删除成功",
+    "create": "创建成功",
+    "submit": "提交成功",
+    "default": "操作失败",
+    "unknown": "未知错误"
+  }
+}

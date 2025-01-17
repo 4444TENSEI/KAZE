@@ -1,10 +1,10 @@
 <template>
   <body class="flex-container">
     <NavLogin />
-    <v-card class="card-login pa-4">
+    <v-card class="card-login pa-6">
       <div class="d-flex justify-center align-center mb-8 mt-2">
         <v-img class="mr-4" height="36" inline src="@/assets/logo.png" width="36" />
-        <h1 class="cursor-default">登录</h1>
+        <h1 class="cursor-default">{{ $t('action.login') }}</h1>
       </div>
       <form @submit.prevent="handleSubmit(submit)">
         <v-text-field
@@ -32,9 +32,21 @@
         />
       </form>
       <div class="d-flex mb-2">
-        <v-checkbox-btn color="info" label="记住" />
-        <v-btn height="42" rounded="pill" text="找回" variant="flat" @click="showtoast" />
-        <v-btn height="42" rounded="pill" text="注册" to="/register" variant="flat" />
+        <v-checkbox-btn color="info" :label="$t('action.remember')" />
+        <v-btn
+          height="42"
+          rounded="pill"
+          :text="$t('action.forget')"
+          variant="flat"
+          @click="showtoast"
+        />
+        <v-btn
+          height="42"
+          rounded="pill"
+          :text="$t('action.register')"
+          to="/register"
+          variant="flat"
+        />
       </div>
       <div class="mb-3 d-flex align-center">
         <v-btn
@@ -52,14 +64,14 @@
           height="56"
           :loading="loading"
           rounded="pill"
-          text="登录"
+          :text="$t('action.login')"
           type="submit"
           variant="elevated"
           @click="testLogin"
         />
       </div>
       <v-divider class="mb-2">
-        <div class="text-no-wrap text-grey mb-2">其他方式</div>
+        <div class="text-no-wrap text-grey mb-2">{{ $t('placeholder.otherWays') }}</div>
       </v-divider>
       <LoginOA2 />
     </v-card>
@@ -68,11 +80,10 @@
 
 <script setup>
   import { useField, useForm } from 'vee-validate'
-  import { computed, shallowRef } from 'vue'
   import { useAuth } from '@/hooks/user/auth'
-  import { toast } from '@/hooks/toast'
 
   const router = useRouter()
+  const { t } = useI18n()
 
   const { setAccToken, getAccToken } = useAuth()
   // 登录输入框校验
@@ -102,7 +113,9 @@
   const pswVisible = shallowRef(false)
   // 将错误信息显示到label中
   const emailLabel = computed(() => {
-    return email.errorMessage.value && email.value.value ? email.errorMessage.value : '邮箱'
+    return email.errorMessage.value && email.value.value
+      ? email.errorMessage.value
+      : t('user.email')
   })
   const passwordLabel = computed(() => {
     return password.errorMessage.value && password.value.value

@@ -25,6 +25,12 @@ export default defineConfig({
         {
           'vue-router/auto': ['useRoute', 'useRouter'],
         },
+        {
+          '@vueuse/core': ['useStorage', 'useSessionStorage', 'useCookies'],
+        },
+        { 'vue-i18n': ['useI18n'] },
+        { vuetify: ['useDisplay', 'useTheme'] },
+        { '@/hooks/toast': ['toast'] },
       ],
       dts: 'src/auto-imports.d.ts',
       eslintrc: {
@@ -47,10 +53,12 @@ export default defineConfig({
     }),
     Fonts({
       google: {
-        families: [{
-          name: 'Roboto',
-          styles: 'wght@100;300;400;500;700;900',
-        }],
+        families: [
+          {
+            name: 'Roboto',
+            styles: 'wght@100;300;400;500;700;900',
+          },
+        ],
       },
     }),
     vueDevTools(),
@@ -60,15 +68,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-    extensions: [
-      '.js',
-      '.json',
-      '.jsx',
-      '.mjs',
-      '.ts',
-      '.tsx',
-      '.vue',
-    ],
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
   },
   server: {
     port: 3000,

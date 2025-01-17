@@ -1,0 +1,8 @@
+@use "@/styles/common/url" as url;
+@use "@/styles/common/layout";
+
+// 背景图
+.home-bg {
+    background-image: url(url.$home_background_url);
+    @extend .bg;
+}

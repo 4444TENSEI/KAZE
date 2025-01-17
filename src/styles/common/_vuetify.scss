@@ -1,0 +1,8 @@
+@use "@/styles/common/root";
+
+// 全局v-card卡片透明度
+.v-card {
+    display: flex;
+    opacity: root.$global_opacity;
+    min-width: 240px;
+}
