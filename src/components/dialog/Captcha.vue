@@ -24,8 +24,6 @@
     <div class="text-h6">没收到吗？<a href="#" @click.prevent="otp = ''">重试也没用</a></div>
   </v-card>
 </template>
-<script setup>
-  import { shallowRef } from 'vue'
-
+<script lang="ts" setup>
   const otp = shallowRef('')
 </script>

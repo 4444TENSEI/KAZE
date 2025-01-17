@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
   import { pocketBaseSymbol } from '@/hooks/pocketbase/injectionSymbols'
-  import { toast } from '@/hooks/toast'
 
   const pbServer = inject(pocketBaseSymbol)
 

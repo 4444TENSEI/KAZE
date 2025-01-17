@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer v-model="parentDrawer" class="position-fixed" rail>
-    <v-list v-for="menuItem in menuPc" :key="menuItem.id" density="compact" nav>
-      <v-list-item :prepend-icon="menuItem.icon" :to="menuItem.url" :value="menuItem.name" />
+    <v-list v-for="item in menuPc" :key="item.id" density="compact" nav>
+      <v-list-item :prepend-icon="item.icon" :to="item.path" :value="item.name" />
     </v-list>
     <template #append>
       <v-list density="compact" nav>
@@ -22,7 +22,12 @@
           </v-badge>
           <v-menu activator="parent">
             <v-list nav>
-              <v-list-item v-for="item in settingItems" :key="item.id" link :to="item.url">
+              <v-list-item
+                v-for="item in settingItems"
+                :key="item.id"
+                link
+                @click="router.push(item.path)"
+              >
                 <v-icon class="mr-6">{{ item.icon }}</v-icon>
                 <span>{{ item.name }}</span>
               </v-list-item>
@@ -44,29 +49,45 @@
 
 <script setup lang="ts">
   import { logout } from '@/hooks/user/logout'
-  import { settingItems } from '@/pages/setting/hooks/list'
 
-  const parentDrawer = ref(true)
-  const childDrawer = ref(false)
+  const router = useRouter()
+
+  const settingItems = [
+    {
+      id: 1,
+      name: '资料',
+      icon: 'mdi-card-account-details',
+      path: '/profile',
+    },
+    {
+      id: 2,
+      name: '设置',
+      icon: 'mdi-creation-outline',
+      path: '/setting',
+    },
+  ]
 
   const menuPc = [
     {
       id: 1,
-      name: '首页',
-      icon: 'mdi-home',
-      url: '/home',
+      name: '消息',
+      icon: 'mdi-chat',
+      path: '/chat',
     },
     {
       id: 2,
       name: '插件',
       icon: 'mdi-creation-outline',
-      url: '/plugin',
+      path: '/plugin',
     },
     {
       id: 3,
-      name: '退出登录',
-      icon: 'mdi-login',
-      url: '/login',
+      name: '好友',
+      icon: 'mdi-account-details',
+      path: '/friend',
     },
   ]
+
+  const parentDrawer = ref(true)
+  const childDrawer = ref(false)
 </script>

@@ -1,0 +1,57 @@
+{
+  "action": {
+    "login": "Log in",
+    "register": "register",
+    "logout": "quit",
+    "save": "save",
+    "cancel": "Cancel",
+    "delete": "delete",
+    "edit": "edit",
+    "create": "create",
+    "back": "return",
+    "submit": "submit",
+    "remember": "remember",
+    "forget": "forget",
+    "sendCode": "Send verification code"
+  },
+  "placeholder": {
+    "name": "Please enter username",
+    "bio": "Please enter introduction",
+    "email": "Please enter your email",
+    "password": "Please enter password",
+    "passwordConfirm": "Please enter password again",
+    "avatarUrl": "Please enter avatar link",
+    "backgroundUrl": "Please enter background image link",
+    "otherWays": "other ways"
+  },
+  "user": {
+    "name": "username",
+    "bio": "Introduction",
+    "email": "Mail",
+    "password": "password",
+    "passwordConfirm": "Repeat password",
+    "avatarUrl": "Avatar link",
+    "backgroundUrl": "Background image link"
+  },
+  "form": {
+    "required": "Required fields",
+    "format": "Format error",
+    "passwordMismatch": "Passwords are inconsistent",
+    "emailInvalid": "Email format error",
+    "emailCodeInvalid": "Email verification code error",
+    "emailCodeExpired": "Email verification code has expired",
+    "emailCodeSendFail": "Email verification code failed to be sent",
+    "emailCodeSend": "Email verification code sent successfully"
+  },
+  "message": {
+    "login": "Login successful",
+    "register": "Registration successful",
+    "logout": "Exit successfully",
+    "update": "Update successful",
+    "delete": "Delete successfully",
+    "create": "Created successfully",
+    "submit": "Submission successful",
+    "default": "Operation failed",
+    "unknown": "unknown error"
+  }
+}

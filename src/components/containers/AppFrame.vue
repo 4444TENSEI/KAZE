@@ -4,7 +4,5 @@
 </template>
 
 <script lang="ts" setup>
-  import { useDisplay } from 'vuetify'
-
   const { mobile } = useDisplay()
 </script>

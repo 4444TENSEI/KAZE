@@ -2,7 +2,7 @@
   <body class="flex-container">
     <SpeedBtn />
     <NavLogin />
-    <v-card class="card-login pa-4">
+    <v-card class="card-login pa-6">
       <div class="d-flex align-center mt-3 mb-8">
         <v-btn
           class="position-absolute"
@@ -21,7 +21,7 @@
           class="mb-4"
           clearable
           :color="nickname.errorMessage.value ? 'error' : 'info'"
-          hide-details="false"
+          :hide-details="false"
           :label="nicknameLabel"
           prepend-inner-icon="mdi-cat"
           required
@@ -33,7 +33,7 @@
           class="mb-4"
           clearable
           :color="email.errorMessage.value ? 'error' : 'info'"
-          hide-details="false"
+          :hide-details="false"
           :label="emailLabel"
           prepend-inner-icon="mdi-email"
           required
@@ -47,7 +47,7 @@
           clearable
           :color="password.errorMessage.value ? 'error' : 'info'"
           details="66"
-          hide-details="false"
+          :hide-details="false"
           :label="passwordLabel"
           prepend-inner-icon="mdi-lock"
           rounded="pill"
@@ -63,7 +63,7 @@
           clearable
           :color="password2.errorMessage.value ? 'error' : 'info'"
           details="66"
-          hide-details="false"
+          :hide-details="false"
           :label="password2Label"
           prepend-inner-icon="mdi-shield-lock"
           rounded="pill"
@@ -80,7 +80,6 @@
         class="text-h6"
         color="info"
         height="56"
-        :loading="loading"
         rounded="pill"
         text="发送验证码"
         type="submit"
@@ -90,25 +89,25 @@
     </v-card>
   </body>
 </template>
-<script setup>
+<script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { computed, ref } from 'vue'
   // 注册输入框校验
   const { handleSubmit } = useForm({
     validationSchema: {
-      nickname(value) {
+      nickname(value: string) {
         if (value?.length >= 2) return true
         return '用户名至少2个字'
       },
-      email(value) {
+      email(value: string) {
         if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
         return '请输入正确的邮箱'
       },
-      password(value) {
+      password(value: string) {
         if (value?.length >= 6) return true
         return '密码6-20个字符'
       },
-      password2(value) {
+      password2(value: string) {
         if (value === password.value.value) return true
         return '两次输入的密码不一致'
       },
