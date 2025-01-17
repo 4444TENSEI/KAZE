@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n'
 import { useStorage } from '@vueuse/core'
 
-const SUPPORT_LANGS = ['zh', 'Fen', 'jFa']
+const SUPPORT_LANGS = ['zh', 'en', 'ja']
 const DEFAULT_LANG = 'en'
 
 // 获取支持的语言
@@ -28,16 +28,15 @@ const loadLangAsync = async (lang: string = langStorage.value) => {
       i18n.global.setLocaleMessage(targetLang, messages)
       console.log(`载入语言成功: ${targetLang}`)
       console.log(`当前语言: ${i18n.global.locale.value}`)
-    } catch {
-      console.error(`无法载入语言: ${targetLang}`)
+    } catch (error) {
+      console.error(`无法载入语言: ${targetLang}`, error)
       console.log(`当前语言: ${i18n.global.locale.value}`)
-      return
     }
   }
   langStorage.value = i18n.global.locale.value = document.documentElement.lang = targetLang
 }
 
 // 初始化语言
-await loadLangAsync()
+loadLangAsync()
 
 export default i18n
