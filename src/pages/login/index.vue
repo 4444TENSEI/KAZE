@@ -73,7 +73,29 @@
       <v-divider class="mb-2">
         <div class="text-no-wrap text-grey mb-2">{{ $t('placeholder.otherWays') }}</div>
       </v-divider>
-      <LoginOA2 />
+      <div class="d-flex align-center justify-center ga-2">
+        <v-btn
+          color="primary"
+          icon="mdi-github"
+          title="GitHub"
+          variant="tonal"
+          @click="loginByOA2(pbServer, 'github')"
+        />
+        <v-btn
+          color="error"
+          icon="mdi-google"
+          title="Google"
+          variant="tonal"
+          @click="loginByOA2(pbServer, 'google')"
+        />
+        <v-btn
+          color="warning"
+          icon="mdi-gitlab"
+          title="Gitlab"
+          variant="tonal"
+          @click="loginByOA2(pbServer, 'gitlab')"
+        />
+      </div>
     </v-card>
   </body>
 </template>
@@ -81,6 +103,10 @@
 <script setup>
   import { useField, useForm } from 'vee-validate'
   import { useAuth } from '@/hooks/user/auth'
+  import { pocketBaseSymbol } from '@/hooks/pocketbase/injectionSymbols'
+  import { loginByOA2 } from './hooks/loginByOa2'
+
+  const pbServer = inject(pocketBaseSymbol)
 
   const router = useRouter()
   const { t } = useI18n()
