@@ -9,7 +9,6 @@
 
 <script lang="ts" setup>
   import router from '@/router'
-
   const menuMobile = [
     {
       id: 1,

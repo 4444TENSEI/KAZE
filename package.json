@@ -12,6 +12,7 @@
     "@vueuse/core": "^12.4.0",
     "axios": "^1.7.9",
     "core-js": "^3.40.0",
+    "notivue": "^2.4.5",
     "pocketbase": "^0.25.0",
     "roboto-fontface": "^0.10.0",
     "vee-validate": "^4.15.0",

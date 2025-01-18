@@ -9,10 +9,10 @@ async function loginByOA2(provider: Oa2Provider) {
       provider,
     })
     console.log(`${provider} 登陆成功`, res)
-    toast(`${greeting()}, ${pbServer.authStore.record?.name}`, 'success')
+    // toast(`${greeting()}, ${pbServer.authStore.record?.name}`, 'success')
     router.push('/home')
   } catch (error) {
-    toast(`${provider} 登录失败:` + error)
+    // toast(`${provider} 登录失败:` + error)
   }
 }
 
@@ -20,10 +20,10 @@ async function loginByEmail(form: LoginForm) {
   try {
     const res = await pbServer.collection('users').authWithPassword(form.email, form.password)
     console.log('邮箱登陆成功', res)
-    toast(`${greeting()}, ${pbServer.authStore.record?.name}`, 'success')
+    // toast(`${greeting()}, ${pbServer.authStore.record?.name}`, 'success')
     router.push('/home')
   } catch (error) {
-    toast(`登录失败:` + error)
+    // toast(`登录失败:` + error)
   }
 }
 

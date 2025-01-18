@@ -75,12 +75,12 @@
     "useCookies": true,
     "useSessionStorage": true,
     "useStorage": true,
-    "useI18n": true,
     "useDisplay": true,
     "useTheme": true,
     "useToast": true,
     "toast": true,
-    "pbServer": true,
-    "t": true
+    "t": true,
+    "$t": true,
+    "router": true
   }
 }

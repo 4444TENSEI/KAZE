@@ -48,8 +48,8 @@
 </template>
 
 <script setup lang="ts">
-  import logout from '@/hooks/user/logout'
   import router from '@/router'
+  import logout from '@/hooks/user/logout'
 
   const settingItems = [
     {

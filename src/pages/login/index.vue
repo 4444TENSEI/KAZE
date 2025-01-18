@@ -102,12 +102,8 @@
 
 <script setup>
   import { useField, useForm } from 'vee-validate'
-  import pbServer from '@/api/pocketbase'
-  import router from '@/router'
   import { loginByEmail, loginByOA2 } from '@/hooks/user/login'
   import { greeting } from '@/utils/greeting'
-
-  const { t } = useI18n()
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
@@ -138,7 +134,7 @@
   const emailLabel = computed(() => {
     return email.errorMessage.value && email.value.value
       ? email.errorMessage.value
-      : t('user.email')
+      : $t('user.email')
   })
   const passwordLabel = computed(() => {
     return password.errorMessage.value && password.value.value
@@ -150,6 +146,6 @@
 
   function showtoast() {
     console.log('测试气泡')
-    toast('找回密码')
+    // toast('找回密码')
   }
 </script>

@@ -1,15 +1,17 @@
 import { createI18n } from 'vue-i18n'
-
+ 
+// 支持的语言
 const SUPPORT_LANGS = ['zh', 'en', 'ja']
+// 默认语言
 const DEFAULT_LANG = 'en'
-
+ 
 // 获取支持的语言
 const checkLang = (lang: string) =>
   SUPPORT_LANGS.find(l => l.toLowerCase() === lang.toLowerCase().split('-')[0]) || DEFAULT_LANG
-
+ 
 // 持久化语言偏好
 const langStorage = useStorage('app-lang', checkLang(navigator.language))
-
+ 
 // 创建 i18n 实例
 const i18n = createI18n({
   legacy: false,
@@ -17,7 +19,7 @@ const i18n = createI18n({
   fallbackLocale: DEFAULT_LANG,
   messages: {},
 })
-
+ 
 // 动态加载语言文件
 const loadLangAsync = async (lang: string = langStorage.value) => {
   const targetLang = checkLang(lang)
@@ -34,8 +36,9 @@ const loadLangAsync = async (lang: string = langStorage.value) => {
   }
   langStorage.value = i18n.global.locale.value = document.documentElement.lang = targetLang
 }
-
-// 初始化语言
+ 
+// 初始化载入语言
 loadLangAsync()
-
+ 
+export const $t = i18n.global.t
 export default i18n

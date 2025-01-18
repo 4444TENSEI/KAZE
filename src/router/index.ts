@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
+import router from '@/router'
 import pbServer from '@/api/pocketbase'
 
 const router = createRouter({
