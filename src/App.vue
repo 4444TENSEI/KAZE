@@ -6,21 +6,7 @@
   </v-app>
 </template>
 
-<script lang="ts" setup>
-  import { useAuth } from '@/hooks/user/auth'
-
-  const router = useRouter()
-  const { getAccToken } = useAuth()
-
-  console.log('登录令牌', getAccToken())
-
-  if (!getAccToken()) {
-    router.replace('/login')
-  } else {
-    console.log('已登录')
-    router.replace('/home')
-  }
-</script>
+<script lang="ts" setup></script>
 
 <style scoped>
   #app {

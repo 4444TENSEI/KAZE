@@ -48,9 +48,8 @@
 </template>
 
 <script setup lang="ts">
-  import { logout } from '@/hooks/user/logout'
-
-  const router = useRouter()
+  import logout from '@/hooks/user/logout'
+  import router from '@/router'
 
   const settingItems = [
     {

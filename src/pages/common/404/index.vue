@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <v-main
-      class="d-flex align-center justify-center w-100 h-100 pa-0 ma-0 home-bg"
-    >
+    <v-main class="d-flex align-center justify-center w-100 h-100 pa-0 ma-0 home-bg">
       <div align="center" max-width="400">
         <v-icon size="6rem">mdi-earth-remove</v-icon>
         <h1 class="my-3 font-weight-black">404 页面不存在</h1>
@@ -21,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-  const router = useRouter()
+  import router from '@/router'
   const goBack = () => {
     if (window.history.length > 1) {
       router.go(-1)

@@ -52,6 +52,12 @@
     "create": "创建成功",
     "submit": "提交成功",
     "default": "操作失败",
-    "unknown": "未知错误"
+    "unknown": "未知错误",
+    "greeting": {
+      "morning": "早上好",
+      "noon": "中午好",
+      "afternoon": "下午好",
+      "night": "晚上好"
+    }
   }
 }

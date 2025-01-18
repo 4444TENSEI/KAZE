@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-  const router = useRouter()
+  import router from '@/router'
 
   const menuMobile = [
     {

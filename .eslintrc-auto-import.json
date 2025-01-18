@@ -79,6 +79,8 @@
     "useDisplay": true,
     "useTheme": true,
     "useToast": true,
-    "toast": true
+    "toast": true,
+    "pbServer": true,
+    "t": true
   }
 }

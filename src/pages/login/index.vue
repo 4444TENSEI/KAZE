@@ -67,7 +67,7 @@
           :text="$t('action.login')"
           type="submit"
           variant="elevated"
-          @click="testLogin"
+          @click="loginByEmail(email.value, password.value)"
         />
       </div>
       <v-divider class="mb-2">
@@ -79,21 +79,21 @@
           icon="mdi-github"
           title="GitHub"
           variant="tonal"
-          @click="loginByOA2(pbServer, 'github')"
+          @click="loginByOA2('github')"
         />
         <v-btn
           color="error"
           icon="mdi-google"
           title="Google"
           variant="tonal"
-          @click="loginByOA2(pbServer, 'google')"
+          @click="loginByOA2('google')"
         />
         <v-btn
           color="warning"
           icon="mdi-gitlab"
           title="Gitlab"
           variant="tonal"
-          @click="loginByOA2(pbServer, 'gitlab')"
+          @click="loginByOA2('gitlab')"
         />
       </div>
     </v-card>
@@ -102,16 +102,13 @@
 
 <script setup>
   import { useField, useForm } from 'vee-validate'
-  import { useAuth } from '@/hooks/user/auth'
-  import { pocketBaseSymbol } from '@/hooks/pocketbase/injectionSymbols'
-  import { loginByOA2 } from './hooks/loginByOa2'
+  import pbServer from '@/api/pocketbase'
+  import router from '@/router'
+  import { loginByEmail, loginByOA2 } from '@/hooks/user/login'
+  import { greeting } from '@/utils/greeting'
 
-  const pbServer = inject(pocketBaseSymbol)
-
-  const router = useRouter()
   const { t } = useI18n()
 
-  const { setAccToken, getAccToken } = useAuth()
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
     validationSchema: {
@@ -149,13 +146,7 @@
       : '密码'
   })
 
-  function testLogin() {
-    setAccToken('123')
-    toast('欢迎回来，' + getAccToken(), 'success', 5000)
-    if (getAccToken()) {
-      router.replace('/home')
-    }
-  }
+  const greetingMsg = greeting()
 
   function showtoast() {
     console.log('测试气泡')

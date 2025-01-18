@@ -1,13 +1,10 @@
-import { toast } from '@/hooks/toast'
-import { useAuth } from './auth'
+import pbServer from '@/api/pocketbase'
 import router from '@/router'
 
-const { delAccToken } = useAuth()
-
 function logout() {
-  delAccToken()
   toast('退出登录', 'info')
+  pbServer.authStore.clear()
   router.push('/login')
 }
 
-export { logout }
+export default logout

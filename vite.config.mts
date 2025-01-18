@@ -22,14 +22,14 @@ export default defineConfig({
     AutoImport({
       imports: [
         'vue',
+        { vuetify: ['useDisplay', 'useTheme'] },
+        { 'vue-i18n': ['useI18n'] },
         {
           'vue-router/auto': ['useRoute', 'useRouter'],
         },
         {
           '@vueuse/core': ['useStorage', 'useSessionStorage', 'useCookies'],
         },
-        { 'vue-i18n': ['useI18n'] },
-        { vuetify: ['useDisplay', 'useTheme'] },
         { '@/hooks/toast': ['toast'] },
       ],
       dts: 'src/auto-imports.d.ts',

@@ -1,5 +1,4 @@
 import { createI18n } from 'vue-i18n'
-import { useStorage } from '@vueuse/core'
 
 const SUPPORT_LANGS = ['zh', 'en', 'ja']
 const DEFAULT_LANG = 'en'

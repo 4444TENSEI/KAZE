@@ -1,15 +1,16 @@
 <template>
   <v-progress-linear v-if="getLoading()" color="light-blue" indeterminate />
   <router-view />
-  <AppFrame v-if="getAccToken()" />
-  <Footer v-if="!getAccToken()" />
+  <AppFrame v-if="pbServer.authStore.token" />
+  <Footer v-if="!pbServer.authStore.token" />
   <Toast />
 </template>
 
 <script lang="ts" setup>
+  import pbServer from '@/api/pocketbase'
   import { useLoadingStore } from '@/stores'
-  import { useAuth } from '@/hooks/user/auth'
+
+  console.log('当前用户信息', pbServer.authStore.record)
 
   const { getLoading } = useLoadingStore()
-  const { getAccToken } = useAuth()
 </script>
