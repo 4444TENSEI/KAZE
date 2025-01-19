@@ -81,6 +81,7 @@
     "toast": true,
     "t": true,
     "$t": true,
-    "router": true
+    "router": true,
+    "push": true
   }
 }

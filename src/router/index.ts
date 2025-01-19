@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
-import router from '@/router'
 import pbServer from '@/api/pocketbase'
 
 const router = createRouter({
@@ -34,10 +33,10 @@ router.onError((err, to) => {
 router.beforeEach((to, _, next) => {
   const isLoggedIn = !!pbServer.authStore.token
   if (!isLoggedIn && to.path !== '/login') {
-    console.log('未登录')
+    push.error('请先登录哦')
+    next()
     next('/login')
   } else if (isLoggedIn && to.path === '/login') {
-    console.log('已登录')
     next('/home')
   } else {
     next()

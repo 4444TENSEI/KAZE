@@ -25,6 +25,7 @@ export default defineConfig({
         { vuetify: ['useDisplay', 'useTheme'] },
         { '@/i18n': ['$t'] },
         { '@/router': ['router'] },
+        { 'notivue': ['push'] },
         {
           'vue-router/auto': ['useRoute', 'useRouter'],
         },

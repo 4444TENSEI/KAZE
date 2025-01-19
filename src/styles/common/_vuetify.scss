@@ -1,8 +1,18 @@
 @use "@/styles/common/root";
 
-// 全局v-card卡片透明度
+// 卡片
 .v-card {
     display: flex;
     opacity: root.$global_opacity;
     min-width: 240px;
+}
+
+// 顶栏
+.v-toolbar {
+    z-index: 0 !important;
+}
+
+// toast关闭按钮
+.Notivue__close::after {
+    border-radius: 50%;
 }
