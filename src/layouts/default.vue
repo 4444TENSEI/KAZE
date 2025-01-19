@@ -2,7 +2,7 @@
   <v-progress-linear v-if="getLoading()" color="light-blue" indeterminate />
   <router-view />
   <AppFrame v-if="pbServer.authStore.token" />
-  <Footer v-if="!pbServer.authStore.token" />
+  <Footer v-else />
   <Toast />
 </template>
 

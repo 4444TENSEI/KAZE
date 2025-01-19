@@ -1,9 +1,12 @@
 import pbServer from '@/api/pocketbase'
 import router from '@/router'
 
+/**
+ * 退出登录
+ */
 function logout() {
-  // toast('退出登录', 'info')
   pbServer.authStore.clear()
+  push.info($t('message.logoutOk'))
   router.push('/login')
 }
 

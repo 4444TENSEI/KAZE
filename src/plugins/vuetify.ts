@@ -1,12 +1,12 @@
-// Styles
+// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import { pl, zhHans } from 'vuetify/locale'
-  import { THEME_MAP } from '@/hooks/map'
+import { THEME_MAP } from '@/hooks/map'
 
-const primary = useStorage(THEME_MAP, 'light').value
-// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+const surface = useStorage(THEME_MAP, '').value
+
 export default createVuetify({
   defaults: {
     VTextField: {
@@ -24,8 +24,7 @@ export default createVuetify({
   },
   theme: {
     themes: {
-      light: { colors: { primary } },
-      dark: { colors: { primary } },
+      light: { colors: { surface } },
     },
   },
 })

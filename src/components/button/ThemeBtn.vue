@@ -34,22 +34,21 @@
 
   const menuShow = ref(false)
   const theme = useTheme()
-  const KazeTheme = useStorage(THEME_MAP, '')
+  const surface = useStorage(THEME_MAP, '#ffffff')
   const colors = [
-    ['#1697f6', '#ff9800'],
-    ['#4CAF50', '#FF5252'],
-    ['#9C27b0', '#E91E63'],
-    ['#304156', '#3f51b5'],
-    ['#002FA7', '#492d22'],
+    ['#ffffff', '#283C50'],
+    ['#F0FAFF', '#323232'],
+    ['#FFF5FA', '#283250'],
+    ['#F8FFF8', '#1E3741'],
+    ['#EEF0FF', '#0A3C50'],
   ]
   const color = computed({
     get() {
-      return theme.themes.value.light.colors.KazeTheme
+      return theme.themes.value.light.colors.surface
     },
     set(val: string) {
-      KazeTheme.value = val
-      theme.themes.value.light.colors.KazeTheme = val
-      theme.themes.value.dark.colors.KazeTheme = val
+      surface.value = val
+      theme.themes.value.light.colors.surface = val
     },
   })
 </script>

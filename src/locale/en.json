@@ -31,7 +31,7 @@
     "password": "password",
     "passwordConfirm": "Repeat password",
     "avatarUrl": "Avatar link",
-    "backgroundUrl": "Background image link"
+    "backgroundUrl": "background link"
   },
   "form": {
     "required": "Required fields",
@@ -44,14 +44,24 @@
     "emailCodeSend": "Email verification code sent successfully"
   },
   "message": {
-    "login": "Login successful",
-    "register": "Registration successful",
-    "logout": "Exit successfully",
-    "update": "Update successful",
-    "delete": "Delete successfully",
-    "create": "Created successfully",
-    "submit": "Submission successful",
-    "default": "Operation failed",
-    "unknown": "unknown error"
+    "logging": "Login...",
+    "loginOk": "Login successful",
+    "loginFail": "Login failed",
+    "registerOk": "Registration successful",
+    "registerFail": "Registration failed",
+    "logoutOk": "Logged out",
+    "updateOk": "Update successful",
+    "updateFail": "Update failed",
+    "deleteOk": "Delete successfully",
+    "deleteFail": "Delete failed",
+    "createOk": "Created successfully",
+    "createFail": "Creation failed",
+    "unknownFail": "unknown error",
+    "greeting": {
+      "morning": "Good morning",
+      "noon": "good afternoon",
+      "afternoon": "good afternoon",
+      "night": "Good evening"
+    }
   }
 }

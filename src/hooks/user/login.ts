@@ -3,28 +3,38 @@ import router from '@/router'
 import { greeting } from '@/utils/greeting'
 import type { LoginForm, Oa2Provider } from '@/types/login'
 
-async function loginByOA2(provider: Oa2Provider) {
+// 通用登录逻辑
+async function login(authMethod: Function, ...params: any[]) {
+  const logging = push.promise($t('message.logging'))
   try {
-    const res = await pbServer.collection('users').authWithOAuth2({
-      provider,
-    })
-    console.log(`${provider} 登陆成功`, res)
-    // toast(`${greeting()}, ${pbServer.authStore.record?.name}`, 'success')
+    await authMethod(...params)
+    logging.resolve(`${greeting()}, ${pbServer.authStore.record?.name}~`)
     router.push('/home')
-  } catch (error) {
-    // toast(`${provider} 登录失败:` + error)
+  } catch (err) {
+    logging.reject($t('message.loginFail'))
   }
 }
 
+/**
+ * OA2单点登录
+ * @param provider
+ */
+async function loginByOA2(provider: Oa2Provider) {
+  await login(
+    (provider: Oa2Provider) => pbServer.collection('users').authWithOAuth2({ provider }),
+    provider,
+  )
+}
+
+/**
+ * 表单/邮箱登录
+ * @param form
+ */
 async function loginByEmail(form: LoginForm) {
-  try {
-    const res = await pbServer.collection('users').authWithPassword(form.email, form.password)
-    console.log('邮箱登陆成功', res)
-    // toast(`${greeting()}, ${pbServer.authStore.record?.name}`, 'success')
-    router.push('/home')
-  } catch (error) {
-    // toast(`登录失败:` + error)
-  }
+  await login(
+    (form: LoginForm) => pbServer.collection('users').authWithPassword(form.email, form.password),
+    form,
+  )
 }
 
 export { loginByEmail, loginByOA2 }

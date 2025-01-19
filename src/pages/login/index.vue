@@ -6,7 +6,7 @@
         <v-img class="mr-4" height="36" inline src="@/assets/logo.png" width="36" />
         <h1 class="cursor-default">{{ $t('action.login') }}</h1>
       </div>
-      <form @submit.prevent="handleSubmit(submit)">
+      <form @submit.prevent="onSubmit">
         <v-text-field
           v-model="email.value.value"
           autocomplete="email"
@@ -38,7 +38,7 @@
           rounded="pill"
           :text="$t('action.forget')"
           variant="flat"
-          @click="showtoast"
+          @click="forget"
         />
         <v-btn
           height="42"
@@ -65,9 +65,8 @@
           :loading="loading"
           rounded="pill"
           :text="$t('action.login')"
-          type="submit"
           variant="elevated"
-          @click="loginByEmail(email.value, password.value)"
+          type="submit"
         />
       </div>
       <v-divider class="mb-2">
@@ -125,8 +124,8 @@
   const email = useField('email')
   const password = useField('password')
   // 表单提交
-  const submit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2))
+  const onSubmit = handleSubmit(values => {
+    console.log(values)
   })
   // 输入框显示隐藏小眼睛
   const pswVisible = shallowRef(false)
@@ -139,13 +138,10 @@
   const passwordLabel = computed(() => {
     return password.errorMessage.value && password.value.value
       ? password.errorMessage.value
-      : '密码'
+      : $t('user.password')
   })
 
-  const greetingMsg = greeting()
-
-  function showtoast() {
-    console.log('测试气泡')
-    // toast('找回密码')
+  function forget() {
+    push.info('测试气泡测试气泡测试气泡测试气泡')
   }
 </script>

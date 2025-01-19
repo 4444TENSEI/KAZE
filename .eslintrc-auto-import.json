@@ -77,9 +77,6 @@
     "useStorage": true,
     "useDisplay": true,
     "useTheme": true,
-    "useToast": true,
-    "toast": true,
-    "t": true,
     "$t": true,
     "router": true,
     "push": true

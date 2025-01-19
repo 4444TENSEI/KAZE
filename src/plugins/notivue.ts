@@ -7,8 +7,10 @@ const notivue = createNotivue({
   pauseOnHover: true,
   // 触摸屏幕暂停
   pauseOnTouch: true,
+  // 切换标签页暂停
+  pauseOnTabChange: true,
   // 渐入动画
-  //   transition: '',
+  transition: 'transform 1s cubic-bezier(0.5, 1, 0.25, 1)',
   // 避免重复弹出
   avoidDuplicates: false,
   // 最大同时显示数量
