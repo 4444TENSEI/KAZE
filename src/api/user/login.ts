@@ -8,7 +8,7 @@ async function login(authMethod: Function, ...params: any[]) {
   const logging = push.promise($t('message.logging'))
   try {
     await authMethod(...params)
-    logging.resolve(`${greeting()}, ${pbServer.authStore.record?.name}~`)
+    logging.resolve(`${$t('message.loginOk')}, ${greeting()}, ${pbServer.authStore.record?.name}~`)
     router.push('/home')
   } catch (err) {
     logging.reject($t('message.loginFail'))

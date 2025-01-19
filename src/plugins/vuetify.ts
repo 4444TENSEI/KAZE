@@ -15,7 +15,7 @@ export default createVuetify({
       clearable: true,
       size: 'sm',
     },
-    VCard: { rounded: 'xl' },
+    VCard: { rounded: 'lg' },
   },
   locale: {
     locale: 'zhHans',

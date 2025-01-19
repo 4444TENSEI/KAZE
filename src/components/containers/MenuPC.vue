@@ -49,12 +49,12 @@
 
 <script setup lang="ts">
   import router from '@/router'
-  import logout from '@/hooks/user/logout'
+  import logout from '@/api/user/logout'
 
   const settingItems = [
     {
       id: 1,
-      name: '资料',
+      name: '我的资料',
       icon: 'mdi-card-account-details',
       path: '/me/profile',
     },

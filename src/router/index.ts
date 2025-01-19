@@ -32,8 +32,7 @@ router.onError((err, to) => {
 
 router.beforeEach((to, from, next) => {
   const isLoggedIn = !!pbServer.authStore.token
-  console.log(to.path)
-  if (!isLoggedIn && to.path !== '/login') {
+  if (!isLoggedIn && to.path !== '/login' && to.path!== '/register') {
     push.error('请先登录哦')
     next('/login')
   } else if (isLoggedIn && to.path === '/login') {

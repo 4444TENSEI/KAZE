@@ -1,6 +1,15 @@
 <template>
-  <NavBar />
-  <div class="full-container d-flex flex-column align-center">
+  <div class="flex-container justify-center align-center flex-column">
+    <v-app-bar border="b" class="position-fixed" density="comfortable" flat order="1">
+      <v-app-bar-title
+        class="font-weight-black cursor-default"
+        style="font-size: 1.4rem; letter-spacing: 0em; line-height: 1"
+      >
+        个人中心
+      </v-app-bar-title>
+      <TestBtn />
+      <ThemeBtn />
+    </v-app-bar>
     <v-card>
       <v-list nav>
         <v-list-item
@@ -26,13 +35,13 @@
 </template>
 
 <script lang="ts" setup>
-  import logout from '@/hooks/user/logout'
+  import logout from '@/api/user/logout'
   import router from '@/router'
 
   const settingItems = [
     {
       id: 1,
-      name: '资料',
+      name: '我的资料',
       icon: 'mdi-card-account-details',
       path: '/me/profile',
     },

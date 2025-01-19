@@ -1,5 +1,5 @@
 <template>
-  <body class="flex-container">
+  <body class="flex-container justify-center">
     <LoadingPlace />
   </body>
 </template>

@@ -1,8 +1,8 @@
 <template>
-  <body class="flex-container">
+  <body class="flex-container justify-center align-center">
     <SpeedBtn />
     <NavLogin />
-    <v-card class="card-login pa-6">
+    <v-card class="card-login pa-6" rounded="xl">
       <div class="d-flex align-center mt-3 mb-8">
         <v-btn
           class="position-absolute"
@@ -14,14 +14,14 @@
         />
         <p class="font-weight-black cursor-default mx-auto text-h4">注册</p>
       </div>
-      <form @submit.prevent="submit">
+      <form @submit.prevent="onSubmit">
         <v-text-field
           v-model="nickname.value.value"
           autocomplete="username"
           class="mb-4"
           clearable
           :color="nickname.errorMessage.value ? 'error' : 'info'"
-          :hide-details="false"
+          hide-details="false"
           :label="nicknameLabel"
           prepend-inner-icon="mdi-cat"
           required
@@ -33,7 +33,7 @@
           class="mb-4"
           clearable
           :color="email.errorMessage.value ? 'error' : 'info'"
-          :hide-details="false"
+          hide-details="false"
           :label="emailLabel"
           prepend-inner-icon="mdi-email"
           required
@@ -47,7 +47,7 @@
           clearable
           :color="password.errorMessage.value ? 'error' : 'info'"
           details="66"
-          :hide-details="false"
+          hide-details="false"
           :label="passwordLabel"
           prepend-inner-icon="mdi-lock"
           rounded="pill"
@@ -63,7 +63,7 @@
           clearable
           :color="password2.errorMessage.value ? 'error' : 'info'"
           details="66"
-          :hide-details="false"
+          hide-details="false"
           :label="password2Label"
           prepend-inner-icon="mdi-shield-lock"
           rounded="pill"
@@ -118,7 +118,7 @@
   const password = useField('password')
   const password2 = useField('password2')
   // 表单提交
-  const submit = handleSubmit(values => {
+  const onSubmit = handleSubmit(values => {
     alert(JSON.stringify(values, null, 2))
   })
   // 输入框显示隐藏小眼睛

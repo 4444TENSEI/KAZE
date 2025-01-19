@@ -1,7 +1,7 @@
 <template>
-  <body class="flex-container">
+  <body class="flex-container justify-center align-center">
     <NavLogin />
-    <v-card class="card-login pa-6">
+    <v-card class="card-login pa-6" rounded="xl">
       <div class="d-flex justify-center align-center mb-8 mt-2">
         <v-img class="mr-4" height="36" inline src="@/assets/logo.png" width="36" />
         <h1 class="cursor-default">{{ $t('action.login') }}</h1>
@@ -103,8 +103,7 @@
 
 <script setup>
   import { useField, useForm } from 'vee-validate'
-  import { loginByEmail, loginByOA2 } from '@/hooks/user/login'
-  import { greeting } from '@/utils/greeting'
+  import { loginByEmail, loginByOA2 } from '@/api/user/login'
   import router from '@/router'
 
   // 登录输入框校验

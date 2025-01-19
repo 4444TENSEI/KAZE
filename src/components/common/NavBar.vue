@@ -9,7 +9,7 @@
     <v-app-bar-title>
       <p
         class="font-weight-black cursor-default"
-        style="font-size: 1.8rem; letter-spacing: 0.1em; line-height: 1"
+        style="font-size: 1.6rem; letter-spacing: 0.1em; line-height: 1"
       >
         KAZE
       </p>

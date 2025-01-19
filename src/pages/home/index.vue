@@ -1,6 +1,7 @@
 <template>
   <body class="full-container">
-    <NavBar /><v-scroll class="scroll-container">
+    <NavBar />
+    <v-scroll class="scroll-container">
       <v-card class="overflow-y-auto" rounded="none" title="数据表名">
         <template #append>
           <v-btn icon="mdi-filter" variant="text" />
@@ -29,13 +30,7 @@
         />
 
         <!-- hide-default-footer隐藏默认的分页，建议加上，因为自己做分页最好 -->
-        <v-data-table
-          fixed-header
-          :headers="headers"
-          :items="items"
-          :search="search"
-          show-select
-        >
+        <v-data-table fixed-header :headers="headers" :items="items" :search="search" show-select>
           <!-- show-select显示复选框多选框 -->
           <template #item.name="{ item }">
             <div class="d-flex align-center ga-4">
@@ -78,12 +73,7 @@
                 <v-icon icon="mdi-check" size="small" />
               </template>
               <template #track-false>
-                <v-icon
-                  class="me-1"
-                  color="white"
-                  icon="mdi-close"
-                  size="small"
-                />
+                <v-icon class="me-1" color="white" icon="mdi-close" size="small" />
               </template>
             </v-switch>
           </template>
