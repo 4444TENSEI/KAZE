@@ -139,7 +139,7 @@
       : $t('user.password')
   })
   function forget() {
-    push.info('测试气泡测试气泡测试气泡测试气泡')
+    router.push('/forget')
   }
   // 登录表单提交
   const onSubmit = handleSubmit(values => {

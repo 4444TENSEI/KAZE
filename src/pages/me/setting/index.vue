@@ -1,3 +1,5 @@
 <template>
-  <body class="flex-container">设置</body>
+  <body class="flex-container">
+    <LoadingPlace />
+  </body>
 </template>

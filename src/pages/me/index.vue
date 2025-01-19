@@ -34,13 +34,13 @@
       id: 1,
       name: '资料',
       icon: 'mdi-card-account-details',
-      path: '/profile',
+      path: '/me/profile',
     },
     {
       id: 2,
       name: '设置',
       icon: 'mdi-creation-outline',
-      path: '/setting',
+      path: '/me/setting',
     },
   ]
 </script>

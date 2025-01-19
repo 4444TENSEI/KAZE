@@ -56,13 +56,13 @@
       id: 1,
       name: '资料',
       icon: 'mdi-card-account-details',
-      path: '/profile',
+      path: '/me/profile',
     },
     {
       id: 2,
       name: '设置',
       icon: 'mdi-creation-outline',
-      path: '/setting',
+      path: '/me/setting',
     },
   ]
 
@@ -71,19 +71,19 @@
       id: 1,
       name: '消息',
       icon: 'mdi-chat',
-      path: '/chat',
+      path: '/menu/chat',
     },
     {
       id: 2,
       name: '插件',
       icon: 'mdi-creation-outline',
-      path: '/plugin',
+      path: '/menu/plugin',
     },
     {
       id: 3,
       name: '好友',
       icon: 'mdi-account-details',
-      path: '/friend',
+      path: '/menu/friend',
     },
   ]
 
