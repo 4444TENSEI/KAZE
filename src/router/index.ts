@@ -34,9 +34,12 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = !!pbServer.authStore.token
   if (!isLoggedIn && to.path !== '/login') {
     push.error('请先登录哦')
-    next('/login')
-  } else if (isLoggedIn && to.path === '/login') {
-    next('/home')
+    router.replace('/login')
+    return
+  } else if (isLoggedIn && from.path === '/login') {
+    push.success('请先登录哦')
+    router.replace('/home')
+    return
   }
   next()
 })

@@ -79,6 +79,8 @@
     "useTheme": true,
     "$t": true,
     "router": true,
-    "push": true
+    "push": true,
+    "onBeforeRouteLeave": true,
+    "onBeforeRouteUpdate": true
   }
 }

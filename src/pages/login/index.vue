@@ -6,6 +6,7 @@
         <v-img class="mr-4" height="36" inline src="@/assets/logo.png" width="36" />
         <h1 class="cursor-default">{{ $t('action.login') }}</h1>
       </div>
+      <!-- 确保表单正确包裹所有提交按钮 -->
       <form @submit.prevent="onSubmit">
         <v-text-field
           v-model="email.value.value"
@@ -30,45 +31,46 @@
           :type="pswVisible ? 'text' : 'password'"
           @click:append-inner="pswVisible = !pswVisible"
         />
+        <div class="d-flex mb-2">
+          <v-checkbox-btn color="info" :label="$t('action.remember')" />
+          <v-btn
+            height="42"
+            rounded="pill"
+            :text="$t('action.forget')"
+            variant="flat"
+            @click="forget"
+          />
+          <v-btn
+            height="42"
+            rounded="pill"
+            :text="$t('action.register')"
+            to="/register"
+            variant="flat"
+          />
+        </div>
+        <div class="mb-3 d-flex align-center">
+          <v-btn
+            class="text-h6 mr-2"
+            color="primary"
+            icon="mdi-broom"
+            rounded="circle"
+            size="56"
+            variant="tonal"
+            @click="handleReset"
+          />
+          <!-- 登录按钮作为 form 提交的一部分 -->
+          <v-btn
+            class="text-h6 flex-1-0"
+            color="info"
+            height="56"
+            :loading="loading"
+            rounded="pill"
+            :text="$t('action.login')"
+            variant="elevated"
+            type="submit"
+          />
+        </div>
       </form>
-      <div class="d-flex mb-2">
-        <v-checkbox-btn color="info" :label="$t('action.remember')" />
-        <v-btn
-          height="42"
-          rounded="pill"
-          :text="$t('action.forget')"
-          variant="flat"
-          @click="forget"
-        />
-        <v-btn
-          height="42"
-          rounded="pill"
-          :text="$t('action.register')"
-          to="/register"
-          variant="flat"
-        />
-      </div>
-      <div class="mb-3 d-flex align-center">
-        <v-btn
-          class="text-h6 mr-2"
-          color="primary"
-          icon="mdi-broom"
-          rounded="circle"
-          size="56"
-          variant="tonal"
-          @click="handleReset"
-        />
-        <v-btn
-          class="text-h6 flex-1-0"
-          color="info"
-          height="56"
-          :loading="loading"
-          rounded="pill"
-          :text="$t('action.login')"
-          variant="elevated"
-          type="submit"
-        />
-      </div>
       <v-divider class="mb-2">
         <div class="text-no-wrap text-grey mb-2">{{ $t('placeholder.otherWays') }}</div>
       </v-divider>
@@ -123,10 +125,6 @@
   })
   const email = useField('email')
   const password = useField('password')
-  // 表单提交
-  const onSubmit = handleSubmit(values => {
-    console.log(values)
-  })
   // 输入框显示隐藏小眼睛
   const pswVisible = shallowRef(false)
   // 将错误信息显示到label中
@@ -140,8 +138,11 @@
       ? password.errorMessage.value
       : $t('user.password')
   })
-
   function forget() {
     push.info('测试气泡测试气泡测试气泡测试气泡')
   }
+  // 登录表单提交
+  const onSubmit = handleSubmit(values => {
+    loginByEmail(values)
+  })
 </script>
