@@ -105,6 +105,7 @@
   import { useField, useForm } from 'vee-validate'
   import { loginByEmail, loginByOA2 } from '@/hooks/user/login'
   import { greeting } from '@/utils/greeting'
+  import router from '@/router'
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
