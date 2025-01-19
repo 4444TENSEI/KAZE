@@ -8,12 +8,16 @@ const notivue = createNotivue({
   // 触摸屏幕暂停
   pauseOnTouch: true,
   // 渐入动画
-//   transition: '',
+  //   transition: '',
   // 避免重复弹出
   avoidDuplicates: false,
+  // 最大同时显示数量
+  limit: 5,
+  // 同时显示上限后后续进入队列
+  enqueue: true,
   notifications: {
     global: {
-      duration: 30000,
+      duration: 5000,
     },
   },
 })

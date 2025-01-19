@@ -3,12 +3,11 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import { pl, zhHans } from 'vuetify/locale'
-import { THEME_MAP } from '@/hooks/map'
-import { md3 } from 'vuetify/blueprints'
-const KazeTheme = useStorage(THEME_MAP, '#141E28').value
+  import { THEME_MAP } from '@/hooks/map'
+
+const primary = useStorage(THEME_MAP, 'light').value
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
-  blueprint: md3,
   defaults: {
     VTextField: {
       variant: 'outlined',
@@ -24,10 +23,9 @@ export default createVuetify({
     messages: { zhHans, pl },
   },
   theme: {
-    defaultTheme: 'light',
     themes: {
-      light: { colors: { KazeTheme } },
-      dark: { colors: { KazeTheme } },
+      light: { colors: { primary } },
+      dark: { colors: { primary } },
     },
   },
 })
