@@ -4,7 +4,7 @@
  */
 function greeting() {
   const hour = new Date().getHours()
-  return hour < 6
+  return hour < 5
     ? $t('message.greeting.earlyMorning')
     : hour < 12
     ? $t('message.greeting.morning')

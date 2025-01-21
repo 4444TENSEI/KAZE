@@ -25,13 +25,14 @@ export default defineConfig({
         { vuetify: ['useDisplay', 'useTheme'] },
         { '@/i18n': ['$t'] },
         { '@/router': ['router'] },
-        { 'notivue': ['push'] },
+        { notivue: ['push'] },
         {
           'vue-router/auto': ['useRoute', 'useRouter'],
         },
         {
-          '@vueuse/core': ['useStorage', 'useSessionStorage', 'useCookies'],
+          '@vueuse/core': ['useStorage', 'useSessionStorage'],
         },
+        { '@vueuse/integrations/useCookies': ['useCookies'] },
       ],
       dts: 'src/auto-imports.d.ts',
       eslintrc: {

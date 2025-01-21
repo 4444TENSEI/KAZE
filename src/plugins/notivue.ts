@@ -10,7 +10,7 @@ const notivue = createNotivue({
   // 切换标签页暂停
   pauseOnTabChange: true,
   // 渐入动画
-  transition: 'fade-kf 1s ease-in-out',
+  transition: 'transform 1000ms ease-in-out',
   // 避免重复弹出
   avoidDuplicates: false,
   // 最大同时显示数量

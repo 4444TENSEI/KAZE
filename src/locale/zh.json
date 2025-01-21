@@ -58,6 +58,7 @@
     "createFail": "创建失败",
     "unknownFail": "未知错误",
     "greeting": {
+      "earlyMorning": "早点睡哦",
       "morning": "早上好",
       "noon": "中午好",
       "afternoon": "下午好",

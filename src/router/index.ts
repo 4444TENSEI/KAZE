@@ -3,8 +3,10 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 import pbServer from '@/api/pocketbase'
 
+// 获取用户登陆状态
+const isLoggedIn = !!pbServer.authStore.token
 // 公开访问的路由
-const publicRoutes = ['/login', '/register', '/forget']
+const PUBLIC_ROUTES = ['/', '/login', '/register', '/forget']
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -19,14 +21,22 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const isLoggedIn = !!pbServer.authStore.token
-  if (!isLoggedIn && !publicRoutes.includes(to.path)) {
-    push.error('请先登录哦')
-    next('/login')
-  } else if (isLoggedIn && to.path === '/login') {
-    next('/home')
+  if (PUBLIC_ROUTES.includes(to.path)) {
+    // 已登录用户访问公共路由，重定向到首页
+    if (isLoggedIn) {
+      console.log('已登陆')
+      next('/home')
+    } else {
+      next()
+    }
   } else {
-    next()
+    // 未登录用户访问内部路由，重定向到首页登录页
+    if (!isLoggedIn) {
+      push.error('请先登录哦')
+      next('/login')
+    } else {
+      next()
+    }
   }
 })
 
