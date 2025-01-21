@@ -1,24 +1,36 @@
 <template>
   <Notivue v-slot="item">
-    <Notification :item="item" :theme="pastelTheme">
-      <NotificationProgress :item="item" />
-    </Notification>
+    <NotivueSwipe :item="item">
+      <Notification :item="item" :theme="theme">
+        <NotificationProgress :item="item" />
+      </Notification>
+    </NotivueSwipe>
   </Notivue>
 </template>
 
-<script setup>
+<script lang="ts" setup>
   import {
     Notivue,
+    NotivueSwipe,
     NotificationProgress,
     Notification,
-    push,
     pastelTheme,
-    slateTheme,
+    type NotivueTheme,
   } from 'notivue'
+
+  const theme: NotivueTheme = {
+    ...pastelTheme,
+  }
 </script>
 
-<style>
-  .Notivue__close {
-    border-radius: 50% !important;
+<style lang="scss">
+  .Notivue__close::after {
+    border-radius: 50%;
+  }
+  .Notivue__content {
+    padding-bottom: 8px;
+  }
+  :root {
+    --nv-z: 9999;
   }
 </style>

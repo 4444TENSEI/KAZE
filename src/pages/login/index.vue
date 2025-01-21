@@ -1,7 +1,7 @@
 <template>
   <body class="flex-container justify-center align-center">
     <NavLogin />
-    <v-card class="card-login pa-6" rounded="xl">
+    <v-card class="card-login pa-6" rounded="xl" elevation="4">
       <div class="d-flex justify-center align-center mb-8 mt-2">
         <v-img class="mr-4" height="36" inline src="@/assets/logo.png" width="36" />
         <h1 class="cursor-default">{{ $t('action.login') }}</h1>
@@ -13,7 +13,6 @@
           autocomplete="email"
           class="mb-4"
           :color="email.errorMessage.value ? 'error' : 'info'"
-          hide-details="false"
           :label="emailLabel"
           prepend-inner-icon="mdi-email"
           required
@@ -25,7 +24,6 @@
           class="mb-2"
           :color="password.errorMessage.value ? 'error' : 'info'"
           :counter="20"
-          hide-details="false"
           :label="passwordLabel"
           prepend-inner-icon="mdi-lock"
           :type="pswVisible ? 'text' : 'password'"
@@ -101,22 +99,26 @@
   </body>
 </template>
 
-<script setup>
+<script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { loginByEmail, loginByOA2 } from '@/api/user/login'
   import router from '@/router'
+  import { LoginForm } from '@/types/login'
+  import { useLoadingStore } from '@/stores'
+
+  const { loading } = useLoadingStore()
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
     validationSchema: {
-      email(value) {
+      email(value: string) {
         if (!value) return true
         if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
           return true
         }
         return '需要正确的邮箱格式'
       },
-      password(value) {
+      password(value: string) {
         if (!value) return true
         if (value?.length >= 6 && value.length <= 20) return true
         return '密码6-20个字符'
@@ -142,7 +144,7 @@
     router.push('/forget')
   }
   // 登录表单提交
-  const onSubmit = handleSubmit(values => {
-    loginByEmail(values)
+  const onSubmit = handleSubmit(formData => {
+    loginByEmail(formData as LoginForm)
   })
 </script>

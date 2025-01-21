@@ -8,11 +8,11 @@
 }
 
 // 顶栏
-.v-toolbar {
-    z-index: 1 !important;
-}
+// .v-toolbar {
+//     z-index: 1 !important;
+// }
 
-// toast关闭按钮
-.Notivue__close::after {
-    border-radius: 50%;
+// 输入框底部隐藏详细说明
+.v-input__details {
+    display: none !important;
 }

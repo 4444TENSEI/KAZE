@@ -21,7 +21,6 @@
           class="mb-4"
           clearable
           :color="nickname.errorMessage.value ? 'error' : 'info'"
-          :hide-details="false"
           :label="nicknameLabel"
           prepend-inner-icon="mdi-cat"
           required
@@ -33,7 +32,6 @@
           class="mb-4"
           clearable
           :color="email.errorMessage.value ? 'error' : 'info'"
-          :hide-details="false"
           :label="emailLabel"
           prepend-inner-icon="mdi-email"
           required
@@ -47,7 +45,6 @@
           clearable
           :color="password.errorMessage.value ? 'error' : 'info'"
           details="66"
-          :hide-details="false"
           :label="passwordLabel"
           prepend-inner-icon="mdi-lock"
           rounded="pill"
@@ -63,7 +60,6 @@
           clearable
           :color="password2.errorMessage.value ? 'error' : 'info'"
           details="66"
-          :hide-details="false"
           :label="password2Label"
           prepend-inner-icon="mdi-shield-lock"
           rounded="pill"

@@ -6,20 +6,20 @@ const notivue = createNotivue({
   // 悬浮鼠标暂停
   pauseOnHover: true,
   // 触摸屏幕暂停
-  pauseOnTouch: true,
+  pauseOnTouch: false,
   // 切换标签页暂停
   pauseOnTabChange: true,
   // 渐入动画
-  transition: 'transform 1s cubic-bezier(0.5, 1, 0.25, 1)',
+  transition: 'fade-kf 1s ease-in-out',
   // 避免重复弹出
   avoidDuplicates: false,
   // 最大同时显示数量
-  limit: 5,
+  limit: 3,
   // 同时显示上限后后续进入队列
   enqueue: true,
   notifications: {
     global: {
-      duration: 5000,
+      duration: 3000,
     },
   },
 })

@@ -1,22 +1,15 @@
 import { defineStore } from 'pinia'
 
 const useLoadingStore = defineStore('loading', () => {
-  const isLoading = ref(false)
+  const loading = ref(false)
   /**
    * 设置loading状态
    */
-  function setLoading(enable: boolean): void {
-    isLoading.value = enable
+  function setLoading(state: boolean): void {
+    loading.value = state
   }
 
-  /**
-   * 查询loading状态
-   */
-  function getLoading(): boolean {
-    return isLoading.value
-  }
-
-  return { setLoading, getLoading }
+  return { setLoading, loading }
 })
 
 export default useLoadingStore

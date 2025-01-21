@@ -1,5 +1,5 @@
 <template>
-  <v-progress-linear v-if="getLoading()" color="light-blue" indeterminate />
+  <v-progress-linear v-if="loading" color="light-blue" indeterminate />
   <router-view />
   <AppFrame v-if="pbServer.authStore.token" />
   <Footer v-else />
@@ -12,5 +12,5 @@
 
   console.log('当前用户信息', pbServer.authStore.record)
 
-  const { getLoading } = useLoadingStore()
+  const { loading } = useLoadingStore()
 </script>

@@ -2,13 +2,16 @@ import pbServer from '@/api/pocketbase'
 import router from '@/router'
 import { greeting } from '@/utils/greeting'
 import type { LoginForm, Oa2Provider } from '@/types/login'
+import { useLoadingStore } from '@/stores'
+
+const { setLoading } = useLoadingStore()
 
 // 通用登录逻辑
 async function login(authMethod: Function, ...params: any[]) {
   const logging = push.promise($t('message.logging'))
   try {
     await authMethod(...params)
-    logging.resolve(`${$t('message.loginOk')}, ${greeting()}, ${pbServer.authStore.record?.name}~`)
+    logging.resolve(`${greeting()}, ${pbServer.authStore.record?.name}~`)
     router.push('/home')
   } catch (err) {
     logging.reject($t('message.loginFail'))
