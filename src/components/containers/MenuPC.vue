@@ -14,11 +14,7 @@
       <div class="d-flex justify-center my-2">
         <v-btn class="text-none" icon size="42" slim variant="tonal">
           <v-badge color="error" dot>
-            <v-avatar
-              color="surface-light"
-              image="https://testingcf.jsdelivr.net/gh/4444TENSEI/CDN/img/avatar/kaze/ico/public.ico"
-              size="36"
-            />
+            <v-avatar color="surface-light" :image="avatarUrl" size="36" />
           </v-badge>
           <v-menu activator="parent">
             <v-list nav>
@@ -50,6 +46,7 @@
 <script setup lang="ts">
   import router from '@/router'
   import logout from '@/api/user/logout'
+  import { avatarUrl } from '@/hooks/pbFileUrl'
 
   const settingItems = [
     {

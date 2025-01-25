@@ -10,6 +10,7 @@ declare module 'vue' {
     2: typeof import('./components/common/Toast copy 2.vue')['default']
     AlertMsg: typeof import('./components/common/AlertMsg.vue')['default']
     AppFrame: typeof import('./components/containers/AppFrame.vue')['default']
+    Avatar: typeof import('./components/common/Avatar.vue')['default']
     AvatarBtn: typeof import('./components/button/AvatarBtn.vue')['default']
     Captcha: typeof import('./components/dialog/Captcha.vue')['default']
     copy: typeof import('./components/button/SettingBtn copy.vue')['default']

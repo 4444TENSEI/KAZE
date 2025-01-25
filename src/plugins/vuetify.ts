@@ -3,9 +3,9 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import { pl, zhHans } from 'vuetify/locale'
-import { THEME_MAP } from '@/hooks/map'
+import { THEME_KEY } from '@/hooks/map'
 
-const surface = useStorage(THEME_MAP, '').value
+const surface = useStorage(THEME_KEY, '').value
 
 export default createVuetify({
   defaults: {

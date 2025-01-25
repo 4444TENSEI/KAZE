@@ -1,12 +1,11 @@
 import pb from '@/api/pocketbase'
+import { TABLE_USERS } from '@/hooks/map'
 
 /**
  * 刷新登录认证
  */
 function refreshAuth() {
-  const aaa = pb.collection('users').authRefresh()
-  console.log(aaa)
-  return aaa
+  return pb.collection(TABLE_USERS).authRefresh()
 }
 
 export { refreshAuth }

@@ -3,6 +3,7 @@ import router from '@/router'
 import { greeting } from '@/utils/greeting'
 import type { LoginForm, Oa2Provider } from '@/types/login'
 import { useLoadingStore } from '@/stores'
+import { TABLE_USERS } from '@/hooks/map'
 
 const { setLoading } = useLoadingStore()
 
@@ -26,7 +27,7 @@ async function login(authMethod: Function, ...params: any[]) {
  */
 async function loginByOA2(provider: Oa2Provider) {
   await login(
-    (provider: Oa2Provider) => pb.collection('users').authWithOAuth2({ provider }),
+    (provider: Oa2Provider) => pb.collection(TABLE_USERS).authWithOAuth2({ provider }),
     provider,
   )
 }
@@ -37,7 +38,7 @@ async function loginByOA2(provider: Oa2Provider) {
  */
 async function loginByEmail(form: LoginForm) {
   await login(
-    (form: LoginForm) => pb.collection('users').authWithPassword(form.email, form.password),
+    (form: LoginForm) => pb.collection(TABLE_USERS).authWithPassword(form.email, form.password),
     form,
   )
 }

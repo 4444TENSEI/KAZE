@@ -28,8 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { getProfile } from '@/api/user/profile'
-  import { reactive, computed, onMounted } from 'vue'
+  import { getUserProfile } from '@/api/user/profile'
   import router from '@/router'
 
   // 定义字段枚举
@@ -44,7 +43,7 @@
   ]
 
   // 用户数据
-  const profile = reactive({
+  const profileMap = reactive({
     id: 0,
     name: '',
     email: '',
@@ -58,7 +57,7 @@
   const profileFields = computed(() =>
     fieldMap.map(field => ({
       ...field,
-      value: profile[field.key as keyof typeof profile] ?? '无',
+      value: profileMap[field.key as keyof typeof profileMap] ?? '无',
     })),
   )
 
@@ -70,8 +69,8 @@
   // 获取用户信息
   const getProfileInfo = async () => {
     try {
-      const res = await getProfile()
-      Object.assign(profile, res) // 更新 reactive 数据
+      const userProfile = await getUserProfile()
+      Object.assign(profileMap, userProfile)
     } catch (error) {
       console.error('获取用户信息失败:', error)
     }

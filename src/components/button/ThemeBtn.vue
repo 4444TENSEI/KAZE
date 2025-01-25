@@ -30,11 +30,11 @@
 
 <script setup lang="ts">
   import { mergeProps } from 'vue'
-  import { THEME_MAP } from '@/hooks/map'
+  import { THEME_KEY } from '@/hooks/map'
 
   const menuShow = ref(false)
   const theme = useTheme()
-  const surface = useStorage(THEME_MAP, '#ffffff')
+  const surface = useStorage(THEME_KEY, '#ffffff')
   const colors = [
     ['#ffffff', '#283C50'],
     ['#F0FAFF', '#323232'],
