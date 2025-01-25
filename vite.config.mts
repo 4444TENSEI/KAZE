@@ -65,6 +65,13 @@ export default defineConfig({
     }),
     vueDevTools(),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
+  },
   define: { 'process.env': {} },
   resolve: {
     alias: {
@@ -74,5 +81,5 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-  },
+  }
 })

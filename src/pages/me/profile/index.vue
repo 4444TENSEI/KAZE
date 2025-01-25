@@ -20,7 +20,7 @@
           @click="onItemClick(field)"
         >
           <v-icon class="mr-6">{{ field.icon }}</v-icon>
-          <span>[{{ field.label }}] {{ field.value }}</span>
+          <span>{{ field.label }} {{ field.value }}</span>
         </v-list-item>
       </v-list>
     </v-card>
@@ -34,14 +34,12 @@
 
   // 定义字段枚举
   const fieldMap = [
-    { key: 'id', label: '用户ID', icon: 'mdi-identifier' },
+    { key: 'id', label: 'ID', icon: 'mdi-identifier' },
     { key: 'name', label: '昵称', icon: 'mdi-account' },
     { key: 'email', label: '邮箱', icon: 'mdi-email' },
     { key: 'emailVisibility', label: '邮箱可见性', icon: 'mdi-eye' },
     { key: 'avatar', label: '头像', icon: 'mdi-image' },
-    { key: 'avatarUrl', label: '头像链接', icon: 'mdi-link' },
     { key: 'background', label: '背景', icon: 'mdi-wallpaper' },
-    { key: 'backgroundUrl', label: '背景链接', icon: 'mdi-link-variant' },
     { key: 'verified', label: '已验证', icon: 'mdi-check-circle' },
   ]
 
@@ -52,9 +50,7 @@
     email: '',
     emailVisibility: false,
     avatar: '',
-    avatarUrl: '',
     background: '',
-    backgroundUrl: '',
     verified: false,
   })
 

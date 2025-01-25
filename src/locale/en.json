@@ -20,8 +20,6 @@
     "email": "Please enter your email",
     "password": "Please enter password",
     "passwordConfirm": "Please enter password again",
-    "avatarUrl": "Please enter avatar link",
-    "backgroundUrl": "Please enter background image link",
     "otherWays": "other ways"
   },
   "user": {
@@ -30,8 +28,8 @@
     "email": "Mail",
     "password": "password",
     "passwordConfirm": "Repeat password",
-    "avatarUrl": "Avatar link",
-    "backgroundUrl": "background link"
+    "avatar": "Avatar",
+    "background": "background"
   },
   "form": {
     "required": "Required fields",
@@ -58,6 +56,7 @@
     "createFail": "Creation failed",
     "unknownFail": "unknown error",
     "greeting": {
+      "earlyMorning": "Good early morning",
       "morning": "Good morning",
       "noon": "good afternoon",
       "afternoon": "good afternoon",

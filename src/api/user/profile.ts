@@ -1,8 +1,8 @@
-import pbServer from '@/api/pocketbase'
+import pb from '@/api/pocketbase'
 
 function getProfile() {
-  return pbServer.collection('users').getOne(pbServer.authStore.record!.id, {
-    fields: 'id,name,email,emailVisibility,avatar,avatarUrl,background,backgroundUrl,verified',
+  return pb.collection('users').getOne(pb.authStore.record!.id, {
+    fields: 'id,name,email,emailVisibility,avatar,background,verified',
   })
 }
 

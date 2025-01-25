@@ -1,13 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
-import pbServer from '@/api/pocketbase'
+import pb from '@/api/pocketbase'
 import { refreshAuth } from '@/api/user/auth'
 
 // 获取用户登陆状态
-const isLoggedIn = !!pbServer.authStore.token
-// 公开访问的路由
-const PUBLIC_ROUTES = ['/', '/login', '/register', '/forget']
+const validToken = !!pb.authStore.isValid
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -22,36 +20,21 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (isLoggedIn) {
-    // 已登录用户访问任何路由刷新认证
-    refreshAuth()
-      .then(() => {
-        console.log('刷新', pbServer.authStore.isValid)
-        next()
-      })
-      .catch((err: any) => {
-        push.error('登陆状态已过期，请重新登录！')
-        next('/login')
-      })
-  }
-
-  if (PUBLIC_ROUTES.includes(to.path)) {
-    // 已登录用户访问公共路由，重定向到首页
-    if (isLoggedIn) {
-      console.log('已登陆')
-      next('/home')
-    } else {
-      next()
-    }
-  } else {
-    // 未登录用户访问内部路由，重定向到首页登录页
-    if (!isLoggedIn) {
-      push.error('请先登录哦')
+  // 访问根路由情况
+  if (to.path === '/') {
+    // 登录判定
+    if (!validToken) {
+      console.log('未登录')
       next('/login')
     } else {
-      next()
+      // 已登录刷新Token
+      refreshAuth().then(() => {
+        console.log('已登录，当前用户信息', pb.authStore.record)
+      })
+      next('/home')
     }
   }
+  next()
 })
 
 router.isReady().then(() => {

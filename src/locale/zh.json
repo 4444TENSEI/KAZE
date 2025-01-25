@@ -20,8 +20,6 @@
     "email": "请输入邮箱",
     "password": "请输入密码",
     "passwordConfirm": "请再次输入密码",
-    "avatarUrl": "请输入头像链接",
-    "backgroundUrl": "请输入背景图片链接",
     "otherWays": "其他方式"
   },
   "user": {
@@ -30,8 +28,8 @@
     "email": "邮箱",
     "password": "密码",
     "passwordConfirm": "重复密码",
-    "avatarUrl": "头像链接",
-    "backgroundUrl": "背景链接"
+    "avatar": "头像",
+    "background": "背景"
   },
   "form": {
     "required": "必填项",
