@@ -1,6 +1,6 @@
 <template>
   <router-view />
-  <AppFrame v-if="pb.authStore.token" />
+  <AppFrame v-if="pb.authStore.isValid" />
   <Footer v-else />
   <Toast />
 </template>

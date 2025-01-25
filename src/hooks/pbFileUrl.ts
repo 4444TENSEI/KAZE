@@ -1,15 +1,38 @@
 import pb from '@/api/pocketbase'
+import { getUserProfile } from '@/api/user/profile'
 import { TABLE_USERS } from '@/hooks/map'
 
-const userId = pb.authStore.record?.id
-const userAvatar = pb.authStore.record?.avatar
-const thumb = '100x100'
+/**
+ * 获取头像url
+ * @param thumb 图像尺寸
+ * @returns 头像url
+ */
+const getAvatarUrl = async (thumb?: string) => {
+  return getUserProfile().then(res => getFileUrl(TABLE_USERS, res.id, res?.avatar, thumb))
+}
 
-const avatarUrl = `${
-  import.meta.env.VITE_POCKETBASE_URL
-}/api/files/${TABLE_USERS}/${userId}/${userAvatar}?thumb=${thumb}`
+/**
+ * 获取背景url
+ * @param thumb 图像尺寸
+ * @returns 背景url
+ */
+const getBackgroundUrl = async (thumb?: string) => {
+  return getUserProfile().then(res => getFileUrl(TABLE_USERS, res.id, res?.background, thumb))
+}
 
-const fileUrl = (tableName: string, id: string, fileName: string, thumb?: string) =>
-  `${import.meta.env.VITE_POCKETBASE_URL}/api/files/${tableName}/${id}/${fileName}?thumb=${thumb}`
+/**
+ * 获取文件url
+ * @param table 数据表名
+ * @param id 数据id
+ * @param filename 文件名
+ * @param thumb 图像尺寸
+ * @returns 文件url
+ */
+const getFileUrl = async (table: string, id: string, filename: string, thumb?: string) => {
+  return pb
+    .collection(table)
+    .getOne(id)
+    .then(res => pb.files.getURL(res, filename, { thumb }))
+}
 
-export { fileUrl, avatarUrl }
+export { getFileUrl, getAvatarUrl, getBackgroundUrl }

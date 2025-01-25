@@ -46,7 +46,7 @@
 <script setup lang="ts">
   import router from '@/router'
   import logout from '@/api/user/logout'
-  import { avatarUrl } from '@/hooks/pbFileUrl'
+  import { getAvatarUrl, getBackgroundUrl } from '@/hooks/pbFileUrl'
 
   const settingItems = [
     {
@@ -86,4 +86,19 @@
 
   const parentDrawer = ref(true)
   const childDrawer = ref(false)
+  const avatarUrl = ref('')
+
+  onMounted(() => {
+    getAvatarUrl()
+      .then(res => {
+        avatarUrl.value = res as string
+      })
+      .catch(err => {
+        console.log('获取头像失败', err)
+      })
+
+    // getBackgroundUrl().then(res => {
+    //   console.log('获取背景图', res)
+    // })
+  })
 </script>

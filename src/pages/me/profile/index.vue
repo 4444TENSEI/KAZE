@@ -68,12 +68,8 @@
 
   // 获取用户信息
   const getProfileInfo = async () => {
-    try {
-      const userProfile = await getUserProfile()
-      Object.assign(profileMap, userProfile)
-    } catch (error) {
-      console.error('获取用户信息失败:', error)
-    }
+    const userProfile = await getUserProfile().catch(err => console.error('获取用户信息失败', err))
+    Object.assign(profileMap, userProfile)
   }
 
   onMounted(() => {
