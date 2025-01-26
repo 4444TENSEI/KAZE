@@ -1,10 +1,10 @@
 <template>
   <router-view />
-  <AppFrame v-if="USER_VALID" />
+  <AppFrame v-if="pb.authStore.isValid" />
   <Footer v-else />
   <Toast />
 </template>
 
 <script lang="ts" setup>
-  import { USER_VALID } from '@/config/authStore'
+  import pb from '@/api/pocketbase'
 </script>

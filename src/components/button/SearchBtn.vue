@@ -15,7 +15,6 @@
             <template #append>
               <v-avatar
                 class="text-caption border border-surface-variant"
-                color="surface-light"
                 rounded
                 size="24"
                 text="A"
@@ -25,7 +24,6 @@
 
               <v-avatar
                 class="text-caption border border-surface-variant"
-                color="surface-light"
                 rounded
                 size="24"
                 text="I"
@@ -35,13 +33,7 @@
 
           <v-list-subheader class="mt-2">常用</v-list-subheader>
 
-          <v-list-item
-            class="mb-1"
-            link
-            prepend-icon="mdi-plus"
-            rounded
-            title="创建工具"
-          >
+          <v-list-item class="mb-1" link prepend-icon="mdi-plus" rounded title="创建工具">
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
@@ -49,7 +41,6 @@
             <template #append>
               <v-avatar
                 class="text-caption border border-surface-variant"
-                color="surface-light"
                 rounded
                 size="24"
                 text="C"
@@ -57,12 +48,7 @@
             </template>
           </v-list-item>
 
-          <v-list-item
-            link
-            prepend-icon="mdi-arrow-right"
-            rounded
-            title="查找工具"
-          >
+          <v-list-item link prepend-icon="mdi-arrow-right" rounded title="查找工具">
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
@@ -70,13 +56,7 @@
 
           <v-list-subheader class="mt-2">群组</v-list-subheader>
 
-          <v-list-item
-            class="mb-1"
-            link
-            prepend-icon="mdi-arrow-right"
-            rounded
-            title="创建群组"
-          >
+          <v-list-item class="mb-1" link prepend-icon="mdi-arrow-right" rounded title="创建群组">
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
@@ -84,7 +64,6 @@
             <template #append>
               <v-avatar
                 class="text-caption border border-surface-variant"
-                color="surface-light"
                 rounded
                 size="24"
                 text="C"
@@ -94,7 +73,6 @@
 
               <v-avatar
                 class="text-caption border border-surface-variant"
-                color="surface-light"
                 rounded
                 size="24"
                 text="O"
@@ -102,13 +80,7 @@
             </template>
           </v-list-item>
 
-          <v-list-item
-            class="mb-1"
-            link
-            prepend-icon="mdi-arrow-right"
-            rounded
-            title="搜索群组"
-          >
+          <v-list-item class="mb-1" link prepend-icon="mdi-arrow-right" rounded title="搜索群组">
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>
@@ -116,13 +88,7 @@
 
           <v-list-subheader class="mt-2">项目设置</v-list-subheader>
 
-          <v-list-item
-            class="mb-1"
-            link
-            prepend-icon="mdi-arrow-right"
-            rounded
-            title="管理"
-          >
+          <v-list-item class="mb-1" link prepend-icon="mdi-arrow-right" rounded title="管理">
             <template #prepend>
               <v-icon class="me-n2" size="x-small" />
             </template>

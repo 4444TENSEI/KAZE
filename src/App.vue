@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { USER_BACKGROUND_URL } from '@/config/authStore'
+  import { USER_BACKGROUND_URL } from '@/hooks/getProfileUrl'
 </script>
 
 <style scoped>

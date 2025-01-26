@@ -1,11 +1,11 @@
+import pb from '@/api/pocketbase'
 import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 import { refreshAuth } from '@/api/user/auth'
-import { USER_PROFILE, USER_VALID } from '@/config/authStore'
 
 // 获取用户登陆状态
-const validToken = !!USER_VALID
+const validToken = !!pb.authStore.isValid
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
   if (validToken) {
     // 已登录刷新Token
     refreshAuth().then(() => {
-      console.log('已登录，当前用户信息', USER_PROFILE)
+      console.log('已登录，当前用户信息', pb.authStore.record)
     })
   }
   next()

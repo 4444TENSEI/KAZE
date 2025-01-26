@@ -34,7 +34,7 @@
           <!-- show-select显示复选框多选框 -->
           <template #item.name="{ item }">
             <div class="d-flex align-center ga-4">
-              <v-avatar color="surface-light" :image="item.avatar" />
+              <v-avatar :image="item.avatar" />
               <span>{{ item.name }}</span>
             </div>
           </template>
