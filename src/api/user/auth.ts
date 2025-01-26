@@ -1,5 +1,5 @@
 import pb from '@/api/pocketbase'
-import { TABLE_USERS } from '@/hooks/map'
+import { TABLE_USERS } from '@/config/table'
 
 /**
  * 刷新登录认证

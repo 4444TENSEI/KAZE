@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
   import { mergeProps } from 'vue'
-  import { THEME_KEY } from '@/hooks/map'
+  import { THEME_KEY } from '@/config/key'
 
   const menuShow = ref(false)
   const theme = useTheme()

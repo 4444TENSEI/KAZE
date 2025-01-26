@@ -7,7 +7,7 @@ import router from '@/router'
 function logout() {
   pb.authStore.clear()
   push.info($t('message.logoutOk'))
-  router.push('/login')
+  router.replace('/login')
 }
 
 export default logout

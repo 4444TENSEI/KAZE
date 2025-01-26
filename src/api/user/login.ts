@@ -3,7 +3,8 @@ import router from '@/router'
 import { greeting } from '@/utils/greeting'
 import type { LoginForm, Oa2Provider } from '@/types/login'
 import { useLoadingStore } from '@/stores'
-import { TABLE_USERS } from '@/hooks/map'
+import { TABLE_USERS } from '@/config/table'
+import { USER_NAME } from '@/config/authStore'
 
 const { setLoading } = useLoadingStore()
 
@@ -13,7 +14,7 @@ async function login(authMethod: Function, ...params: any[]) {
   try {
     setLoading(true)
     await authMethod(...params)
-    logging.resolve(`${greeting()}, ${pb.authStore.record?.name}~`)
+    logging.resolve(`${greeting()}, ${USER_NAME}~`)
     router.push('/home')
   } catch (err) {
     logging.reject($t('message.loginFail'))
