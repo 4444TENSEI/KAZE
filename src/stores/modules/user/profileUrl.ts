@@ -21,12 +21,12 @@ const useUserInfoStore = defineStore('userInfo', () => {
       userInfo.value.id = userLocalData.id
       userInfo.value.nickname = userLocalData.nickname
       userInfo.value.email = userLocalData.email
-      userInfo.value.avatarUrl = userLocalData.avatar
-        ? `${PB_BASE_URL}/api/files/${userLocalData.collectionName}/${userLocalData.id}/${userLocalData.avatar}`
-        : DEFAULT_AVATAR_URL
-      userInfo.value.backgroundUrl = userLocalData.background
-        ? `${PB_BASE_URL}/api/files/${userLocalData.collectionName}/${userLocalData.id}/${userLocalData.background}`
-        : DEFAULT_BACKGROUND_URL
+      if (userLocalData.avatar) {
+        userInfo.value.avatarUrl = `${PB_BASE_URL}/api/files/${userLocalData.collectionName}/${userLocalData.id}/${userLocalData.avatar}`
+      }
+      if (userLocalData.background) {
+        userInfo.value.backgroundUrl = `${PB_BASE_URL}/api/files/${userLocalData.collectionName}/${userLocalData.id}/${userLocalData.background}`
+      }
       console.log('用户信息已更新', userInfo.value)
     }
   }

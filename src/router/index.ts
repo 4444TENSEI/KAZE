@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
     }
   }
   if (validToken) {
-    // 已登录刷新Token
+    // 已登录刷新用户认证状态和资料
     refreshAuth()
   }
   next()
