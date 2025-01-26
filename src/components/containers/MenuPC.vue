@@ -14,7 +14,7 @@
       <div class="d-flex justify-center my-2">
         <v-btn class="text-none" icon size="42" slim variant="tonal">
           <v-badge color="error" dot>
-            <v-avatar color="surface-light" :image="avatarUrl" size="36" />
+            <v-avatar color="surface-light" :image="USER_AVATAR_URL + '?thumb=100x100'" size="36" />
           </v-badge>
           <v-menu activator="parent">
             <v-list nav>
@@ -46,7 +46,7 @@
 <script setup lang="ts">
   import router from '@/router'
   import logout from '@/api/user/logout'
-  import { getAvatarUrl, getBackgroundUrl } from '@/hooks/pbFileUrl'
+  import { USER_AVATAR_URL } from '@/config/authStore'
 
   const settingItems = [
     {
@@ -86,19 +86,4 @@
 
   const parentDrawer = ref(true)
   const childDrawer = ref(false)
-  const avatarUrl = ref('')
-
-  onMounted(() => {
-    getAvatarUrl()
-      .then(res => {
-        avatarUrl.value = res as string
-      })
-      .catch(err => {
-        console.log('获取头像失败', err)
-      })
-
-    // getBackgroundUrl().then(res => {
-    //   console.log('获取背景图', res)
-    // })
-  })
 </script>
