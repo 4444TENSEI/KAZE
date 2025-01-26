@@ -1,5 +1,5 @@
 import FingerprintJS from '@fingerprintjs/fingerprintjs-pro'
-import { FINGER_KEY } from '@/config/key'
+import { FINGER_KEY } from '@/hooks/map'
 
 const cookie = useCookies()
 

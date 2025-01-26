@@ -1,14 +1,12 @@
 <template>
   <v-app>
-    <v-main class="bg" :style="{ backgroundImage: `url(${USER_BACKGROUND_URL})` }">
+    <v-main class="home-bg">
       <router-view />
     </v-main>
   </v-app>
 </template>
 
-<script lang="ts" setup>
-  import { USER_BACKGROUND_URL } from '@/config/authStore'
-</script>
+<script lang="ts" setup></script>
 
 <style scoped>
   #app {

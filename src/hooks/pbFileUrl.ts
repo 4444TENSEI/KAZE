@@ -1,4 +1,24 @@
 import pb from '@/api/pocketbase'
+import { getUserProfile } from '@/api/user/profile'
+import { TABLE_USERS } from '@/hooks/map'
+
+/**
+ * 获取头像url
+ * @param thumb 图像尺寸
+ * @returns 头像url
+ */
+const getAvatarUrl = async (thumb?: string) => {
+  return getUserProfile().then(res => getFileUrl(TABLE_USERS, res.id, res?.avatar, thumb))
+}
+
+/**
+ * 获取背景url
+ * @param thumb 图像尺寸
+ * @returns 背景url
+ */
+const getBackgroundUrl = async (thumb?: string) => {
+  return getUserProfile().then(res => getFileUrl(TABLE_USERS, res.id, res?.background, thumb))
+}
 
 /**
  * 获取文件url
@@ -15,4 +35,4 @@ const getFileUrl = async (table: string, id: string, filename: string, thumb?: s
     .then(res => pb.files.getURL(res, filename, { thumb }))
 }
 
-export { getFileUrl }
+export { getFileUrl, getAvatarUrl, getBackgroundUrl }
