@@ -1,7 +1,7 @@
-import pb from '@/api/pocketbase'
 import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
+import pb from '@/api/pocketbase'
 import { refreshAuth } from '@/api/user/auth'
 
 // 获取用户登陆状态
@@ -32,9 +32,7 @@ router.beforeEach((to, from, next) => {
   }
   if (validToken) {
     // 已登录刷新Token
-    refreshAuth().then(() => {
-      console.log('已登录，当前用户信息', pb.authStore.record)
-    })
+    refreshAuth()
   }
   next()
 })

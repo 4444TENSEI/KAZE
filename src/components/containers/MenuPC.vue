@@ -14,7 +14,7 @@
       <div class="d-flex justify-center my-2">
         <v-btn class="text-none" icon size="42" slim variant="tonal">
           <v-badge color="error" dot>
-            <v-avatar :image="USER_AVATAR_URL + '?thumb=100x100'" size="36" />
+            <v-avatar :image="userInfo.avatar + '?thumb=100x100'" size="36" />
           </v-badge>
           <v-menu activator="parent">
             <v-list nav>
@@ -46,7 +46,12 @@
 <script setup lang="ts">
   import router from '@/router'
   import logout from '@/api/user/logout'
-  import { USER_AVATAR_URL } from '@/hooks/getProfileUrl'
+  import { useUserInfoStore } from '@/stores'
+
+  const { userInfo } = useUserInfoStore()
+
+  const parentDrawer = ref(true)
+  const childDrawer = ref(false)
 
   const settingItems = [
     {
@@ -83,7 +88,4 @@
       path: '/menu/friend',
     },
   ]
-
-  const parentDrawer = ref(true)
-  const childDrawer = ref(false)
 </script>

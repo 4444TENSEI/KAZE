@@ -1,13 +1,15 @@
 <template>
   <v-app>
-    <v-main class="bg" :style="{ backgroundImage: `url(${USER_BACKGROUND_URL})` }">
+    <v-main class="bg" :style="{ backgroundImage: `url(${userInfo.background})` }">
       <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts" setup>
-  import { USER_BACKGROUND_URL } from '@/hooks/getProfileUrl'
+  import { useUserInfoStore } from '@/stores'
+
+  const { userInfo } = useUserInfoStore()
 </script>
 
 <style scoped>

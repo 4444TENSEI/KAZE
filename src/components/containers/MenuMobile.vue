@@ -2,8 +2,8 @@
   <v-bottom-navigation class="position-fixed" color="primary" grow mode="shift">
     <v-btn v-for="item in menuMobile" :key="item.id" @click="router.push(item.path)">
       <v-avatar
-        v-if="USER_AVATAR_URL && item.path == '/me'"
-        :image="USER_AVATAR_URL + '?thumb=100x100'"
+        v-if="userInfo.avatar && item.path == '/me'"
+        :image="userInfo.avatar + '?thumb=100x100'"
         size="24"
       />
       <v-icon v-else>{{ item.icon }}</v-icon>
@@ -14,7 +14,9 @@
 
 <script lang="ts" setup>
   import router from '@/router'
-  import { USER_AVATAR_URL } from '@/hooks/getProfileUrl'
+  import { useUserInfoStore } from '@/stores'
+
+  const { userInfo } = useUserInfoStore()
 
   const menuMobile = [
     {

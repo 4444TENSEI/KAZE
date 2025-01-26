@@ -6,7 +6,6 @@ import { useLoadingStore } from '@/stores'
 import { TABLE_USERS } from '@/config/table'
 
 const { setLoading } = useLoadingStore()
-
 // 通用登录逻辑
 async function login(authMethod: Function, ...params: any[]) {
   const logging = push.promise($t('message.logging'))
