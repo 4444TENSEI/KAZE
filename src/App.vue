@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="bg" :style="{ backgroundImage: `url(${userInfo.background})` }">
+    <v-main class="bg" :style="{ backgroundImage: `url(${userInfo.backgroundUrl})` }">
       <router-view />
     </v-main>
   </v-app>

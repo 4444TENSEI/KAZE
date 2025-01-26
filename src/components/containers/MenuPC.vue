@@ -14,7 +14,7 @@
       <div class="d-flex justify-center my-2">
         <v-btn class="text-none" icon size="42" slim variant="tonal">
           <v-badge color="error" dot>
-            <v-avatar :image="userInfo.avatar + '?thumb=100x100'" size="36" />
+            <v-avatar :image="userInfo.avatarUrl + '?thumb=100x100'" size="36" />
           </v-badge>
           <v-menu activator="parent">
             <v-list nav>

@@ -9,8 +9,8 @@ const useUserInfoStore = defineStore('userInfo', () => {
     id: '',
     nickname: '',
     email: '',
-    avatar: DEFAULT_AVATAR_URL,
-    background: DEFAULT_BACKGROUND_URL,
+    avatarUrl: DEFAULT_AVATAR_URL,
+    backgroundUrl: DEFAULT_BACKGROUND_URL,
   })
 
   /**
@@ -21,10 +21,10 @@ const useUserInfoStore = defineStore('userInfo', () => {
       userInfo.value.id = userLocalData.id
       userInfo.value.nickname = userLocalData.nickname
       userInfo.value.email = userLocalData.email
-      userInfo.value.avatar = userLocalData.avatar
+      userInfo.value.avatarUrl = userLocalData.avatar
         ? `${PB_BASE_URL}/api/files/${userLocalData.collectionName}/${userLocalData.id}/${userLocalData.avatar}`
         : DEFAULT_AVATAR_URL
-      userInfo.value.background = userLocalData.background
+      userInfo.value.backgroundUrl = userLocalData.background
         ? `${PB_BASE_URL}/api/files/${userLocalData.collectionName}/${userLocalData.id}/${userLocalData.background}`
         : DEFAULT_BACKGROUND_URL
       console.log('用户信息已更新', userInfo.value)

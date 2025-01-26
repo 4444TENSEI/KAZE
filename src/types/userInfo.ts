@@ -1,9 +1,10 @@
+/** 用户本地数据 */
 interface UserInfo {
   id: string
   nickname?: string
   email?: string
-  avatar?: string
-  background?: string
+  avatarUrl?: string
+  backgroundUrl?: string
 }
 
 export type { UserInfo }
