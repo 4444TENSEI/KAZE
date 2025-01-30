@@ -10,9 +10,9 @@ function refreshAuth() {
     .collection(TABLE_USERS)
     .authRefresh()
     .then(() => {
-      console.log('已用户信息/登录状态', pb.authStore.record)
+      console.log('已刷新用户资料/登录状态', pb.authStore.record)
       // 更新浏览器缓存中的用户资料
-      useUserInfoStore().updateUserInfo(pb.authStore.record)
+      useUserInfoStore().updateUserInfo()
     })
 }
 
