@@ -3,6 +3,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 import pb from '@/api/pocketbase'
 import { refreshAuth } from '@/api/user/auth'
+import { useUserInfoStore } from '@/stores'
 
 // 获取用户登陆状态
 const validToken = !!pb.authStore.isValid
@@ -30,10 +31,12 @@ router.beforeEach((to, from, next) => {
       next('/home')
     }
   }
-  if (validToken) {
-    // 已登录刷新用户认证状态和资料
-    refreshAuth()
-  }
+  // 请求服务端获取用户登录状态，顺带更新用户本地数据
+  refreshAuth().then(() => {
+    console.log('已刷新用户登录状态/本地数据', pb.authStore.record)
+    // 更新用户临时数据
+    useUserInfoStore().updateUserInfo()
+  })
   next()
 })
 

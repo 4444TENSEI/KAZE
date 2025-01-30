@@ -75,19 +75,19 @@
       id: 1,
       name: '消息',
       icon: 'mdi-chat',
-      path: '/menu/chat',
+      path: '/home',
     },
     {
       id: 2,
       name: '插件',
       icon: 'mdi-creation-outline',
-      path: '/menu/plugin',
+      path: '/plugin',
     },
     {
       id: 3,
       name: '好友',
       icon: 'mdi-account-details',
-      path: '/menu/friend',
+      path: '/friend',
     },
   ]
 </script>

@@ -4,7 +4,6 @@ import { greeting } from '@/utils/greeting'
 import type { LoginForm, Oa2Provider } from '@/types/login'
 import { useLoadingStore } from '@/stores'
 import { TABLE_USERS } from '@/config/table'
-import { useUserInfoStore } from '@/stores'
 
 const { setLoading } = useLoadingStore()
 
@@ -15,8 +14,6 @@ async function login(authMethod: Function, ...params: any[]) {
   await authMethod(...params)
     .then(() => {
       logging.resolve(`${greeting()}, ${pb.authStore.record?.nickname}~`)
-      // 更新用户临时数据
-      useUserInfoStore().updateUserInfo()
       router.push('/home')
     })
     .catch((err: Error) => {

@@ -5,4 +5,4 @@ export const DEFAULT_AVATAR_URL =
   'https://testingcf.jsdelivr.net/gh/4444TENSEI/CDN/img/avatar/kaze/png/comfortable.png'
 /** 默认背景图URL */
 export const DEFAULT_BACKGROUND_URL =
-  'https://testingcf.jsdelivr.net/gh/4444TENSEI/CDN@master/img/background/yoru/002.webp'
+  'https://testingcf.jsdelivr.net/gh/4444TENSEI/CDN@master/img/background/yoru/001.webp'

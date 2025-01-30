@@ -1,6 +1,6 @@
 /** 用户本地数据 */
 interface UserInfo {
-  id: string
+  id?: string
   nickname?: string
   email?: string
   avatarUrl?: string
