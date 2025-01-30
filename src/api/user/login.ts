@@ -7,25 +7,26 @@ import { TABLE_USERS } from '@/config/table'
 import { useUserInfoStore } from '@/stores'
 
 const { setLoading } = useLoadingStore()
-// 通用登录逻辑
+/** 通用登录逻辑 */
 async function login(authMethod: Function, ...params: any[]) {
   const logging = push.promise($t('message.logging'))
-  try {
-    setLoading(true)
-    await authMethod(...params)
-    logging.resolve(`${greeting()}, ${pb.authStore.record?.nickname}~`)
-    // 更新用户临时数据
-    useUserInfoStore().updateUserInfo()
-    router.push('/home')
-  } catch (err) {
-    logging.reject($t('message.loginFail'))
-  }
-  setLoading(false)
+  setLoading(true)
+  await authMethod(...params)
+    .then(() => {
+      logging.resolve(`${greeting()}, ${pb.authStore.record?.nickname}~`)
+      // 更新用户临时数据
+      useUserInfoStore().updateUserInfo()
+      router.push('/home')
+    })
+    .catch((err: Error) => {
+      logging.reject($t('message.loginFail' + err))
+    })
+    .finally(() => setLoading(false))
 }
 
 /**
  * OA2单点登录
- * @param provider
+ * @param provider 单点登录平台
  */
 async function loginByOA2(provider: Oa2Provider) {
   await login(
@@ -36,7 +37,7 @@ async function loginByOA2(provider: Oa2Provider) {
 
 /**
  * 表单/邮箱登录
- * @param form
+ * @param form 登录表单数据
  */
 async function loginByEmail(form: LoginForm) {
   await login(

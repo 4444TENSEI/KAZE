@@ -61,7 +61,7 @@
             class="text-h6 flex-1-0"
             color="info"
             height="56"
-            :loading="loading"
+            :loading="getLoading()"
             rounded="pill"
             :text="$t('action.login')"
             variant="elevated"
@@ -106,7 +106,7 @@
   import { LoginForm } from '@/types/login'
   import { useLoadingStore } from '@/stores'
 
-  const { loading } = useLoadingStore()
+  const { getLoading } = useLoadingStore()
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
