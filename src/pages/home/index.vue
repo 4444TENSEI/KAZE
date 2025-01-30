@@ -1,6 +1,10 @@
 <template>
   <body class="full-container">
-    <NavBar />
+    <NavBar barTitle="首页">
+      <SearchBtn />
+      <TestBtn />
+      <ThemeBtn />
+    </NavBar>
     <v-scroll class="scroll-container">
       <v-card class="overflow-y-auto" rounded="none" title="数据表名">
         <template #append>

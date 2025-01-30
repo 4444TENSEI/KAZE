@@ -1,23 +1,22 @@
 <template>
-  <v-app-bar
-    border="b"
-    class="position-fixed"
-    density="comfortable"
-    flat
-    order="1"
-  >
-    <v-app-bar-title>
-      <p
-        class="font-weight-black cursor-default"
-        style="font-size: 1.6rem; letter-spacing: 0.1em; line-height: 1"
-      >
-        KAZE
-      </p>
+  <v-app-bar border="b" class="position-fixed" density="comfortable" flat order="1">
+    <v-btn icon="mdi-arrow-left" color="info" @click="goBack" />
+    <v-app-bar-title
+      class="cursor-default font-weight-bold ml-2"
+      style="font-size: 1.2rem; letter-spacing: 0rem; line-height: 1"
+    >
+      {{ barTitle }}
     </v-app-bar-title>
-    <SearchBtn />
-    <TestBtn />
-    <ThemeBtn />
+    <slot></slot>
   </v-app-bar>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { goBack } from '@/hooks/goBack'
+  defineProps({
+    barTitle: {
+      type: String,
+      default: 'KAZE',
+    },
+  })
+</script>

@@ -1,16 +1,6 @@
 <template>
   <div class="flex-container justify-center">
-    <v-app-bar border="b" class="position-fixed" density="comfortable" flat order="1">
-      <v-app-bar-title
-        class="font-weight-black cursor-default"
-        style="font-size: 1.4rem; letter-spacing: 0em; line-height: 1"
-      >
-        <v-btn icon="mdi-arrow-left" tonal @click="router.go(-1)" />
-        个人中心
-      </v-app-bar-title>
-      <TestBtn />
-      <ThemeBtn />
-    </v-app-bar>
+    <NavBar barTitle="我的资料"></NavBar>
     <v-card>
       <v-list nav>
         <v-list-item
@@ -29,7 +19,6 @@
 
 <script lang="ts" setup>
   import { getUserProfile } from '@/api/user/profile'
-  import router from '@/router'
 
   // 定义字段枚举
   const fieldMap = [

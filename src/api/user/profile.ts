@@ -1,7 +1,7 @@
 import pb from '@/api/pocketbase'
 import { TABLE_USERS } from '@/config/table'
 
-/** 需要返回的用户资料字段 */
+/** 需要接口返回的字段 */
 const USER_PROFILE_FIELDS = [
   'id',
   'name',
@@ -11,9 +11,8 @@ const USER_PROFILE_FIELDS = [
   'background',
   'verified',
 ]
-/**
- * 获取用户资料
- */
+
+/** 从后端接口获取用户资料 */
 const getUserProfile = async () => {
   return pb.collection(TABLE_USERS).getOne(pb.authStore.record?.id as string, {
     fields: USER_PROFILE_FIELDS.join(','),
