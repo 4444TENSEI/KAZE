@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import pb from '@/api/pocketbase'
 import { type UserInfo } from '@/types/userInfo'
 import { PB_BASE_URL, DEFAULT_AVATAR_URL, DEFAULT_BACKGROUND_URL } from '@/config/url'
-import { AuthRecord } from 'pocketbase'
 
 const useUserInfoStore = defineStore('userInfo', () => {
   /** 用户信息 */
@@ -16,7 +15,7 @@ const useUserInfoStore = defineStore('userInfo', () => {
 
   /** 更新用户信息 */
   function updateUserInfo() {
-    const localProfile: AuthRecord = pb.authStore.record
+    const localProfile = pb.authStore.record
     if (!localProfile) return console.log('未获取到用户本地数据')
     userInfo.value.id = localProfile.id
     userInfo.value.nickname = localProfile.nickname

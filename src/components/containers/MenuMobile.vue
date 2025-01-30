@@ -8,12 +8,7 @@
     rounded="true"
   >
     <v-btn v-for="item in menuMobile" :key="item.id" @click="router.push(item.path)">
-      <v-avatar
-        v-if="userInfo.avatarUrl && item.path == '/me'"
-        :image="userInfo.avatarUrl + '?thumb=100x100'"
-        size="24"
-        class="my-1"
-      />
+      <Avatar v-if="item.path === '/me'" :size="28"/>
       <v-icon v-else>{{ item.icon }}</v-icon>
       <span>{{ item.name }}</span>
     </v-btn>
@@ -22,9 +17,6 @@
 
 <script lang="ts" setup>
   import router from '@/router'
-  import { useUserInfoStore } from '@/stores'
-
-  const { userInfo } = useUserInfoStore()
 
   const menuMobile = [
     {

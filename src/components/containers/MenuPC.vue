@@ -12,10 +12,10 @@
           />
         </v-list>
         <v-divider />
-        <div class="d-flex justify-center my-2">
-          <v-btn class="text-none" icon size="42" slim variant="tonal">
+        <div class="d-flex justify-center align-center my-2">
+          <v-btn rounded="circle" size="42" variant="tonal">
             <v-badge color="error" dot>
-              <v-avatar :image="userInfo.avatarUrl + '?thumb=100x100'" size="36" />
+              <Avatar :size="34" />
             </v-badge>
             <v-menu activator="parent">
               <v-list nav>
@@ -48,9 +48,6 @@
 <script setup lang="ts">
   import router from '@/router'
   import logout from '@/api/user/logout'
-  import { useUserInfoStore } from '@/stores'
-
-  const { userInfo } = useUserInfoStore()
 
   const parentDrawer = ref(true)
   const childDrawer = ref(false)

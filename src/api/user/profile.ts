@@ -1,3 +1,4 @@
+// 暂时废弃，基于后端获取用户资料，目前直接使用refreshAuth函數更新本地用户资料
 import pb from '@/api/pocketbase'
 import { TABLE_USERS } from '@/config/table'
 
