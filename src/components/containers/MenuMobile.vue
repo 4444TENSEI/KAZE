@@ -1,10 +1,18 @@
 <template>
-  <v-bottom-navigation class="position-fixed" color="primary" grow mode="shift">
+  <v-bottom-navigation
+    class="position-fixed opacity-90"
+    color="primary"
+    grow
+    mode="shift"
+    mandatory
+    rounded="true"
+  >
     <v-btn v-for="item in menuMobile" :key="item.id" @click="router.push(item.path)">
       <v-avatar
         v-if="userInfo.avatarUrl && item.path == '/me'"
         :image="userInfo.avatarUrl + '?thumb=100x100'"
         size="24"
+        class="my-1"
       />
       <v-icon v-else>{{ item.icon }}</v-icon>
       <span>{{ item.name }}</span>

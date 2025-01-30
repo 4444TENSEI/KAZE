@@ -1,15 +1,10 @@
 <template>
   <div class="flex-container justify-center align-center flex-column">
-    <v-app-bar border="b" class="position-fixed" density="comfortable" flat order="1">
-      <v-app-bar-title
-        class="font-weight-black cursor-default"
-        style="font-size: 1.4rem; letter-spacing: 0em; line-height: 1"
-      >
-        个人中心
-      </v-app-bar-title>
+    <NavBar barTitle="个人中心" :showGoBack="false">
+      <SearchBtn />
       <TestBtn />
       <ThemeBtn />
-    </v-app-bar>
+    </NavBar>
     <v-card>
       <v-list nav>
         <v-list-item
