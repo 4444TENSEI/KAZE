@@ -11,7 +11,7 @@ function refreshAuth() {
     .authRefresh()
     .then(() => {
       console.log('已刷新用户资料/登录状态', pb.authStore.record)
-      // 更新浏览器缓存中的用户资料
+      // 更新用户临时数据
       useUserInfoStore().updateUserInfo()
     })
 }

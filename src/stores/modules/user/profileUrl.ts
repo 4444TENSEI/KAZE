@@ -15,10 +15,7 @@ const useUserInfoStore = defineStore('userInfo', () => {
 
   /** 更新用户信息 */
   function updateUserInfo() {
-    const localProfile = pb.authStore.record
-    if (!localProfile) {
-      return console.error('用户本地数据为空')
-    }
+    const localProfile = pb.authStore.record!
     userInfo.value.id = localProfile.id
     userInfo.value.nickname = localProfile.nickname
     userInfo.value.email = localProfile.email
