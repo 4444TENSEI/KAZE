@@ -69,7 +69,7 @@
         text="发送验证码"
         type="submit"
         variant="elevated"
-        @click="submitForm"
+        @click="test"
       />
     </v-card>
   </body>
@@ -77,6 +77,8 @@
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { computed, ref } from 'vue'
+  import { sendEmailCode } from '@/api/user/register'
+
   // 注册输入框校验
   const { handleSubmit } = useForm({
     validationSchema: {
@@ -123,4 +125,8 @@
   const submitForm = handleSubmit(async () => {
     captchaDialog.value = true
   })
+
+  const test = async () => {
+    sendEmailCode('2479757568@qq.com')
+  }
 </script>
