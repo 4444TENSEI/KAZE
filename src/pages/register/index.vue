@@ -122,9 +122,9 @@
   })
   // 验证码弹窗
   const captchaDialog = ref(false)
-  const submitForm = handleSubmit(async () => {
-    captchaDialog.value = true
-  })
+//   const submitForm = handleSubmit(async () => {
+//     captchaDialog.value = true
+//   })
 
   const test = async () => {
     sendEmailCode('2479757568@qq.com')
