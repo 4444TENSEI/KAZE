@@ -16,17 +16,6 @@
       </div>
       <form @submit.prevent="onSubmit">
         <v-text-field
-          v-model="nickname.value.value"
-          autocomplete="username"
-          class="mb-4"
-          clearable
-          :color="nickname.errorMessage.value ? 'error' : 'info'"
-          :label="nicknameLabel"
-          prepend-inner-icon="mdi-cat"
-          required
-          rounded="pill"
-        ></v-text-field>
-        <v-text-field
           v-model="email.value.value"
           autocomplete="email"
           class="mb-4"
@@ -91,10 +80,6 @@
   // 注册输入框校验
   const { handleSubmit } = useForm({
     validationSchema: {
-      nickname(value: string) {
-        if (value?.length >= 2) return true
-        return '用户名至少2个字'
-      },
       email(value: string) {
         if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
         return '请输入正确的邮箱'
@@ -109,7 +94,6 @@
       },
     },
   })
-  const nickname = useField('nickname')
   const email = useField('email')
   const password = useField('password')
   const password2 = useField('password2')
@@ -121,11 +105,6 @@
   const pswVisible = ref(false)
   const pswVisible2 = ref(false)
   // 将错误信息显示到label中
-  const nicknameLabel = computed(() => {
-    return nickname.errorMessage.value && nickname.value.value
-      ? nickname.errorMessage.value
-      : '用户名'
-  })
   const emailLabel = computed(() => {
     return email.errorMessage.value && email.value.value ? email.errorMessage.value : '邮箱'
   })
