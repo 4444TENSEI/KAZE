@@ -72,17 +72,20 @@
         <div class="text-no-wrap text-grey mb-2">{{ $t('placeholder.otherWays') }}</div>
       </v-divider>
       <div class="d-flex align-center justify-center ga-2">
-        <v-btn icon color="primary" title="GitHub" variant="tonal" @click="loginByOA2('github')">
-          <Icon icon="mdi:github" />
+        <v-btn icon color="default" title="GitHub" variant="tonal" @click="loginByOA2('github')">
+          <Icon icon="devicon:github" height="26px" />
         </v-btn>
-        <v-btn icon color="error" title="Google" variant="tonal" @click="loginByOA2('google')">
-          <Icon icon="mdi:google" />
+        <v-btn icon color="error" title="GitHub" variant="tonal" @click="loginByOA2('gitee')">
+          <Icon icon="simple-icons:gitee" height="26px" color="#D90215" />
         </v-btn>
         <v-btn icon color="warning" title="Gitlab" variant="tonal" @click="loginByOA2('gitlab')">
-          <Icon icon="mdi:gitlab" />
+          <Icon icon="vscode-icons:file-type-gitlab" height="26px" />
         </v-btn>
         <v-btn icon color="purple" title="Discord" variant="tonal" @click="loginByOA2('discord')">
-          <Icon icon="ic:baseline-discord" />
+          <Icon icon="skill-icons:discord" height="24px" />
+        </v-btn>
+        <v-btn icon color="error" title="Google" variant="tonal" @click="loginByOA2('google')">
+          <Icon icon="devicon:google" height="24px" />
         </v-btn>
       </div>
     </v-card>

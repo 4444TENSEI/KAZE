@@ -4,7 +4,7 @@ const notivue = createNotivue({
   // 定位
   position: 'top-center',
   // 悬浮鼠标暂停
-  pauseOnHover: true,
+  pauseOnHover: false,
   // 触摸屏幕暂停
   pauseOnTouch: false,
   // 切换标签页暂停
