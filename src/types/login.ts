@@ -1,4 +1,4 @@
-type Oa2Provider = 'github' | 'google' | 'microsoft' | 'gitlab' | 'apple' | 'discord'
+type Oa2Provider = 'github' | 'google' | 'gitlab' | 'discord' | 'gitee'
 
 interface LoginForm {
   email: string
