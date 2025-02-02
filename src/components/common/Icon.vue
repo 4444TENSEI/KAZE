@@ -5,7 +5,7 @@
 <script lang="ts" setup>
   import { Icon } from '@iconify/vue'
 
-  export const props = defineProps({
+  const props = defineProps({
     icon: {
       type: String,
       required: true,
