@@ -61,7 +61,6 @@
             class="text-h6 flex-1-0"
             color="info"
             height="56"
-            :loading="getLoading()"
             rounded="pill"
             :text="$t('action.login')"
             variant="elevated"
@@ -95,9 +94,6 @@
   import { loginByEmail, loginByOA2 } from '@/api/user/login'
   import router from '@/router'
   import { LoginForm } from '@/types/login'
-  import { useLoadingStore } from '@/stores'
-
-  const { getLoading } = useLoadingStore()
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({

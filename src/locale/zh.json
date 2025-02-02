@@ -55,6 +55,7 @@
     "createOk": "创建成功",
     "createFail": "创建失败",
     "unknownFail": "未知错误",
+    "timeout": "操作超时",
     "greeting": {
       "earlyMorning": "早点睡哦",
       "morning": "早上好",
