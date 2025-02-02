@@ -31,12 +31,19 @@ router.beforeEach((to, from, next) => {
       next('/home')
     }
   }
-  // 请求服务端获取用户登录状态，顺带更新用户本地数据
-  refreshAuth().then(() => {
-    console.log('已刷新用户登录状态/本地数据', pb.authStore.record)
-    // 更新用户临时数据
-    useUserInfoStore().updateUserInfo()
-  })
+  // 登录后状态控制
+  if (validToken) {
+    refreshAuth()
+      .then(() => {
+        // 请求服务端获取以及刷新用户token状态
+        useUserInfoStore().updateUserInfo()
+        console.log('已刷新用户登录状态+本地数据', pb.authStore.record)
+      })
+      .catch(() => {
+        push.error('登录状态已失效，请重新登陆！')
+        next('/login')
+      })
+  }
   next()
 })
 

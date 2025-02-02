@@ -20,6 +20,7 @@ declare module 'vue' {
     Drawer: typeof import('./components/common/Drawer.vue')['default']
     Footer: typeof import('./components/common/Footer.vue')['default']
     Frame: typeof import('./components/containers/Frame.vue')['default']
+    Icon: typeof import('./components/common/Icon.vue')['default']
     KazeFrame: typeof import('./components/containers/KazeFrame.vue')['default']
     LangBtn: typeof import('./components/button/LangBtn.vue')['default']
     Loading: typeof import('./components/common/Loading.vue')['default']

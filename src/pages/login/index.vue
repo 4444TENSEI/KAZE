@@ -87,13 +87,12 @@
           variant="tonal"
           @click="loginByOA2('google')"
         />
-        <v-btn
-          color="warning"
-          icon="mdi-gitlab"
-          title="Gitlab"
-          variant="tonal"
-          @click="loginByOA2('gitlab')"
-        />
+        <v-btn color="warning" icon title="Gitlab" variant="tonal" @click="loginByOA2('gitlab')">
+          <Icon icon="mdi:gitlab" />
+        </v-btn>
+        <v-btn icon color="purple" title="Discord" variant="tonal" @click="loginByOA2('discord')">
+          <Icon icon="line-md:discord" />
+        </v-btn>
       </div>
     </v-card>
   </body>

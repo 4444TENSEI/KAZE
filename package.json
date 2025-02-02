@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.11.6",
+    "@iconify/vue": "^4.3.0",
     "@mdi/font": "7.4.47",
     "@vueuse/core": "^12.4.0",
     "@vueuse/integrations": "^12.4.0",

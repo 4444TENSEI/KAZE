@@ -8,6 +8,7 @@ export {}
 declare global {
   const $t: typeof import('@/i18n')['$t']
   const EffectScope: typeof import('vue')['EffectScope']
+  const Icon: typeof import('@iconify/vue')['Icon']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -74,6 +75,7 @@ declare global {
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
   const watchSyncEffect: typeof import('vue')['watchSyncEffect']
+  const {Icon}: typeof import('@iconify/vue')['{Icon}']
 }
 // for type re-export
 declare global {

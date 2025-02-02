@@ -26,7 +26,7 @@ const useUserInfoStore = defineStore('userInfo', () => {
     if (localProfile.background) {
       userInfo.value.backgroundUrl = `${PB_BASE_URL}/api/files/${localProfile.collectionName}/${localProfile.id}/${localProfile.background}`
     }
-    console.log('用户信息已更新', userInfo.value)
+    // console.log('用户信息已更新', userInfo.value)
   }
 
   return {

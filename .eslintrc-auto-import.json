@@ -81,6 +81,8 @@
     "router": true,
     "push": true,
     "onBeforeRouteLeave": true,
-    "onBeforeRouteUpdate": true
+    "onBeforeRouteUpdate": true,
+    "Icon": true,
+    "{Icon}": true
   }
 }
