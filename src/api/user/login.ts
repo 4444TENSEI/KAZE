@@ -16,8 +16,8 @@ async function login(authMethod: Function, ...params: any[]) {
       logging.resolve(`${greeting()}, ${pb.authStore.record?.nickname}~`)
       router.push('/home')
     })
-    .catch((err: Error) => {
-      logging.reject($t('message.loginFail' + err))
+    .catch((err: any) => {
+      logging.reject($t('message.loginFail'))
     })
     .finally(() => setLoading(false))
 }

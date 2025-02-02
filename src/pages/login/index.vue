@@ -73,25 +73,17 @@
         <div class="text-no-wrap text-grey mb-2">{{ $t('placeholder.otherWays') }}</div>
       </v-divider>
       <div class="d-flex align-center justify-center ga-2">
-        <v-btn
-          color="primary"
-          icon="mdi-github"
-          title="GitHub"
-          variant="tonal"
-          @click="loginByOA2('github')"
-        />
-        <v-btn
-          color="error"
-          icon="mdi-google"
-          title="Google"
-          variant="tonal"
-          @click="loginByOA2('google')"
-        />
-        <v-btn color="warning" icon title="Gitlab" variant="tonal" @click="loginByOA2('gitlab')">
+        <v-btn icon color="primary" title="GitHub" variant="tonal" @click="loginByOA2('github')">
+          <Icon icon="mdi:github" />
+        </v-btn>
+        <v-btn icon color="error" title="Google" variant="tonal" @click="loginByOA2('google')">
+          <Icon icon="mdi:google" />
+        </v-btn>
+        <v-btn icon color="warning" title="Gitlab" variant="tonal" @click="loginByOA2('gitlab')">
           <Icon icon="mdi:gitlab" />
         </v-btn>
         <v-btn icon color="purple" title="Discord" variant="tonal" @click="loginByOA2('discord')">
-          <Icon icon="line-md:discord" />
+          <Icon icon="ic:baseline-discord" />
         </v-btn>
       </div>
     </v-card>

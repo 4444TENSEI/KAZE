@@ -1,5 +1,5 @@
 <template>
-  <Icon :icon="icon" :height="height"></Icon>
+  <Icon :icon="icon" :height="height" :color="color"></Icon>
 </template>
 
 <script lang="ts" setup>
@@ -12,8 +12,10 @@
     },
     height: {
       type: String,
-      required: false,
       default: 'auto',
+    },
+    color: {
+      type: String,
     },
   })
 </script>
