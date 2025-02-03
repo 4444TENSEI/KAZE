@@ -5,8 +5,8 @@ import pb from '@/api/pocketbase'
 import { refreshAuth } from '@/api/user/auth'
 import { useUserInfoStore } from '@/stores'
 
-// 获取用户登陆状态
-const validToken = !!pb.authStore.isValid
+// 无需登录即可访问的公开路由
+const PUBLIC_ROUTES = ['/login', '/register', '/forget']
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -20,29 +20,29 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to, from, next) => {
-  // 访问根路由情况
-  if (to.path === '/') {
-    // 登录判定
-    if (!validToken) {
-      console.log('未登录')
-      next('/login')
-    } else {
-      next('/home')
-    }
-  }
-  // 登录后状态控制
-  if (validToken) {
+router.beforeEach(async (to, from, next) => {
+  // 已登录
+  if (pb.authStore.isValid) {
+    console.log('已登录')
+    // 每次切换路由都从服务端获取、刷新用户状态
     refreshAuth()
-      .then(() => {
-        // 请求服务端获取以及刷新用户token状态
+      .then(resp => {
         useUserInfoStore().updateUserInfo()
-        console.log('已刷新用户登录状态+本地数据', pb.authStore.record)
+        console.log('已刷新用户登录状态+本地数据', resp)
       })
-      .catch(() => {
-        push.error('登录状态已失效，请重新登陆！')
+      .catch(error => {
+        push.warning('登录状态已失效，请重新登录！')
+        pb.authStore.clear()
         next('/login')
       })
+  }
+  // 未登录
+  else {
+    console.log('未登录')
+    // 访问非公开路由
+    if (!PUBLIC_ROUTES.includes(to.path)) {
+      next('/login')
+    }
   }
   next()
 })
