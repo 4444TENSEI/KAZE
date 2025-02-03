@@ -13,7 +13,7 @@ async function login(authMethod: Function, ...params: any[]) {
     setLoading(true);
     // 超时计时器
     const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject($t('message.timeout')), 20000)
+      setTimeout(() => reject($t('message.timeout')), 10000)
     );
     await Promise.race([
       authMethod(...params).then(() => {

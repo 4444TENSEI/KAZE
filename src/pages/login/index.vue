@@ -53,7 +53,7 @@
             icon="mdi-broom"
             rounded="circle"
             size="56"
-            variant="tonal"
+            variant="outlined"
             @click="handleReset"
           />
           <!-- 登录按钮作为 form 提交的一部分 -->
@@ -72,19 +72,31 @@
         <div class="text-no-wrap text-grey mb-2">{{ $t('placeholder.otherWays') }}</div>
       </v-divider>
       <div class="d-flex align-center justify-center ga-2">
-        <v-btn icon color="default" title="GitHub" variant="tonal" @click="loginByOA2('github')">
+        <v-btn
+          icon
+          color="##16171B"
+          title="GitHub"
+          variant="outlined"
+          @click="loginByOA2('github')"
+        >
           <Icon icon="devicon:github" height="26px" />
         </v-btn>
-        <v-btn icon color="error" title="GitHub" variant="tonal" @click="loginByOA2('gitee')">
+        <v-btn icon color="#D90215" title="GitHub" variant="outlined" @click="loginByOA2('gitee')">
           <Icon icon="simple-icons:gitee" height="26px" color="#D90215" />
         </v-btn>
-        <v-btn icon color="warning" title="Gitlab" variant="tonal" @click="loginByOA2('gitlab')">
+        <v-btn icon color="#E4682A" title="Gitlab" variant="outlined" @click="loginByOA2('gitlab')">
           <Icon icon="vscode-icons:file-type-gitlab" height="26px" />
         </v-btn>
-        <v-btn icon color="purple" title="Discord" variant="tonal" @click="loginByOA2('discord')">
+        <v-btn
+          icon
+          color="#4F5EE1"
+          title="Discord"
+          variant="outlined"
+          @click="loginByOA2('discord')"
+        >
           <Icon icon="skill-icons:discord" height="24px" />
         </v-btn>
-        <v-btn icon color="error" title="Google" variant="tonal" @click="loginByOA2('google')">
+        <v-btn icon color="#EA4335" title="Google" variant="outlined" @click="loginByOA2('google')">
           <Icon icon="devicon:google" height="24px" />
         </v-btn>
       </div>
