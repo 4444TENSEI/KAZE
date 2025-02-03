@@ -66,10 +66,10 @@
         color="info"
         height="56"
         rounded="pill"
-        text="发送验证码"
+        text="注册"
         type="submit"
         variant="elevated"
-        @click="test"
+        @click="tryRegister"
       />
     </v-card>
   </body>
@@ -77,7 +77,7 @@
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { computed, ref } from 'vue'
-  import { sendOTP } from '@/api/user/register'
+  import { createCasualUser } from '@/api/user/register'
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -122,11 +122,15 @@
   })
   // 验证码弹窗
   const captchaDialog = ref(false)
-  //   const submitForm = handleSubmit(async () => {
-  //     captchaDialog.value = true
-  //   })
+  // 验证码ID
+  const codeIDRef = ref()
 
-  const test = async () => {
-    sendOTP('2479757568@qq.com')
+  // 发送验证码
+  const tryRegister = async () => {
+    createCasualUser(email.value.value, password.value.value).then(codeID => {
+      codeIDRef.value = codeID
+      console.log('取得ID', codeID)
+    })
+    // captchaDialog.value = true
   }
 </script>
