@@ -2,11 +2,12 @@ import pb from '@/api/pocketbase'
 import { TABLE_USERS } from '@/config/table'
 
 /**
- * 注册一个随机密码账户
+ * 注册随机密码账户
  * @param email 邮箱
  */
 async function createUser(email: string) {
-  const password = Math.random().toString(36).slice(-8)
+  // 随机生成10位密码
+  const password = Math.random().toString(36).slice(-10)
   return pb.collection(TABLE_USERS).create({
     email: email,
     password: password,

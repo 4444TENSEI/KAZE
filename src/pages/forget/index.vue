@@ -14,7 +14,7 @@
         />
         <p class="font-weight-black cursor-default mx-auto text-h4">找回密码</p>
       </div>
-      <form @submit.prevent="onSubmit">
+      <form>
         <v-text-field
           v-model="email.value.value"
           autocomplete="email"
@@ -45,8 +45,9 @@
   import { useField, useForm } from 'vee-validate'
   import { changePsw } from '@/api/user/forget'
 
+  const email = useField('email')
   // 注册输入框校验
-  const { handleSubmit } = useForm({
+  useForm({
     validationSchema: {
       email(value: string) {
         if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
@@ -54,14 +55,9 @@
       },
     },
   })
-  const email = useField('email')
-  // 表单提交
-  const onSubmit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2))
-  })
   // 将错误信息显示到label中
   const emailLabel = computed(() => {
-    return email.errorMessage.value && email.value.value ? email.errorMessage.value : '邮箱'
+    return email.errorMessage.value && email.value.value ? email.errorMessage.value : '要找回的邮箱'
   })
 
   /** 创建临时账户并且发送激活验证码邮件 */

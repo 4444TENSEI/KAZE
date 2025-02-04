@@ -14,7 +14,7 @@
         />
         <p class="font-weight-black cursor-default mx-auto text-h4">注册</p>
       </div>
-      <form @submit.prevent="onSubmit">
+      <form>
         <v-text-field
           v-model="email.value.value"
           autocomplete="email"
@@ -46,8 +46,10 @@
   import { createUser } from '@/api/user/register'
   import { changePsw } from '@/api/user/forget'
 
+  const email = useField('email')
+
   // 注册输入框校验
-  const { handleSubmit } = useForm({
+  useForm({
     validationSchema: {
       email(value: string) {
         if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
@@ -55,27 +57,22 @@
       },
     },
   })
-  const email = useField('email')
-  // 表单提交
-  const onSubmit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2))
-  })
+
   // 将错误信息显示到label中
   const emailLabel = computed(() => {
-    return email.errorMessage.value && email.value.value ? email.errorMessage.value : '邮箱'
+    return email.errorMessage.value && email.value.value ? email.errorMessage.value : '您的邮箱'
   })
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryRegister = async () => {
     try {
-      const resp = await createUser(email.value.value as string)
-      console.log('用户创建成功', resp)
+      // 创建临时账户（随机密码）
+      await createUser(email.value.value as string)
+      // 发送密码重置邮件，同时能够做到激活账户
       const sendEmailResp = await changePsw(email.value.value as string)
       if (sendEmailResp) {
         push.success('请前往邮箱设置您的账户密码以激活账户')
       }
-
-      // captchaDialog.value = true;
     } catch (err: any) {
       if (err.response.data.email.code === 'validation_not_unique') {
         push.error('用户已存在，请直接登录或找回密码')
