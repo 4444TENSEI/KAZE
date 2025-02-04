@@ -12,6 +12,7 @@
     "submit": "提交",
     "remember": "记住",
     "forget": "忘记",
+    "sendEmail": "发送邮件",
     "sendCode": "发送验证码"
   },
   "placeholder": {

@@ -33,7 +33,7 @@
         color="info"
         height="56"
         rounded="pill"
-        :text="$t('action.sendCode')"
+        :text="$t('action.sendEmail')"
         type="submit"
         variant="elevated"
         @click="tryRegister"
