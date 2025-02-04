@@ -7,7 +7,7 @@
         <h1 class="cursor-default">{{ $t('action.login') }}</h1>
       </div>
       <!-- 确保表单正确包裹所有提交按钮 -->
-      <form @submit.prevent="onSubmit">
+      <form>
         <v-text-field
           v-model="email.value.value"
           autocomplete="email"
@@ -56,7 +56,6 @@
             variant="outlined"
             @click="handleReset"
           />
-          <!-- 登录按钮作为 form 提交的一部分 -->
           <v-btn
             class="text-h6 flex-1-0"
             color="info"
@@ -65,6 +64,7 @@
             :text="$t('action.login')"
             variant="elevated"
             type="submit"
+            @click="tryLogin"
           />
         </div>
       </form>
@@ -115,15 +115,13 @@
     validationSchema: {
       email(value: string) {
         if (!value) return true
-        if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
-          return true
-        }
-        return '需要正确的邮箱格式'
+        if (/.+@.+\..+/.test(value)) return true
+        return '请输入正确的邮箱格式'
       },
       password(value: string) {
         if (!value) return true
         if (value?.length >= 6 && value.length <= 20) return true
-        return '密码6-20个字符'
+        return '密码至少8个字符'
       },
     },
   })
@@ -145,8 +143,8 @@
   function forget() {
     router.push('/forget')
   }
-  // 登录表单提交
-  const onSubmit = handleSubmit(formData => {
+  // 登录按钮
+  const tryLogin = handleSubmit(formData => {
     loginByEmail(formData as LoginForm)
   })
 </script>

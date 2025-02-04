@@ -1,6 +1,5 @@
 <template>
   <body class="flex-container justify-center align-center">
-    <SpeedBtn />
     <NavLogin />
     <v-card class="card-login pa-6" rounded="xl">
       <div class="d-flex align-center mt-3 mb-8">
@@ -25,7 +24,7 @@
           prepend-inner-icon="mdi-email"
           required
           rounded="pill"
-        ></v-text-field>
+        />
       </form>
       <v-btn
         block
@@ -41,22 +40,22 @@
     </v-card>
   </body>
 </template>
+
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { createUser } from '@/api/user/register'
   import { changePsw } from '@/api/user/forget'
 
-  const email = useField('email')
-
   // 注册输入框校验
-  useForm({
+  const { handleSubmit } = useForm({
     validationSchema: {
       email(value: string) {
-        if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+        if (/.+@.+\..+/.test(value)) return true
         return '请输入正确的邮箱'
       },
     },
   })
+  const email = useField('email')
 
   // 将错误信息显示到label中
   const emailLabel = computed(() => {
@@ -64,7 +63,7 @@
   })
 
   /** 创建临时账户并且发送激活验证码邮件 */
-  const tryRegister = async () => {
+  const tryRegister = handleSubmit(async () => {
     try {
       // 创建临时账户（随机密码）
       await createUser(email.value.value as string)
@@ -78,5 +77,5 @@
         push.error('用户已存在，请直接登录或找回密码')
       }
     }
-  }
+  })
 </script>

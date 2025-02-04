@@ -1,6 +1,5 @@
 <template>
   <body class="flex-container justify-center align-center">
-    <SpeedBtn />
     <NavLogin />
     <v-card class="card-login pa-6" rounded="xl">
       <div class="d-flex align-center mt-3 mb-8">
@@ -41,13 +40,13 @@
     </v-card>
   </body>
 </template>
+
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { changePsw } from '@/api/user/forget'
 
-  const email = useField('email')
   // 注册输入框校验
-  useForm({
+  const { handleSubmit } = useForm({
     validationSchema: {
       email(value: string) {
         if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
@@ -55,18 +54,19 @@
       },
     },
   })
+  const email = useField('email')
   // 将错误信息显示到label中
   const emailLabel = computed(() => {
     return email.errorMessage.value && email.value.value ? email.errorMessage.value : '要找回的邮箱'
   })
 
   /** 创建临时账户并且发送激活验证码邮件 */
-  const tryForget = async () => {
+  const tryForget = handleSubmit(async () => {
     try {
       await changePsw(email.value.value as string)
       push.success('带有密码重置的链接已发送至您的邮箱，请及时查看')
     } catch (err: any) {
-      push.error('发送找回邮件失败')
+      push.error('邮件发送失败')
     }
-  }
+  })
 </script>
