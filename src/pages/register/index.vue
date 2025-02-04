@@ -26,47 +26,14 @@
           required
           rounded="pill"
         ></v-text-field>
-        <v-text-field
-          v-model="password.value.value"
-          :append-inner-icon="pswVisible ? 'mdi-eye-off' : 'mdi-eye'"
-          autocomplete="current-password"
-          class="mb-4"
-          clearable
-          :color="password.errorMessage.value ? 'error' : 'info'"
-          details="66"
-          :label="passwordLabel"
-          prepend-inner-icon="mdi-lock"
-          rounded="pill"
-          :type="pswVisible ? 'text' : 'password'"
-          @click:append-inner="pswVisible = !pswVisible"
-        >
-        </v-text-field>
-        <v-text-field
-          v-model="password2.value.value"
-          :append-inner-icon="pswVisible2 ? 'mdi-eye-off' : 'mdi-eye'"
-          autocomplete="new-password"
-          class="mb-6"
-          clearable
-          :color="password2.errorMessage.value ? 'error' : 'info'"
-          details="66"
-          :label="password2Label"
-          prepend-inner-icon="mdi-shield-lock"
-          rounded="pill"
-          :type="pswVisible2 ? 'text' : 'password'"
-          @click:append-inner="pswVisible2 = !pswVisible2"
-        >
-        </v-text-field>
       </form>
-      <v-dialog v-model="captchaDialog">
-        <Captcha />
-      </v-dialog>
       <v-btn
         block
         class="text-h6"
         color="info"
         height="56"
         rounded="pill"
-        text="注册"
+        :text="$t('action.sendCode')"
         type="submit"
         variant="elevated"
         @click="tryRegister"
@@ -76,8 +43,8 @@
 </template>
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
-  import { computed, ref } from 'vue'
-  import { createUser, otpSend } from '@/api/user/register'
+  import { createUser } from '@/api/user/register'
+  import { changePsw } from '@/api/user/forget'
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -86,54 +53,27 @@
         if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
         return '请输入正确的邮箱'
       },
-      password(value: string) {
-        if (value?.length >= 6) return true
-        return '密码6-20个字符'
-      },
-      password2(value: string) {
-        if (value === password.value.value) return true
-        return '两次输入的密码不一致'
-      },
     },
   })
   const email = useField('email')
-  const password = useField('password')
-  const password2 = useField('password2')
   // 表单提交
   const onSubmit = handleSubmit(values => {
     alert(JSON.stringify(values, null, 2))
   })
-  // 输入框显示隐藏小眼睛
-  const pswVisible = ref(false)
-  const pswVisible2 = ref(false)
   // 将错误信息显示到label中
   const emailLabel = computed(() => {
     return email.errorMessage.value && email.value.value ? email.errorMessage.value : '邮箱'
   })
-  const passwordLabel = computed(() => {
-    return password.errorMessage.value && password.value.value
-      ? password.errorMessage.value
-      : '密码'
-  })
-  const password2Label = computed(() => {
-    return password2.errorMessage.value && password2.value.value
-      ? password2.errorMessage.value
-      : '重复密码'
-  })
-  // 验证码弹窗
-  const captchaDialog = ref(false)
-  // 验证码ID
-  const codeIDRef = ref()
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryRegister = async () => {
     try {
-      const resp = await createUser(email.value.value as string, password.value.value as string)
+      const resp = await createUser(email.value.value as string)
       console.log('用户创建成功', resp)
-      const otpSendResp = await otpSend(email.value.value as string)
-      codeIDRef.value = otpSendResp.otpId
-      console.log('注册验证码发送成功', codeIDRef.value)
-      push.success('注册验证码已发送到邮箱，请前往邮箱激活账户')
+      const sendEmailResp = await changePsw(email.value.value as string)
+      if (sendEmailResp) {
+        push.success('请前往邮箱设置您的账户密码以激活账户')
+      }
 
       // captchaDialog.value = true;
     } catch (err: any) {
