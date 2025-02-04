@@ -8,7 +8,7 @@
           color="info"
           icon="mdi-arrow-left-bold"
           size="56"
-          to="login"
+          to="/login"
           variant="tonal"
         />
         <p class="font-weight-black cursor-default mx-auto text-h4">找回密码</p>
@@ -16,10 +16,11 @@
       <form>
         <v-text-field
           v-model="email.value.value"
-          autocomplete="email"
+          autocomplete="username"
           class="mb-4"
           clearable
-          :color="email.errorMessage.value ? 'error' : 'info'"
+          :color="inputColor(email.errorMessage.value)"
+          :base-color="inputColor(email.errorMessage.value)"
           :label="emailLabel"
           prepend-inner-icon="mdi-email"
           required
@@ -44,12 +45,13 @@
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { changePsw } from '@/api/user/forget'
+  import { inputColor } from '@/hooks/inputColor'
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
     validationSchema: {
       email(value: string) {
-        if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+        if (/.+@.+\..+/.test(value)) return true
         return '请输入正确的邮箱'
       },
     },

@@ -8,7 +8,7 @@
           color="info"
           icon="mdi-arrow-left-bold"
           size="56"
-          to="login"
+          to="/login"
           variant="tonal"
         />
         <p class="font-weight-black cursor-default mx-auto text-h4">注册</p>
@@ -16,10 +16,11 @@
       <form>
         <v-text-field
           v-model="email.value.value"
-          autocomplete="email"
+          autocomplete="username"
           class="mb-4"
           clearable
-          :color="email.errorMessage.value ? 'error' : 'info'"
+          :color="inputColor(email.errorMessage.value)"
+          :base-color="inputColor(email.errorMessage.value)"
           :label="emailLabel"
           prepend-inner-icon="mdi-email"
           required
@@ -45,6 +46,7 @@
   import { useField, useForm } from 'vee-validate'
   import { createUser } from '@/api/user/register'
   import { changePsw } from '@/api/user/forget'
+  import { inputColor } from '@/hooks/inputColor'
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -73,8 +75,10 @@
         push.success('请前往邮箱设置您的账户密码以激活账户')
       }
     } catch (err: any) {
-      if (err.response.data.email.code === 'validation_not_unique') {
+      if (err.response?.data?.email?.code === 'validation_not_unique') {
         push.error('用户已存在，请直接登录或找回密码')
+      } else if (err.response?.status === 403) {
+        push.error('站点注册功能已关闭，如有需求请联系站点管理员')
       }
     }
   })

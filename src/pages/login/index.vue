@@ -10,9 +10,10 @@
       <form>
         <v-text-field
           v-model="email.value.value"
-          autocomplete="email"
+          autocomplete="username"
           class="mb-4"
-          :color="email.errorMessage.value ? 'error' : 'info'"
+          :color="inputColor(email.errorMessage.value)"
+          :base-color="inputColor(email.errorMessage.value)"
           :label="emailLabel"
           prepend-inner-icon="mdi-email"
           required
@@ -22,11 +23,13 @@
           :append-inner-icon="pswVisible ? 'mdi-eye-off' : 'mdi-eye'"
           autocomplete="current-password"
           class="mb-2"
-          :color="password.errorMessage.value ? 'error' : 'info'"
+          :color="inputColor(password.errorMessage.value)"
+          :base-color="inputColor(password.errorMessage.value)"
           :counter="20"
           :label="passwordLabel"
           prepend-inner-icon="mdi-lock"
           :type="pswVisible ? 'text' : 'password'"
+          required
           @click:append-inner="pswVisible = !pswVisible"
         />
         <div class="d-flex mb-2">
@@ -36,14 +39,14 @@
             rounded="pill"
             :text="$t('action.forget')"
             variant="flat"
-            @click="forget"
+            to="/forget"
           />
           <v-btn
             height="42"
             rounded="pill"
             :text="$t('action.register')"
-            to="/register"
             variant="flat"
+            to="/register"
           />
         </div>
         <div class="mb-3 d-flex align-center">
@@ -107,8 +110,8 @@
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { loginByEmail, loginByOA2 } from '@/api/user/login'
-  import router from '@/router'
   import { LoginForm } from '@/types/login'
+  import { inputColor } from '@/hooks/inputColor'
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
@@ -140,9 +143,6 @@
       ? password.errorMessage.value
       : $t('user.password')
   })
-  function forget() {
-    router.push('/forget')
-  }
   // 登录按钮
   const tryLogin = handleSubmit(formData => {
     loginByEmail(formData as LoginForm)
