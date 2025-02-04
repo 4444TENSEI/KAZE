@@ -9,25 +9,22 @@ const { setLoading } = useLoadingStore()
 
 /** 通用登录逻辑 */
 async function login(authMethod: Function, ...params: any[]) {
-    const logging = push.promise($t('message.logging'));
-    setLoading(true);
-    // 超时计时器
-    const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => reject($t('message.timeout')), 10000)
-    );
-    await Promise.race([
-      authMethod(...params).then(() => {
-        logging.resolve(`${greeting()},${pb.authStore.record?.nickname}~`);
-        router.push('/home');
-      }).catch((err: any) => {
-        logging.reject($t('message.loginFail'));
-      }),
-      timeoutPromise
-    ]).catch((err: any) => {
-      logging.reject(err);
-    }).finally(() => setLoading(false));
+  const loggingToast = push.promise($t('message.logging'))
+  setLoading(true)
+  try {
+    await authMethod(...params)
+    loggingToast.resolve(`${greeting()},${pb.authStore.record?.nickname}~`)
+    router.push('/home')
+  } catch (err: any) {
+    if (err.response?.data?.email?.code === 'validation_required') {
+      loggingToast.reject($t('message.loginFailOfNotEmail'))
+    } else {
+      loggingToast.reject($t('message.loginFail'))
+    }
+  } finally {
+    setLoading(false)
   }
-  
+}
 
 /**
  * OA2单点登录

@@ -77,7 +77,7 @@
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { computed, ref } from 'vue'
-  import { createCasualUser } from '@/api/user/register'
+  import { createUser, otpSend } from '@/api/user/register'
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -125,12 +125,21 @@
   // 验证码ID
   const codeIDRef = ref()
 
-  // 发送验证码
+  /** 创建临时账户并且发送激活验证码邮件 */
   const tryRegister = async () => {
-    createCasualUser(email.value.value, password.value.value).then(codeID => {
-      codeIDRef.value = codeID
-      console.log('取得ID', codeID)
-    })
-    // captchaDialog.value = true
+    try {
+      const resp = await createUser(email.value.value as string, password.value.value as string)
+      console.log('用户创建成功', resp)
+      const otpSendResp = await otpSend(email.value.value as string)
+      codeIDRef.value = otpSendResp.otpId
+      console.log('注册验证码发送成功', codeIDRef.value)
+      push.success('注册验证码已发送到邮箱，请前往邮箱激活账户')
+
+      // captchaDialog.value = true;
+    } catch (err: any) {
+      if (err.response.data.email.code === 'validation_not_unique') {
+        push.error('用户已存在，请直接登录或找回密码')
+      }
+    }
   }
 </script>

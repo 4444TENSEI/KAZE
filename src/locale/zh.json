@@ -44,7 +44,8 @@
   "message": {
     "logging": "登录中...",
     "loginOk": "登录成功",
-    "loginFail": "登录失败",
+    "loginFail": "登录失败，请检查用户名和密码或联系管理员",
+    "loginFailOfNotEmail": "登录失败，账户未绑定邮箱",
     "registerOk": "注册成功",
     "registerFail": "注册失败",
     "logoutOk": "已退出登录~",

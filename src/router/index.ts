@@ -30,7 +30,7 @@ router.beforeEach(async (to, from, next) => {
         useUserInfoStore().updateUserInfo()
         console.log('已刷新用户登录状态+本地数据', resp)
       })
-      .catch(error => {
+      .catch(err => {
         push.warning('登录状态已失效，请重新登录！')
         pb.authStore.clear()
         next('/login')
