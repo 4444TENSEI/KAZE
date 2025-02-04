@@ -1,10 +1,10 @@
 /**
- * 根据字段的错误状态返回输入框的颜色
- * @param field - vee-validate 的 useField 返回值
- * @returns 颜色字符串（例如 'error' 或 'info'）
+ * 根据输入框文本校验状态，返回对应颜色
+ * @param errField 输入框文本校验状态
+ * @returns 颜色名称
  */
-const inputColor = (field: string | undefined) => {
-  return field ? 'error' : 'info'
+const inputColor = (errField: string | undefined) => {
+  return errField ? 'error' : 'info'
 }
 
 export { inputColor }

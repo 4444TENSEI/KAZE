@@ -52,7 +52,7 @@
     validationSchema: {
       email(value: string) {
         if (/.+@.+\..+/.test(value)) return true
-        return '请输入正确的邮箱'
+        return '邮箱格式不正确！'
       },
     },
   })
@@ -66,7 +66,12 @@
   const tryForget = handleSubmit(async () => {
     try {
       await changePsw(email.value.value as string)
-      push.success('带有密码重置的链接已发送至您的邮箱，请及时查看')
+      push.success({
+        title: '已尝试发送找回邮件',
+        message:
+          '带有重置密码的链接已尝试发送至所填写的邮箱，请及时查看。若长时间未收到，请检查邮箱回收站，也可能是邮箱不存在。',
+        duration: 30000,
+      })
     } catch (err: any) {
       push.error('邮件发送失败')
     }

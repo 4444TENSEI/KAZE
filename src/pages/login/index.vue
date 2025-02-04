@@ -119,12 +119,12 @@
       email(value: string) {
         if (!value) return true
         if (/.+@.+\..+/.test(value)) return true
-        return '请输入正确的邮箱格式'
+        return '邮箱格式不正确！'
       },
       password(value: string) {
         if (!value) return true
-        if (value?.length >= 6 && value.length <= 20) return true
-        return '密码至少8个字符'
+        if (value?.length >= 6 && value.length <= 32) return true
+        return '密码由8-32个字母、数字或下划线组成！'
       },
     },
   })

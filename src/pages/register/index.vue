@@ -53,7 +53,7 @@
     validationSchema: {
       email(value: string) {
         if (/.+@.+\..+/.test(value)) return true
-        return '请输入正确的邮箱'
+        return '邮箱格式不正确！'
       },
     },
   })
@@ -72,7 +72,11 @@
       // 发送密码重置邮件，同时能够做到激活账户
       const sendEmailResp = await changePsw(email.value.value as string)
       if (sendEmailResp) {
-        push.success('请前往邮箱设置您的账户密码以激活账户')
+        push.success({
+          title: '还差一步！',
+          message: '请及时检查您的收信箱，并按照指引，设置您的账户密码，最终才能激活账户。',
+          duration: 30000,
+        })
       }
     } catch (err: any) {
       if (err.response?.data?.email?.code === 'validation_not_unique') {
