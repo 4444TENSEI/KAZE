@@ -26,7 +26,7 @@
           required
           rounded="pill"
         />
-        <Captcha ref="turnstileToken" />
+        <Captcha />
       </form>
       <v-btn
         block
@@ -37,6 +37,7 @@
         :text="$t('action.sendEmail')"
         type="submit"
         variant="elevated"
+        :loading="sending"
         @click="tryForget"
       />
     </v-card>
@@ -47,9 +48,13 @@
   import { useField, useForm } from 'vee-validate'
   import { changePsw } from '@/api/user/forget'
   import { inputColor } from '@/hooks/inputColor'
+  import { useCaptchaStore } from '@/stores'
 
-  /** 从Captcha组件得到的验证token */
-  const turnstileToken = ref()
+  /** 发送邮件请求状态 */
+  const sending = ref(false)
+
+  /** token状态储存 */
+  const { getCaptchaToken, getCaptchaResult } = useCaptchaStore()
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -68,22 +73,26 @@
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryForget = handleSubmit(async () => {
-    const verifyToken = turnstileToken.value.turnstileToken
-    if (verifyToken === '') {
+    if (getCaptchaResult() === false) {
       return push.error('未通过安全验证！')
     }
-    /** 注册状态Toast */
-    const waiting = push.promise($t('message.registering'))
     try {
-      await changePsw(email.value.value as string)
-      waiting.resolve({
-        title: '已尝试发送找回邮件',
+      sending.value = true
+      await changePsw(email.value.value as string, getCaptchaToken())
+      push.success({
+        title: '已发送找回邮件',
         message:
-          '带有重置密码的链接已尝试发送至所填写的邮箱，请及时查看。若长时间未收到，请检查邮箱回收站，也可能是邮箱不存在。',
+          '已发送带有重置密码的链接至您的邮箱，请及时查看。若长时间未收到请检查邮箱回收站或是因为邮箱填写错误。',
         duration: 30000,
       })
     } catch (err: any) {
-      waiting.reject('邮件发送失败')
+      if (err.response.status === 429) {
+        push.error($t('message.frequently'))
+      } else {
+        push.error($t('message.emailSendFail'))
+      }
+    } finally {
+      sending.value = false
     }
   })
 </script>

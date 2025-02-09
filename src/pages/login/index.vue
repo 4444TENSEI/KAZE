@@ -49,7 +49,7 @@
             to="/register"
           />
         </div>
-        <Captcha ref="turnstileToken" />
+        <Captcha />
         <div class="mb-3 d-flex align-center">
           <v-btn
             class="text-h6 mr-2"
@@ -68,6 +68,7 @@
             :text="$t('action.login')"
             variant="elevated"
             type="submit"
+            :loading="logging"
             @click="tryLogin"
           />
         </div>
@@ -113,9 +114,13 @@
   import { loginByEmail, loginByOA2 } from '@/api/user/login'
   import { LoginForm } from '@/types/login'
   import { inputColor } from '@/hooks/inputColor'
+  import { useCaptchaStore } from '@/stores'
 
-  /** 从Captcha组件得到的验证token */
-  const turnstileToken = ref()
+  /** 登录请求状态 */
+  const logging = ref(false)
+
+  /** token状态储存 */
+  const { getCaptchaToken, getCaptchaResult } = useCaptchaStore()
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
@@ -148,11 +153,12 @@
       : $t('user.password')
   })
   // 登录按钮
-  const tryLogin = handleSubmit(formData => {
-    const verifyToken = turnstileToken.value.turnstileToken
-    if (verifyToken === '') {
+  const tryLogin = handleSubmit(async formData => {
+    if (getCaptchaResult() === false) {
       return push.error('未通过安全验证！')
     }
-    loginByEmail(formData as LoginForm, verifyToken)
+    logging.value = true
+    await loginByEmail(formData as LoginForm, getCaptchaToken())
+    logging.value = false
   })
 </script>

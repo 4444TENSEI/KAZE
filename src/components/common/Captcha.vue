@@ -13,9 +13,14 @@
 
 <script setup lang="ts">
   import VueTurnstile from 'vue-turnstile'
+  import { useCaptchaStore } from '@/stores'
 
-  // 载入turnstile客户端密钥
+  /** token状态储存 */
+  const { setCaptchaToken } = useCaptchaStore()
+
+  /** turnstile客户端密钥 */
   const CAPTCHA_KEY = import.meta.env.VITE_CAPTCHA_KEY
+
   /** 验证成功后得到的token */
   const turnstileToken = ref('')
   /** 需要手动点击验证 */
@@ -24,11 +29,11 @@
   }
   /** 验证超时 */
   const verifyExpired = () => {
-    push.warning('验证超时，请检查网络环境！')
+    push.warning('距离上次验证已超时，请刷新页面后再试！')
   }
   /** 浏览器不支持 */
   const verifyUnsupported = () => {
-    push.error('您的浏览器不支持安全检测！')
+    push.error('您的浏览器无法通过安全检查！')
   }
   /** 验证失败 */
   const verifyErr = (errCode: string) => {
@@ -38,24 +43,22 @@
       duration: 30000,
     })
   }
+  onMounted(() => {
+    // 每次页面加载清空验证token
+    setCaptchaToken('')
+  })
 
   watch(turnstileToken, (newToken, oldToken) => {
-    // 验证成功
+    // 监听验证成功后得到的token并存入pinia
     if (newToken) {
-      console.log('已通过环境安全验证')
+      setCaptchaToken(newToken)
     }
-  })
-  // 暴露验证后的token给父组件
-  defineExpose({
-    turnstileToken,
   })
 </script>
 
 <style lang="scss" scoped>
   .captcha_box {
     overflow: hidden;
-    ::v-deep iframe {
-      min-width: 100px !important;
-    }
+    margin-bottom: 8px;
   }
 </style>

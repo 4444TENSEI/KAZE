@@ -1,18 +1,28 @@
 import pb from '@/api/pocketbase'
 import { TABLE_USERS } from '@/config/table'
+import { RecordOptions } from 'pocketbase'
 
 /**
  * 注册随机密码账户
  * @param email 邮箱
  */
-async function createUser(email: string) {
+async function createUser(email: string, captchaToken: string) {
   // 随机生成10位密码
   const password = Math.random().toString(36).slice(-10)
-  return pb.collection(TABLE_USERS).create({
-    email: email,
-    password: password,
-    passwordConfirm: password,
-  })
+  // 添加自定义请求头
+  const options: RecordOptions = {
+    headers: {
+      'X-Captcha-Token': captchaToken,
+    },
+  }
+  return pb.collection(TABLE_USERS).create(
+    {
+      email: email,
+      password: password,
+      passwordConfirm: password,
+    },
+    options,
+  )
 }
 
 /**

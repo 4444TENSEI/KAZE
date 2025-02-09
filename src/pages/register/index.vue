@@ -27,7 +27,7 @@
           rounded="pill"
         />
       </form>
-      <Captcha ref="turnstileToken" />
+      <Captcha />
       <v-btn
         block
         class="text-h6"
@@ -37,6 +37,7 @@
         :text="$t('action.sendEmail')"
         type="submit"
         variant="elevated"
+        :loading="sending"
         @click="tryRegister"
       />
     </v-card>
@@ -48,9 +49,13 @@
   import { createUser } from '@/api/user/register'
   import { changePsw } from '@/api/user/forget'
   import { inputColor } from '@/hooks/inputColor'
+  import { useCaptchaStore } from '@/stores'
 
-  /** 从Captcha组件得到的验证token */
-  const turnstileToken = ref()
+  /** 发送邮件请求状态 */
+  const sending = ref(false)
+
+  /** token状态储存 */
+  const { getCaptchaToken, getCaptchaResult } = useCaptchaStore()
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -70,30 +75,34 @@
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryRegister = handleSubmit(async () => {
-    const verifyToken = turnstileToken.value.turnstileToken
-    if (verifyToken === '') {
+    if (getCaptchaResult() === false) {
       return push.error('未通过安全验证！')
     }
-    /** 注册状态Toast */
-    const waiting = push.promise($t('message.registering'))
     try {
+      sending.value = true
       // 创建临时账户（随机密码）
-      await createUser(email.value.value as string)
+      await createUser(email.value.value as string, getCaptchaToken())
       // 发送密码重置邮件，同时能够做到激活账户
-      const sendEmailResp = await changePsw(email.value.value as string)
+      const sendEmailResp = await changePsw(email.value.value as string, getCaptchaToken())
       if (sendEmailResp) {
-        waiting.resolve({
+        push.success({
           title: '账户激活邮件已发送！',
           message: '请及时检查您的收信箱，并按照指引设置账户初始密码即可激活账户。',
           duration: 30000,
         })
       }
     } catch (err: any) {
-      if (err.response?.data?.email?.code === 'validation_not_unique') {
-        waiting.reject('用户已存在，请直接登录或找回密码')
-      } else if (err.response?.status === 403) {
-        waiting.reject('站点注册功能已关闭，如有疑问请联系站点管理员')
+      if (err.response.data.email?.code === 'validation_not_unique') {
+        push.error('用户已存在，请直接登录或找回密码')
+      } else if (err.response.status === 403) {
+        push.error('站点注册已关闭，如有疑问请联系站点管理员')
+      } else if (err.response.status === 429) {
+        push.error($t('message.frequently'))
+      } else {
+        push.error($t('message.emailSendFail'))
       }
+    } finally {
+      sending.value = false
     }
   })
 </script>
