@@ -92,8 +92,8 @@
         })
       }
     } catch (err: any) {
-      if (err.response.data.email?.code === 'validation_not_unique') {
-        push.error('用户已存在，请直接登录或找回密码')
+      if (err.response.status === 400) {
+        push.error({ message: '用户已存在，请直接登录或找回密码', duration: 10000 })
       } else if (err.response.status === 403) {
         push.error('站点注册已关闭，如有疑问请联系站点管理员')
       } else if (err.response.status === 429) {
