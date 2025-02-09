@@ -3,10 +3,11 @@
   <Footer v-else />
   <Toast />
   <router-view />
-  <Analytics />
+  <!-- vercel访问数据监控 -->
+  <!-- <Analytics /> -->
 </template>
 
 <script lang="ts" setup>
   import pb from '@/api/pocketbase'
-  import { Analytics } from '@vercel/analytics/vue'
+  //   import { Analytics } from '@vercel/analytics/vue'
 </script>

@@ -31,20 +31,17 @@ async function login(authMethod: Function, ...params: any[]) {
  * @param provider 单点登录平台
  */
 async function loginByOA2(provider: Oa2Provider) {
-  await login(
-    (provider: Oa2Provider) => pb.collection(TABLE_USERS).authWithOAuth2({ provider }),
-    provider,
-  )
+  await login(() => pb.collection(TABLE_USERS).authWithOAuth2({ provider }), provider)
 }
 
 /**
  * 表单/邮箱登录
- * @param form 登录表单数据
+ * @param formData 登录表单数据
  */
-async function loginByEmail(form: LoginForm) {
+async function loginByEmail(formData: LoginForm, captchaToken: string) {
   await login(
-    (form: LoginForm) => pb.collection(TABLE_USERS).authWithPassword(form.email, form.password),
-    form,
+    () => pb.collection(TABLE_USERS).authWithPassword(formData.email, formData.password),
+    captchaToken,
   )
 }
 

@@ -27,6 +27,7 @@
           rounded="pill"
         />
       </form>
+      <Captcha/>
       <v-btn
         block
         class="text-h6"

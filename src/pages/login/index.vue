@@ -49,6 +49,7 @@
             to="/register"
           />
         </div>
+        <Captcha ref="captchaToken" />
         <div class="mb-3 d-flex align-center">
           <v-btn
             class="text-h6 mr-2"
@@ -113,6 +114,9 @@
   import { LoginForm } from '@/types/login'
   import { inputColor } from '@/hooks/inputColor'
 
+  /** 从Captcha组件得到的验证token */
+  const captchaToken = ref()
+
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
     validationSchema: {
@@ -145,6 +149,10 @@
   })
   // 登录按钮
   const tryLogin = handleSubmit(formData => {
-    loginByEmail(formData as LoginForm)
+    const verifyToken = captchaToken.value
+    if (verifyToken.captchaToken === '') {
+      return push.error('未通过行为验证！')
+    }
+    loginByEmail(formData as LoginForm, verifyToken)
   })
 </script>

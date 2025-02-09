@@ -12,7 +12,7 @@ const notivue = createNotivue({
   // 渐入动画
   transition: 'transform 1000ms ease-in-out',
   // 避免重复弹出
-  avoidDuplicates: false,
+  avoidDuplicates: true,
   // 最大同时显示数量
   limit: 3,
   // 同时显示上限后后续进入队列
