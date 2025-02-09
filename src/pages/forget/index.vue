@@ -26,6 +26,7 @@
           required
           rounded="pill"
         />
+        <Captcha ref="turnstileToken" />
       </form>
       <v-btn
         block
@@ -47,6 +48,9 @@
   import { changePsw } from '@/api/user/forget'
   import { inputColor } from '@/hooks/inputColor'
 
+  /** 从Captcha组件得到的验证token */
+  const turnstileToken = ref()
+
   // 注册输入框校验
   const { handleSubmit } = useForm({
     validationSchema: {
@@ -64,16 +68,22 @@
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryForget = handleSubmit(async () => {
+    const verifyToken = turnstileToken.value.turnstileToken
+    if (verifyToken === '') {
+      return push.error('未通过安全验证！')
+    }
+    /** 注册状态Toast */
+    const waiting = push.promise($t('message.registering'))
     try {
       await changePsw(email.value.value as string)
-      push.success({
+      waiting.resolve({
         title: '已尝试发送找回邮件',
         message:
           '带有重置密码的链接已尝试发送至所填写的邮箱，请及时查看。若长时间未收到，请检查邮箱回收站，也可能是邮箱不存在。',
         duration: 30000,
       })
     } catch (err: any) {
-      push.error('邮件发送失败')
+      waiting.reject('邮件发送失败')
     }
   })
 </script>

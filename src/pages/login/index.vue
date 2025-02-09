@@ -49,7 +49,7 @@
             to="/register"
           />
         </div>
-        <Captcha ref="captchaToken" />
+        <Captcha ref="turnstileToken" />
         <div class="mb-3 d-flex align-center">
           <v-btn
             class="text-h6 mr-2"
@@ -115,7 +115,7 @@
   import { inputColor } from '@/hooks/inputColor'
 
   /** 从Captcha组件得到的验证token */
-  const captchaToken = ref()
+  const turnstileToken = ref()
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
@@ -149,9 +149,9 @@
   })
   // 登录按钮
   const tryLogin = handleSubmit(formData => {
-    const verifyToken = captchaToken.value
-    if (verifyToken.captchaToken === '') {
-      return push.error('未通过行为验证！')
+    const verifyToken = turnstileToken.value.turnstileToken
+    if (verifyToken === '') {
+      return push.error('未通过安全验证！')
     }
     loginByEmail(formData as LoginForm, verifyToken)
   })

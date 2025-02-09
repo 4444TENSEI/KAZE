@@ -27,7 +27,7 @@
           rounded="pill"
         />
       </form>
-      <Captcha/>
+      <Captcha ref="turnstileToken" />
       <v-btn
         block
         class="text-h6"
@@ -49,6 +49,9 @@
   import { changePsw } from '@/api/user/forget'
   import { inputColor } from '@/hooks/inputColor'
 
+  /** 从Captcha组件得到的验证token */
+  const turnstileToken = ref()
+
   // 注册输入框校验
   const { handleSubmit } = useForm({
     validationSchema: {
@@ -67,23 +70,29 @@
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryRegister = handleSubmit(async () => {
+    const verifyToken = turnstileToken.value.turnstileToken
+    if (verifyToken === '') {
+      return push.error('未通过安全验证！')
+    }
+    /** 注册状态Toast */
+    const waiting = push.promise($t('message.registering'))
     try {
       // 创建临时账户（随机密码）
       await createUser(email.value.value as string)
       // 发送密码重置邮件，同时能够做到激活账户
       const sendEmailResp = await changePsw(email.value.value as string)
       if (sendEmailResp) {
-        push.success({
-          title: '还差一步！',
-          message: '请及时检查您的收信箱，并按照指引，设置您的账户密码，最终才能激活账户。',
+        waiting.resolve({
+          title: '账户激活邮件已发送！',
+          message: '请及时检查您的收信箱，并按照指引设置账户初始密码即可激活账户。',
           duration: 30000,
         })
       }
     } catch (err: any) {
       if (err.response?.data?.email?.code === 'validation_not_unique') {
-        push.error('用户已存在，请直接登录或找回密码')
+        waiting.reject('用户已存在，请直接登录或找回密码')
       } else if (err.response?.status === 403) {
-        push.error('站点注册功能已关闭，如有需求请联系站点管理员')
+        waiting.reject('站点注册功能已关闭，如有疑问请联系站点管理员')
       }
     }
   })

@@ -9,17 +9,18 @@ const { setLoading } = useLoadingStore()
 
 /** 通用登录逻辑 */
 async function login(authMethod: Function, ...params: any[]) {
-  const loggingToast = push.promise($t('message.logging'))
+  /** 登录状态Toast */
+  const waiting = push.promise($t('message.logging'))
   setLoading(true)
   try {
     await authMethod(...params)
-    loggingToast.resolve(`${greeting()},${pb.authStore.record?.nickname}~`)
+    waiting.resolve(`${greeting()},${pb.authStore.record?.nickname}~`)
     router.push('/home')
   } catch (err: any) {
     if (err.response?.data?.email?.code === 'validation_required') {
-      loggingToast.reject($t('message.loginFailOfNotEmail'))
+      waiting.reject($t('message.loginFailOfNotEmail'))
     } else {
-      loggingToast.reject($t('message.loginFail'))
+      waiting.reject($t('message.loginFail'))
     }
   } finally {
     setLoading(false)

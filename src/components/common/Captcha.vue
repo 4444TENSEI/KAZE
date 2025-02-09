@@ -2,7 +2,7 @@
   <vue-turnstile
     class="captcha_box"
     :site-key="CAPTCHA_KEY"
-    v-model="captchaToken"
+    v-model="turnstileToken"
     size="flexible"
     @expired="verifyExpired"
     @unsupported="verifyUnsupported"
@@ -16,46 +16,46 @@
 
   // 载入turnstile客户端密钥
   const CAPTCHA_KEY = import.meta.env.VITE_CAPTCHA_KEY
-
-  /** 验证中 */
-  const verifying = push.promise($t('正在检测设备环境安全性...'))
   /** 验证成功后得到的token */
-  const captchaToken = ref('')
+  const turnstileToken = ref('')
   /** 需要手动点击验证 */
   const waitingAction = () => {
-    verifying.clear()
+    console.log('请手动点击验证')
   }
   /** 验证超时 */
   const verifyExpired = () => {
-    verifying.resolve('验证超时，请检查网络环境！')
+    push.warning('验证超时，请检查网络环境！')
   }
   /** 浏览器不支持 */
   const verifyUnsupported = () => {
-    verifying.resolve('您的浏览器无法进行安全检测！')
+    push.error('您的浏览器不支持安全检测！')
   }
   /** 验证失败 */
   const verifyErr = (errCode: string) => {
-    verifying.reject({
-      title: '设备环境风险警告',
-      message: `${errCode}：检测到当前环境存在风险，需确保设备与网络环境安全才能继续访问。`,
+    push.error({
+      title: '设备风险警告',
+      message: `${errCode}：检测到当前环境存在风险，后续操作将被拦截，请确保设备与网络安全后重新尝试。`,
       duration: 30000,
     })
   }
 
-  watch(captchaToken, (newToken, oldToken) => {
+  watch(turnstileToken, (newToken, oldToken) => {
     // 验证成功
     if (newToken) {
-      verifying.clear()
+      console.log('已通过环境安全验证')
     }
   })
   // 暴露验证后的token给父组件
   defineExpose({
-    captchaToken,
+    turnstileToken,
   })
 </script>
 
 <style lang="scss" scoped>
   .captcha_box {
     overflow: hidden;
+    ::v-deep iframe {
+      min-width: 100px !important;
+    }
   }
 </style>
