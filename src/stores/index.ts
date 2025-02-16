@@ -1,6 +1,6 @@
 import { createPinia } from 'pinia'
 import useDrawerStore from './modules/layout/drawer'
-import useLoadingStore from './modules/layout/loading'
+import useLoadingStore from './modules/loading'
 import useUserInfoStore from './modules/user/profileUrl'
 import useCaptchaStore from './modules/captcha'
 

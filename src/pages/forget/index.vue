@@ -74,7 +74,7 @@
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryForget = handleSubmit(async () => {
     if (getCaptchaResult() === false) {
-      return push.error('未通过安全验证！')
+      return push.error($t('message.unverified'))
     }
     try {
       sending.value = true

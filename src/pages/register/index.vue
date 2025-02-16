@@ -37,7 +37,7 @@
         :text="$t('action.sendEmail')"
         type="submit"
         variant="elevated"
-        :loading="sending"
+        :loading="getLoading('register')"
         @click="tryRegister"
       />
     </v-card>
@@ -49,10 +49,11 @@
   import { createUser } from '@/api/user/register'
   import { changePsw } from '@/api/user/forget'
   import { inputColor } from '@/hooks/inputColor'
-  import { useCaptchaStore } from '@/stores'
 
-  /** 发送邮件请求状态 */
-  const sending = ref(false)
+  import { useCaptchaStore, useLoadingStore } from '@/stores'
+
+  /** 请求进行状态 */
+  const { setLoading, getLoading } = useLoadingStore()
 
   /** token状态储存 */
   const { getCaptchaToken, getCaptchaResult } = useCaptchaStore()
@@ -76,10 +77,10 @@
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryRegister = handleSubmit(async () => {
     if (getCaptchaResult() === false) {
-      return push.error('未通过安全验证！')
+      return push.error($t('message.unverified'))
     }
     try {
-      sending.value = true
+      setLoading('register', true)
       // 创建临时账户（随机密码）
       await createUser(email.value.value as string, getCaptchaToken())
       // 发送密码重置邮件，同时能够做到激活账户
@@ -102,7 +103,7 @@
         push.error($t('message.emailSendFail'))
       }
     } finally {
-      sending.value = false
+      setLoading('register', false)
     }
   })
 </script>

@@ -68,8 +68,8 @@
             :text="$t('action.login')"
             variant="elevated"
             type="submit"
-            :loading="logging"
-            @click="tryLogin"
+            :loading="getLoading('login')"
+            @click="handleLoginByEmail()"
           />
         </div>
       </form>
@@ -82,14 +82,26 @@
           color="##16171B"
           title="GitHub"
           variant="outlined"
-          @click="loginByOA2('github')"
+          @click="handleLoginByOA2('github')"
         >
           <Icon icon="devicon:github" height="26px" />
         </v-btn>
-        <v-btn icon color="#D90215" title="GitHub" variant="outlined" @click="loginByOA2('gitee')">
+        <v-btn
+          icon
+          color="#D90215"
+          title="GitHub"
+          variant="outlined"
+          @click="handleLoginByOA2('gitee')"
+        >
           <Icon icon="simple-icons:gitee" height="26px" color="#D90215" />
         </v-btn>
-        <v-btn icon color="#E4682A" title="Gitlab" variant="outlined" @click="loginByOA2('gitlab')">
+        <v-btn
+          icon
+          color="#E4682A"
+          title="Gitlab"
+          variant="outlined"
+          @click="handleLoginByOA2('gitlab')"
+        >
           <Icon icon="vscode-icons:file-type-gitlab" height="26px" />
         </v-btn>
         <v-btn
@@ -97,11 +109,17 @@
           color="#4F5EE1"
           title="Discord"
           variant="outlined"
-          @click="loginByOA2('discord')"
+          @click="handleLoginByOA2('discord')"
         >
           <Icon icon="skill-icons:discord" height="24px" />
         </v-btn>
-        <v-btn icon color="#EA4335" title="Google" variant="outlined" @click="loginByOA2('google')">
+        <v-btn
+          icon
+          color="#EA4335"
+          title="Google"
+          variant="outlined"
+          @click="handleLoginByOA2('google')"
+        >
           <Icon icon="devicon:google" height="24px" />
         </v-btn>
       </div>
@@ -112,12 +130,12 @@
 <script lang="ts" setup>
   import { useField, useForm } from 'vee-validate'
   import { loginByEmail, loginByOA2 } from '@/api/user/login'
-  import { LoginForm } from '@/types/login'
   import { inputColor } from '@/hooks/inputColor'
-  import { useCaptchaStore } from '@/stores'
+  import { useCaptchaStore, useLoadingStore } from '@/stores'
+  import { Oa2Provider } from '@/types/login'
 
-  /** 登录请求状态 */
-  const logging = ref(false)
+  /** 请求进行状态 */
+  const { setLoading, getLoading } = useLoadingStore()
 
   /** token状态储存 */
   const { getCaptchaToken, getCaptchaResult } = useCaptchaStore()
@@ -126,12 +144,10 @@
   const { handleSubmit, handleReset } = useForm({
     validationSchema: {
       email(value: string) {
-        if (!value) return true
         if (/.+@.+\..+/.test(value)) return true
         return '邮箱格式不正确！'
       },
       password(value: string) {
-        if (!value) return true
         if (value?.length >= 6 && value.length <= 32) return true
         return '密码由8-32个字母、数字或下划线组成！'
       },
@@ -152,13 +168,39 @@
       ? password.errorMessage.value
       : $t('user.password')
   })
-  // 登录按钮
-  const tryLogin = handleSubmit(async formData => {
+
+  /**
+   * 单点登录
+   * @param provider 登录方式
+   */
+  const handleLoginByOA2 = (provider: Oa2Provider) => {
     if (getCaptchaResult() === false) {
-      return push.error('未通过安全验证！')
+      return push.error($t('message.unverified'))
     }
-    logging.value = true
-    await loginByEmail(formData as LoginForm, getCaptchaToken())
-    logging.value = false
+    setLoading('login', true)
+    try {
+      loginByOA2(provider)
+    } catch (err: any) {
+      push.error($t('message.loginFail'))
+    } finally {
+      setLoading('login', false)
+    }
+  }
+
+  /**
+   * 邮箱+密码登录
+   */
+  const handleLoginByEmail = handleSubmit(async values => {
+    if (getCaptchaResult() === false) {
+      return push.error($t('message.unverified'))
+    }
+    setLoading('login', true)
+    try {
+      await loginByEmail(values.email, values.password, getCaptchaToken())
+    } catch (err: any) {
+      push.error($t('message.loginFail'))
+    } finally {
+      setLoading('login', false)
+    }
   })
 </script>
