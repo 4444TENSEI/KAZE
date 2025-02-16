@@ -61,7 +61,7 @@
     validationSchema: {
       email(value: string) {
         if (/.+@.+\..+/.test(value)) return true
-        return '邮箱格式不正确！'
+        return $t('form.emailInvalid')
       },
     },
   })

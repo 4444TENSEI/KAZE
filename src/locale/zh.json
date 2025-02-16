@@ -33,10 +33,11 @@
     "background": "背景"
   },
   "form": {
-    "required": "必填项",
+    "required": "请填写此处信息！",
     "format": "格式错误",
     "passwordMismatch": "密码不一致",
     "emailInvalid": "邮箱格式错误",
+    "passwordInvalid": "密码由8-32个字母、数字或下划线组成！",
     "emailCodeInvalid": "邮箱验证码错误",
     "emailCodeExpired": "邮箱验证码已过期",
     "emailCodeSendFail": "邮箱验证码发送失败",

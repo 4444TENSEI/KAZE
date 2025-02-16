@@ -13,20 +13,18 @@
         />
         <p class="font-weight-black cursor-default mx-auto text-h4">注册</p>
       </div>
-      <form>
-        <v-text-field
-          v-model="email.value.value"
-          autocomplete="username"
-          class="mb-4"
-          clearable
-          :color="inputColor(email.errorMessage.value)"
-          :base-color="inputColor(email.errorMessage.value)"
-          :label="emailLabel"
-          prepend-inner-icon="mdi-email"
-          required
-          rounded="pill"
-        />
-      </form>
+      <v-text-field
+        v-model="email.value.value"
+        autocomplete="username"
+        class="mb-4"
+        clearable
+        :color="inputColor(email.errorMessage.value)"
+        :base-color="inputColor(email.errorMessage.value)"
+        :label="emailLabel"
+        prepend-inner-icon="mdi-email"
+        required
+        rounded="pill"
+      />
       <Captcha />
       <v-btn
         block
@@ -63,7 +61,7 @@
     validationSchema: {
       email(value: string) {
         if (/.+@.+\..+/.test(value)) return true
-        return '邮箱格式不正确！'
+        return $t('form.emailInvalid')
       },
     },
   })
