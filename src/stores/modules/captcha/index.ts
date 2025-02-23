@@ -12,15 +12,15 @@ const useCaptchaStore = defineStore('captcha', () => {
   function clearCaptchaToken() {
     return (captchaToken.value = '')
   }
-  const withoutCaptchaToken = () => {
-    return captchaToken.value ? false : true
+  const captchaPass = () => {
+    return captchaToken.value ? true : false
   }
 
   return {
     setCaptchaToken,
     getCaptchaToken,
     clearCaptchaToken,
-    withoutCaptchaToken,
+    captchaPass,
   }
 })
 

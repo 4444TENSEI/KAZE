@@ -60,7 +60,7 @@
     "frequently": "操作频繁，请稍后再试",
     "timeout": "好像网速有点慢呢~",
     "emailSendFail": "邮箱验证码发送失败",
-    "unverified": "未通过安全验证！",
+    "unverified": "请先通过人机验证！",
     "greeting": {
       "earlyMorning": "早点睡哦",
       "morning": "早上好",

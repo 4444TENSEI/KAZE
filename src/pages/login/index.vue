@@ -133,7 +133,7 @@
   const { setLoading, getLoading } = useLoadingStore()
 
   /** token状态储存 */
-  const { getCaptchaToken, withoutCaptchaToken } = useCaptchaStore()
+  const { getCaptchaToken, captchaPass } = useCaptchaStore()
 
   // 登录输入框校验
   const { handleSubmit, handleReset } = useForm({
@@ -169,7 +169,7 @@
    * @param provider 登录方式
    */
   const handleLoginByOA2 = async (provider: Oa2Provider) => {
-    if (withoutCaptchaToken()) {
+    if (!captchaPass()) {
       return push.error($t('message.unverified'))
     }
     setLoading('login', true)
@@ -188,7 +188,7 @@
    * 邮箱+密码登录
    */
   const handleLoginByEmail = handleSubmit(async formData => {
-    if (withoutCaptchaToken()) {
+    if (!captchaPass()) {
       return push.error($t('message.unverified'))
     }
     setLoading('login', true)

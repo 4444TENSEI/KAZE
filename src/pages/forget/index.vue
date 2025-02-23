@@ -54,7 +54,7 @@
   const sending = ref(false)
 
   /** token状态储存 */
-  const { getCaptchaToken, withoutCaptchaToken } = useCaptchaStore()
+  const { getCaptchaToken, captchaPass } = useCaptchaStore()
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -73,7 +73,7 @@
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryForget = handleSubmit(async () => {
-    if (withoutCaptchaToken()) {
+    if (!captchaPass()) {
       return push.error($t('message.unverified'))
     }
     try {
