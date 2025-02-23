@@ -172,15 +172,12 @@
     if (!captchaPass()) {
       return push.error($t('message.unverified'))
     }
-    setLoading('login', true)
     try {
       await loginByOA2(provider)
       push.success(`${greeting()},${pb.authStore.record?.nickname}~`)
       router.push('/home')
     } catch (err: any) {
       push.error($t('message.loginFail'))
-    } finally {
-      setLoading('login', false)
     }
   }
 
