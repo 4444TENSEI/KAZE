@@ -24,6 +24,9 @@ router.beforeEach(async (to, from, next) => {
   // 已登录
   if (pb.authStore.isValid) {
     console.log('已登录')
+    if (to.path === '/') {
+      next('/home')
+    }
     // 每次切换路由都从服务端获取、刷新用户状态
     refreshAuth()
       .then(resp => {
@@ -31,13 +34,12 @@ router.beforeEach(async (to, from, next) => {
         console.log('已刷新用户登录状态+本地数据', resp)
       })
       .catch(err => {
-        push.warning('登录状态已失效，请重新登录！')
+        push.warning('登录状态已失效，请重新登录！' + err)
         pb.authStore.clear()
         next('/login')
       })
-  }
-  // 未登录
-  else {
+  } else {
+    // 未登录
     console.log('未登录')
     // 访问非公开路由
     if (!PUBLIC_ROUTES.includes(to.path)) {

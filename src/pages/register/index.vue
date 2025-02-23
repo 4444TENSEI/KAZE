@@ -54,7 +54,7 @@
   const { setLoading, getLoading } = useLoadingStore()
 
   /** token状态储存 */
-  const { getCaptchaToken, getCaptchaResult } = useCaptchaStore()
+  const { getCaptchaToken, withoutCaptchaToken } = useCaptchaStore()
 
   // 注册输入框校验
   const { handleSubmit } = useForm({
@@ -74,7 +74,7 @@
 
   /** 创建临时账户并且发送激活验证码邮件 */
   const tryRegister = handleSubmit(async () => {
-    if (getCaptchaResult() === false) {
+    if (withoutCaptchaToken()) {
       return push.error($t('message.unverified'))
     }
     try {

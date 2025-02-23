@@ -4,19 +4,23 @@ const useCaptchaStore = defineStore('captcha', () => {
   const captchaToken = ref('')
 
   function setCaptchaToken(token: string) {
-    captchaToken.value = token
+    return (captchaToken.value = token)
   }
   function getCaptchaToken() {
     return captchaToken.value
   }
-  function getCaptchaResult() {
-    return captchaToken.value ? true : false
+  function clearCaptchaToken() {
+    return (captchaToken.value = '')
+  }
+  const withoutCaptchaToken = () => {
+    return captchaToken.value ? false : true
   }
 
   return {
     setCaptchaToken,
     getCaptchaToken,
-    getCaptchaResult,
+    clearCaptchaToken,
+    withoutCaptchaToken,
   }
 })
 

@@ -14,6 +14,9 @@ importers:
       '@iconify/vue':
         specifier: ^4.3.0
         version: 4.3.0(vue@3.5.13(typescript@5.7.3))
+      '@mcaptcha/core-glue':
+        specifier: 0.1.0-alpha-5
+        version: 0.1.0-alpha-5
       '@mdi/font':
         specifier: 7.4.47
         version: 7.4.47
@@ -56,9 +59,6 @@ importers:
       vue-router:
         specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@5.7.3))
-      vue-turnstile:
-        specifier: ^1.0.11
-        version: 1.0.11(vue@3.5.13(typescript@5.7.3))
       vuetify:
         specifier: ^3.7.6
         version: 3.7.6(typescript@5.7.3)(vite-plugin-vuetify@2.0.4)(vue@3.5.13(typescript@5.7.3))
@@ -83,7 +83,7 @@ importers:
         version: 17.1.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint@9.18.0))(eslint-plugin-n@17.15.1(eslint@9.18.0))(eslint-plugin-promise@6.6.0(eslint@9.18.0))(eslint@9.18.0)
       eslint-config-vuetify:
         specifier: ^2.0.5
-        version: 2.0.5(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint-plugin-n@17.15.1(eslint@9.18.0))(eslint@9.18.0)(typescript@5.7.3)(vite-plugin-vuetify@2.0.4(vite@5.4.11(@types/node@22.10.7)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6))
+        version: 2.0.5(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint-plugin-n@17.15.1(eslint@9.18.0))(eslint@9.18.0)(typescript@5.7.3)(vite-plugin-vuetify@2.0.4)
       eslint-plugin-import:
         specifier: ^2.31.0
         version: 2.31.0(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint@9.18.0)
@@ -513,6 +513,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@mcaptcha/core-glue@0.1.0-alpha-5':
+    resolution: {integrity: sha512-16qWm5O5X0Y9LXULULaAks8Vf9FNlUUBcR5KDt49aWhFhG5++JzxNmCwQM9EJSHNU7y0U+FdyAWcGmjfKlkRLA==}
 
   '@mdi/font@7.4.47':
     resolution: {integrity: sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw==}
@@ -2550,11 +2553,6 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
-  vue-turnstile@1.0.11:
-    resolution: {integrity: sha512-iaTBoZ5oUqtNRto6bmbn6FQvW0h/sK7mPUJc1Qn4em+cELXN59U2FQTcpWfKssV3OY6lEZzmCpcn/zrb7htK3A==}
-    peerDependencies:
-      vue: ^3.2.45
-
   vue@3.5.13:
     resolution: {integrity: sha512-wmeiSMxkZCSc+PM2w2VRsOYAZC8GdipNFRTsLSfodVqI9mbejKeXEGr8SckuLnrQPGe3oJN5c3K0vpoU9q/wCQ==}
     peerDependencies:
@@ -2989,6 +2987,8 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@mcaptcha/core-glue@0.1.0-alpha-5': {}
+
   '@mdi/font@7.4.47': {}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -3410,7 +3410,7 @@ snapshots:
 
   '@vue/shared@3.5.13': {}
 
-  '@vuetify/loader-shared@2.0.3(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6(typescript@5.7.3)(vite-plugin-vuetify@2.0.4)(vue@3.5.13(typescript@5.7.3)))':
+  '@vuetify/loader-shared@2.0.3(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6)':
     dependencies:
       upath: 2.0.1
       vue: 3.5.13(typescript@5.7.3)
@@ -3849,7 +3849,7 @@ snapshots:
       eslint-plugin-n: 17.15.1(eslint@9.18.0)
       eslint-plugin-promise: 6.6.0(eslint@9.18.0)
 
-  eslint-config-vuetify@2.0.5(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint-plugin-n@17.15.1(eslint@9.18.0))(eslint@9.18.0)(typescript@5.7.3)(vite-plugin-vuetify@2.0.4(vite@5.4.11(@types/node@22.10.7)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6)):
+  eslint-config-vuetify@2.0.5(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint-plugin-n@17.15.1(eslint@9.18.0))(eslint@9.18.0)(typescript@5.7.3)(vite-plugin-vuetify@2.0.4):
     dependencies:
       eslint: 9.18.0
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint@9.18.0)
@@ -5155,7 +5155,7 @@ snapshots:
 
   vite-plugin-vuetify@2.0.4(vite@5.4.11(@types/node@22.10.7)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6):
     dependencies:
-      '@vuetify/loader-shared': 2.0.3(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6(typescript@5.7.3)(vite-plugin-vuetify@2.0.4)(vue@3.5.13(typescript@5.7.3)))
+      '@vuetify/loader-shared': 2.0.3(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6)
       debug: 4.4.0
       upath: 2.0.1
       vite: 5.4.11(@types/node@22.10.7)(sass@1.83.4)
@@ -5210,10 +5210,6 @@ snapshots:
       '@volar/typescript': 2.4.11
       '@vue/language-core': 2.2.0(typescript@5.7.3)
       typescript: 5.7.3
-
-  vue-turnstile@1.0.11(vue@3.5.13(typescript@5.7.3)):
-    dependencies:
-      vue: 3.5.13(typescript@5.7.3)
 
   vue@3.5.13(typescript@5.7.3):
     dependencies:

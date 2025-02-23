@@ -1,5 +1,5 @@
 import pb from '@/api/pocketbase'
-import router from '@/router'
+import router from '@/middleware'
 
 /** 退出登录 */
 function logout() {

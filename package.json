@@ -10,6 +10,7 @@
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.11.6",
     "@iconify/vue": "^4.3.0",
+    "@mcaptcha/core-glue": "0.1.0-alpha-5",
     "@mdi/font": "7.4.47",
     "@vercel/analytics": "^1.4.1",
     "@vueuse/core": "^12.4.0",
@@ -24,7 +25,6 @@
     "vue": "^3.5.13",
     "vue-i18n": "10",
     "vue-router": "^4.5.0",
-    "vue-turnstile": "^1.0.11",
     "vuetify": "^3.7.6"
   },
   "devDependencies": {

@@ -13,6 +13,7 @@ declare module 'vue' {
     Avatar: typeof import('./components/common/Avatar.vue')['default']
     AvatarBtn: typeof import('./components/button/AvatarBtn.vue')['default']
     Captcha: typeof import('./components/common/Captcha.vue')['default']
+    'Captcha copy': typeof import('./components/common/Captcha copy.vue')['default']
     copy: typeof import('./components/button/SettingBtn copy.vue')['default']
     DataTable: typeof import('./components/project/DataTable.vue')['default']
     Demo: typeof import('./components/button/Demo.vue')['default']

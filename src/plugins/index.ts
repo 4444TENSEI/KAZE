@@ -1,6 +1,6 @@
 import vuetify from './vuetify'
 import notivue from './notivue'
-import router from '@/router'
+import router from '@/middleware'
 import pinia from '@/stores'
 import i18n from '@/i18n'
 

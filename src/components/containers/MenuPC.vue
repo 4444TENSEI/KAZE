@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-  import router from '@/router'
+  import router from '@/middleware'
   import logout from '@/api/user/logout'
 
   const parentDrawer = ref(true)

@@ -1,4 +1,4 @@
-import router from '@/router'
+import router from '@/middleware'
 const goBack = () => {
   if (window.history.length > 1) {
     router.go(-1)

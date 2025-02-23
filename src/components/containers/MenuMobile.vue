@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-  import router from '@/router'
+  import router from '@/middleware'
 
   const menuMobile = [
     {

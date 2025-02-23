@@ -31,7 +31,7 @@
 
 <script lang="ts" setup>
   import logout from '@/api/user/logout'
-  import router from '@/router'
+  import router from '@/middleware'
 
   const settingItems = [
     {
